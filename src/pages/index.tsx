@@ -1,10 +1,12 @@
 import { GetStaticProps } from 'next';
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import { Button } from '@ui/button';
+
 import { SessionData } from '@entities/session';
-import { Fragment } from 'react';
 
 const HomePage = () => {
   const { t } = useTranslation('home');
@@ -13,7 +15,7 @@ const HomePage = () => {
     <Fragment>
       <div>
         <Link href='/kek'>
-          <a>{t('link')}</a>
+          <Button>{t('link')}</Button>
         </Link>
       </div>
 
