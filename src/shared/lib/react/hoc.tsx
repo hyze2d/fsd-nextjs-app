@@ -1,25 +1,25 @@
-import * as React from 'react';
-import { ComponentType } from 'react';
+import type { ComponentType, FC } from 'react';
 
 /**
  * Decorator for React components to split logic & view and make testing easier
  */
-const hoc = function <SP, HP>(
+const hoc = function <SP, HP extends object = {}>(
   hook: (props: SP) => HP,
   Source: ComponentType<HP & SP>
 ) {
-  const Result: any = (props: SP) => (
-    <Source {...(hook(props) || ({} as any))} {...props} />
+  type ResultComponentType = FC<Partial<HP> & SP> & {
+    Original: ComponentType<HP & SP>;
+    hook: (props: SP) => HP;
+  };
+
+  const Result: ResultComponentType = props => (
+    <Source {...(hook(props) || {})} {...props} />
   );
 
   Result.Original = Source;
-
   Result.hook = hook;
 
-  return Result as any as ComponentType<Partial<HP> & SP> & {
-    Original: ComponentType<HP & SP>;
-    hook: typeof hook;
-  };
+  return Result;
 };
 
 export { hoc };
