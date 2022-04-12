@@ -1,5 +1,7 @@
-import { User } from '@shared/api/configurator';
-import { createStore, restore, combine } from 'effector';
+import { combine, createStore, restore } from 'effector';
+
+import type { User } from '@api/configurator';
+
 import { getUserFx } from './effects';
 import { setToken, setTokenFromHttp } from './events';
 
@@ -7,13 +9,12 @@ const $token = restore(setToken, null).on(
   setTokenFromHttp,
   (_, token) => token
 );
-const $user = createStore<User>(null).on(getUserFx.doneData, (_, user) => user);
+const $user = createStore<User | null>(null).on(
+  getUserFx.doneData,
+  (_, user) => user
+);
 const $loading = getUserFx.pending;
 
-const $session = combine($token, $user, $loading, (token, user, loading) => ({
-  token,
-  user,
-  loading
-}));
+const $session = combine({ token: $token, user: $user, loading: $loading });
 
 export { $user, $loading, $token, $session };

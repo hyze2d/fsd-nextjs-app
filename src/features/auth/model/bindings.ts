@@ -1,4 +1,5 @@
 import { sample } from 'effector';
+
 import { authorizeFx } from './effects';
 import { authorize } from './events';
 

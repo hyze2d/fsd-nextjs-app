@@ -1,4 +1,5 @@
-import { User } from '@shared/api/configurator';
+import type { User } from '@api/configurator';
+
 import { createEffect } from 'effector';
 
 const setTokenFx = createEffect(async (token: string) => {});

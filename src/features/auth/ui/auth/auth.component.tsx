@@ -1,6 +1,9 @@
-import { AuthForm } from '@entities/auth/ui';
-import { hoc } from '@shared/lib/react/hoc';
-import { Button } from '@shared/ui/button';
+import { hoc } from '@lib/react';
+
+//FIXME: Replace AuthForm to @features/auth
+//FIXME: Replace current component to @feature/auth/auth-guard
+import { AuthForm } from '@entities/auth';
+
 import { useAuthProps } from './auth.props';
 
 const Auth = hoc(

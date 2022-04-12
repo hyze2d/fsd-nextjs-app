@@ -1,5 +1,7 @@
-import NextApp, { AppContext, AppProps } from 'next/app';
-import { allSettled, fork, Scope, serialize } from 'effector';
+import type { AppContext, AppProps } from 'next/app';
+import NextApp from 'next/app';
+import type { Scope } from 'effector';
+import { allSettled, fork, serialize } from 'effector';
 import { appWithTranslation } from 'next-i18next';
 import Cookies from 'cookies';
 
@@ -49,10 +51,10 @@ const CustomApp = ({
 };
 
 CustomApp.getInitialProps = async (context: AppContext) => {
-  let appScope: Scope;
+  let appScope: Scope | undefined;
 
   if (typeof window === 'undefined') {
-    const cookies = new Cookies(context.ctx.req, context.ctx.res);
+    const cookies = new Cookies(context.ctx.req!, context.ctx.res!);
 
     appScope = fork({
       values: [[$token, cookies.get(AUTH_TOKEN_COOKIE_KEY)]]

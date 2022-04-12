@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextMiddleware } from 'next/server';
+import { NextResponse } from 'next/server';
 
 const PUBLIC_FILE = /\.(.*)$/;
 const MOCK_LOCALE_CODE = 'default';
@@ -10,7 +11,7 @@ const stripDefaultLocale = (str: string): string => {
   return stripped;
 };
 
-const _middleware = (request: NextRequest) => {
+const _middleware: NextMiddleware = request => {
   const shouldHandleLocale =
     !PUBLIC_FILE.test(request.nextUrl.pathname) &&
     !request.nextUrl.pathname.includes('/api/') &&

@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import { Fragment } from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
@@ -8,7 +8,7 @@ import { Button } from '@ui/button';
 
 import { SessionData } from '@entities/session';
 
-const HomePage = () => {
+const HomePage: NextPage = () => {
   const { t } = useTranslation('home');
 
   return (
@@ -29,7 +29,7 @@ const HomePage = () => {
 
 const getStaticProps: GetStaticProps = async ({ locale }) => ({
   props: {
-    ...(await serverSideTranslations(locale, ['common', 'home']))
+    ...(await serverSideTranslations(locale as Locale, ['common', 'home']))
   }
 });
 

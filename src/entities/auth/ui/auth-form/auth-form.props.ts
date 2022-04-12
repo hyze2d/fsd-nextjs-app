@@ -1,4 +1,6 @@
-type AuthFormProps = { onSubmit: () => void };
+type AuthFormProps = {
+  onSubmit: () => void;
+};
 
 const useAuthFormProps = ({ onSubmit }: AuthFormProps) => {
   const onSubmitClick = () => {

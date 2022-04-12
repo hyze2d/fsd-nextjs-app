@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Scope } from 'effector';
+import type { FC } from 'react';
+import type { Scope } from 'effector';
 import { Provider as EffectorProvider } from 'effector-react/scope';
 
 type ProviderProps = {
@@ -13,5 +13,5 @@ const Provider: FC<ProviderProps> = ({ children, scope }) => (
   <EffectorProvider value={scope}>{children}</EffectorProvider>
 );
 
-export type { ProviderProps };
 export { Provider };
+export type { ProviderProps };
