@@ -17,11 +17,15 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "@app/*": ["./src/app/*"],
+      "@processes/*": ["./src/processes/*"],
+      "@layouts/*": ["./src/widgets/layouts/*"],
+      "@widgets/*": ["./src/widgets/*"],
       "@features/*": ["./src/features/*"],
       "@entities/*": ["./src/entities/*"],
-      "@widgets/*": ["./src/widgets/*"],
       "@shared/*": ["./src/shared/*"],
-      "@env": ["./src/environment.ts"]
+      "@routes": ["./src/shared/config/routes.ts"],
+      "@env": ["./src/shared/config/environment.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
