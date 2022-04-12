@@ -1,7 +1,9 @@
 module.exports = {
   i18n: {
-    locales: ['default', 'en', 'uk', 'ru'],
+    locales: ['default', 'en', 'uk'],
     defaultLocale: 'default',
-    localeDetection: false
-  }
+    localeDetection: true
+  },
+
+  reloadOnPrerender: process.env.NODE_ENV !== 'production'
 };

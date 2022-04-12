@@ -12,8 +12,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
@@ -64,6 +63,7 @@
     "react": "17.0.2",
     "react-device-detect": "^2.1.2",
     "react-dom": "17.0.2",
+    "react-i18next": "^11.16.6",
     "react-infinite-scroll-component": "^6.1.0",
     "sass": "^1.45.2",
     "webpack-merge": "^5.8.0",

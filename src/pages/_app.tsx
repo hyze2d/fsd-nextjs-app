@@ -1,9 +1,4 @@
-import {
-  $token,
-  $user,
-  AUTH_TOKEN_COOKIE_KEY,
-  getUser
-} from '@entities/session';
+import { $token, AUTH_TOKEN_COOKIE_KEY, getUser } from '@entities/session';
 import { Auth } from '@features/auth';
 import Cookies from 'cookies';
 import NextApp, { AppContext, AppProps } from 'next/app';
@@ -11,7 +6,8 @@ import { FC } from 'react';
 import { App } from 'src/app/app.component';
 import 'src/app/app.scss';
 import { Provider } from 'effector-react/scope';
-import { Scope, fork, serialize, allSettled } from 'effector';
+import { allSettled, fork, Scope, serialize } from 'effector';
+import { appWithTranslation } from 'next-i18next';
 
 let clientScope: Scope;
 
@@ -60,4 +56,4 @@ _App.getInitialProps = async (context: AppContext) => {
   };
 };
 
-export default _App;
+export default appWithTranslation(_App);
