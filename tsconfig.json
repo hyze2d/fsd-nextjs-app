@@ -25,7 +25,8 @@
       "@entities/*": ["./src/entities/*"],
       "@shared/*": ["./src/shared/*"],
       "@routes": ["./src/shared/config/routes.ts"],
-      "@env": ["./src/shared/config/environment.ts"]
+      "@env": ["./src/shared/config/environment.ts"],
+      "@lib/*": ["./src/shared/lib/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
