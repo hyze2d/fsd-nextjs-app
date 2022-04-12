@@ -13,7 +13,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "jsx": "preserve",
     "incremental": true,
     "paths": {
@@ -27,7 +27,8 @@
       "@routes": ["./src/shared/config/routes.ts"],
       "@env": ["./src/shared/config/environment.ts"],
       "@lib/*": ["./src/shared/lib/*"],
-      "@ui/*": ["./src/shared/ui/*"]
+      "@ui/*": ["./src/shared/ui/*"],
+      "@api/*": ["./src/shared/api/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
