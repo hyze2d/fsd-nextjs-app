@@ -2,4 +2,9 @@
   color: #000;
   background: lightcoral;
   border: none;
+
+  &:hover {
+    color: white;
+    background: red;
+  }
 }
