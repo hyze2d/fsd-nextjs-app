@@ -1,19 +1,23 @@
-import { createApiRoute } from './request';
-import { restore } from 'effector';
+import axios, { AxiosRequestConfig } from 'axios';
+import { createStore } from 'effector';
+import { createApiRouteFabric } from './api-route';
+import { createAuthorizedRequestFx, createBaseRequestFx } from './base-request';
 
-const a = createApiRoute<
-  { a: number },
-  { id: number; content: string },
-  never,
-  { page: number; limit: number }
->(dto => ({
-  url: '/post/',
-  method: 'post',
-  data: dto.data,
-  params: {
-    page: dto.query.page,
-    limit: dto.query.limit
-  }
-}));
+const createApi = (config: AxiosRequestConfig) => {
+  const instance = axios.create(config);
 
-const $a = restore(a.doneData, { a: '1' });
+  const $token = createStore('');
+
+  const baseRequestFx = createBaseRequestFx(instance);
+  const authorizedRequestFx = createAuthorizedRequestFx(baseRequestFx, $token);
+
+  const createRoute = createApiRouteFabric(baseRequestFx);
+  const createAuthorizedRoute = createApiRouteFabric(authorizedRequestFx);
+
+  return {
+    createRoute,
+    createAuthorizedRoute
+  };
+};
+
+export { createApi };
