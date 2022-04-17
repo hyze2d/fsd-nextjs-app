@@ -1,20 +1,13 @@
-import { combine, createStore, restore } from 'effector';
+import { createStore, restore } from 'effector';
 
-import type { User } from '@api/configurator';
+import { webviewBackendApi } from '@shared/api';
 
-import { getUserFx } from './effects';
-import { setToken, setTokenFromHttp } from './events';
+const $isAuthenticated = createStore(false)
+  .on(webviewBackendApi.auth.loginFx.done, () => true)
+  .reset(webviewBackendApi.auth.logoutFx.done);
 
-const $token = restore(setToken, null).on(
-  setTokenFromHttp,
-  (_, token) => token
-);
-const $user = createStore<User | null>(null).on(
-  getUserFx.doneData,
-  (_, user) => user
-);
-const $loading = getUserFx.pending;
+const $viewerData = restore(webviewBackendApi.users.getSessionInfo, null);
 
-const $session = combine({ token: $token, user: $user, loading: $loading });
+$viewerData.reset(webviewBackendApi.auth.logoutFx.done);
 
-export { $user, $loading, $token, $session };
+export { $viewerData, $isAuthenticated };

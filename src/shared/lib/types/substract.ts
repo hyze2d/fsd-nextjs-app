@@ -6,6 +6,8 @@ type SubtractNeverKeys<T> = {
   [K in keyof T]: T[K] extends never ? never : K;
 }[keyof T];
 
-type SubtractNever<T> = { [K in SubtractNeverKeys<T>]: T[K] };
+type SubtractNever<T> = {
+  [K in SubtractNeverKeys<T>]: T[K];
+};
 
 export type { SubtractNeverKeys, SubtractNever };

@@ -7,6 +7,8 @@ import { useEvent } from 'effector-react';
 import { push } from '@shared/router';
 import { routes } from '@shared/config/routes';
 
+import { LoginForm } from '@features/auth-by-email';
+
 const HomePage: NextPage = () => {
   const _navigate = useEvent(push);
   const onLinkClick = () => {
@@ -20,6 +22,12 @@ const HomePage: NextPage = () => {
       <div>
         <Button onClick={onLinkClick}> {t('link')}</Button>
       </div>
+
+      <hr />
+      <br />
+      <LoginForm />
+      <br />
+      <hr />
 
       <div>
         <br />

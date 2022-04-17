@@ -3,11 +3,8 @@ import NextApp from 'next/app';
 import type { Scope } from 'effector';
 import { allSettled, fork, serialize } from 'effector';
 import { appWithTranslation } from 'next-i18next';
-import Cookies from 'cookies';
 
-import { $token, AUTH_TOKEN_COOKIE_KEY, getUser } from '@entities/session';
-
-import { Auth } from '@features/auth';
+import { authByEmailModel } from '@features/auth-by-email';
 
 import { Provider } from '@app/provider.component';
 import '@app/app.scss';
@@ -43,9 +40,7 @@ const CustomApp = ({
 
   return (
     <Provider scope={scope}>
-      <Auth>
-        <Component {...pageProps} />
-      </Auth>
+      <Component {...pageProps} />
     </Provider>
   );
 };
@@ -54,13 +49,21 @@ CustomApp.getInitialProps = async (context: AppContext) => {
   let appScope: Scope | undefined;
 
   if (typeof window === 'undefined') {
-    const cookies = new Cookies(context.ctx.req!, context.ctx.res!);
+    // const cookies = new Cookies(context.ctx.req!, context.ctx.res!);
+
+    // appScope = fork({
+    // values: [[$token, cookies.get(AUTH_TOKEN_COOKIE_KEY)]],
+    // });
 
     appScope = fork({
-      values: [[$token, cookies.get(AUTH_TOKEN_COOKIE_KEY)]]
+      values: [
+        [authByEmailModel.$email, 'admin@gmail.com'],
+        [authByEmailModel.$password, 'admin123']
+      ]
     });
 
-    await allSettled(getUser, { scope: appScope });
+    // await allSettled(getUser, { scope: appScope });
+    await allSettled(authByEmailModel.formSubmitted, { scope: appScope });
   }
 
   const initialAppProps = await NextApp.getInitialProps(context);

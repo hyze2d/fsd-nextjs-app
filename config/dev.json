@@ -1,6 +1,6 @@
 {
   "nextPublic": {
-    "API_URL": "https://volonteer-photobank.chatbotsstudio.com/api",
+    "API_URL": "http://3.71.19.248:3020/api/v1",
 
     "INSTAGRAM_URL": "https://instagram.com",
     "TELEGRAM_URL": "https://telegram.com",
