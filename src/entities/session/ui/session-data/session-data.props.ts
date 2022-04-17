@@ -1,7 +1,7 @@
 //FIXME: Check `effector-react/scope` vs `effector-react` import
 import { useStore } from 'effector-react/scope';
 
-import { $isAuthenticated, $viewerData } from '@entities/session';
+import { $isAuthenticated, $viewerData } from '../../model';
 
 const useSessionData = () => {
   const data = useStore($viewerData);

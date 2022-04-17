@@ -1,31 +1,34 @@
+import { useEvent, useStore } from 'effector-react/scope';
 import type { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Button } from '@ui/button';
-import { SessionData } from '@entities/session';
-import { useEvent } from 'effector-react';
+
 import { push } from '@shared/router';
-import { routes } from '@shared/config/routes';
+import { routes } from '@routes';
+
+import { Button } from '@ui/button';
+
+import { LogoutButton, SessionData, sessionModel } from '@entities/session';
 
 import { LoginForm } from '@features/auth-by-email';
 
-const HomePage: NextPage = () => {
-  const _navigate = useEvent(push);
-  const onLinkClick = () => {
-    _navigate(routes.signIn());
-  };
+const onLinkClick = push.prepend(() => routes.signIn());
 
+const HomePage: NextPage = () => {
   const { t } = useTranslation('home');
+
+  const isAuthenticated = useStore(sessionModel.$isAuthenticated);
+  const linkClocked = useEvent(onLinkClick);
 
   return (
     <>
       <div>
-        <Button onClick={onLinkClick}> {t('link')}</Button>
+        <Button onClick={linkClocked}> {t('link')}</Button>
       </div>
 
       <hr />
       <br />
-      <LoginForm />
+      {!isAuthenticated ? <LoginForm /> : <LogoutButton />}
       <br />
       <hr />
 

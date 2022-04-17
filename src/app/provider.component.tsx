@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 import type { Scope } from 'effector';
-import { Provider as EffectorProvider } from 'effector-react/scope';
-// import { useGate } from 'effector-react';
-import { RouterGate } from '@shared/router';
 import { useRouter } from 'next/router';
+import { Provider as EffectorProvider } from 'effector-react/scope';
+
+import { RouterGate } from '@shared/router';
 
 type ProviderProps = {
   /**
