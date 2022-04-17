@@ -1,26 +1,28 @@
 import type { GetStaticProps, NextPage } from 'next';
-import { Fragment } from 'react';
-import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
 import { Button } from '@ui/button';
-
 import { SessionData } from '@entities/session';
+import { useEvent } from 'effector-react';
+import { push } from '@shared/router';
 
 const HomePage: NextPage = () => {
+  const _navigate = useEvent(push);
+  const onLinkClick = () => {
+    _navigate('/kek');
+  };
+
   const { t } = useTranslation('home');
 
   return (
     <>
       <div>
-        <Link href='/kek'>
-          <Button>{t('link')}</Button>
-        </Link>
+        <Button onClick={onLinkClick}> {t('link')}</Button>
       </div>
 
       <div>
         <br />
+
         <SessionData />
       </div>
     </>
