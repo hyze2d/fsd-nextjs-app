@@ -1,6 +1,7 @@
 import { createEvent, createStore, restore } from 'effector';
 
 import { webviewBackendApi } from '@shared/api';
+import { reset } from 'patronum';
 
 const logoutClicked = createEvent<void>();
 
@@ -11,7 +12,9 @@ const $isAuthenticated = createStore(false).on(
 
 const $viewerData = restore(webviewBackendApi.users.getSessionInfo, null);
 
-$viewerData.reset([webviewBackendApi.auth.logoutFx.done, logoutClicked]);
-$isAuthenticated.reset([webviewBackendApi.auth.logoutFx.done, logoutClicked]);
+reset({
+  clock: [webviewBackendApi.auth.logoutFx.done, logoutClicked],
+  target: [$viewerData, $isAuthenticated]
+});
 
 export { $viewerData, $isAuthenticated, logoutClicked };
