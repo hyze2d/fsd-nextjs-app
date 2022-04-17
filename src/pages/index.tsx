@@ -12,7 +12,7 @@ const HomePage: NextPage = () => {
   const { t } = useTranslation('home');
 
   return (
-    <Fragment>
+    <>
       <div>
         <Link href='/kek'>
           <Button>{t('link')}</Button>
@@ -23,7 +23,7 @@ const HomePage: NextPage = () => {
         <br />
         <SessionData />
       </div>
-    </Fragment>
+    </>
   );
 };
 
@@ -34,4 +34,5 @@ const getStaticProps: GetStaticProps = async ({ locale }) => ({
 });
 
 export { getStaticProps };
+
 export default HomePage;
