@@ -5,11 +5,12 @@ import { Button } from '@ui/button';
 import { SessionData } from '@entities/session';
 import { useEvent } from 'effector-react';
 import { push } from '@shared/router';
+import { routes } from '@shared/config/routes';
 
 const HomePage: NextPage = () => {
   const _navigate = useEvent(push);
   const onLinkClick = () => {
-    _navigate('/kek');
+    _navigate(routes.signIn());
   };
 
   const { t } = useTranslation('home');
