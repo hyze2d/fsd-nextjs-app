@@ -1,4 +1,4 @@
-import type { User } from '@api/configurator';
+import type { User } from '@shared/api/devbay';
 
 import { createEffect } from 'effector';
 
@@ -10,7 +10,8 @@ const getUserFx = createEffect(async () => {
   });
 
   const user: User = {
-    id: 1
+    id: 1,
+    theme: 'light'
   };
 
   return user;

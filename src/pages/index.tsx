@@ -6,9 +6,11 @@ import { SessionData } from '@entities/session';
 import { useEvent } from 'effector-react';
 import { push } from '@shared/router';
 import { routes } from '@shared/config/routes';
+import { useTheme } from '@shared/theme';
 
 const HomePage: NextPage = () => {
   const _navigate = useEvent(push);
+
   const onLinkClick = () => {
     _navigate(routes.signIn());
   };

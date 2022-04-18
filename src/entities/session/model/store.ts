@@ -1,6 +1,6 @@
 import { combine, createStore, restore } from 'effector';
 
-import type { User } from '@api/configurator';
+import type { User } from '@shared/api/devbay';
 
 import { getUserFx } from './effects';
 import { setToken, setTokenFromHttp } from './events';

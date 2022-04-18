@@ -1,3 +1,0 @@
-const Provider = () => {};
-
-export { Provider };
