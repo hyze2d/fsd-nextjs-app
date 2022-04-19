@@ -8,6 +8,7 @@ import { ThemeGate } from '@shared/theme';
 import { $user } from '@entities/session';
 import { dark, light } from '@shared/config/theme';
 import { User } from '@shared/api/devbay';
+import { MediaListener } from '@shared/lib/media';
 
 type ProviderProps = {
   /**
@@ -36,6 +37,7 @@ const Provider: FC<ProviderProps> = ({ children, scope }) => {
     <EffectorProvider value={scope}>
       <ThemeProvider>
         <RouterGate router={router} />
+        <MediaListener />
 
         {children}
       </ThemeProvider>

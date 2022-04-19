@@ -6,7 +6,7 @@ import { SessionData } from '@entities/session';
 import { useEvent } from 'effector-react';
 import { push } from '@shared/router';
 import { routes } from '@shared/config/routes';
-import { useTheme } from '@shared/theme';
+import { useMedia } from '@shared/lib/media';
 
 const HomePage: NextPage = () => {
   const _navigate = useEvent(push);
@@ -14,6 +14,8 @@ const HomePage: NextPage = () => {
   const onLinkClick = () => {
     _navigate(routes.signIn());
   };
+
+  const md = useMedia('>=md');
 
   const { t } = useTranslation('home');
 
