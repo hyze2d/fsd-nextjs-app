@@ -1,6 +1,6 @@
 import { createEffect } from 'effector';
 
-const getKekFx = createEffect(async (id: string) => {
+const getTestFx = createEffect(async (id: string) => {
   await new Promise(resolve => {
     setTimeout(resolve, 1000);
   });
@@ -8,4 +8,4 @@ const getKekFx = createEffect(async (id: string) => {
   return Math.random() + ' - ' + id;
 });
 
-export { getKekFx };
+export { getTestFx };

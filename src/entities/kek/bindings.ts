@@ -1,9 +1,9 @@
 import { sample } from 'effector';
 
-import { getKekFx } from './effects';
-import { getKek } from './events';
+import { getTestFx } from './effects';
+import { getTest } from './events';
 
 sample({
-  clock: getKek,
-  target: getKekFx
+  clock: getTest,
+  target: getTestFx
 });

@@ -1,5 +1,5 @@
 import { createEvent } from 'effector';
 
-const getKek = createEvent<string>();
+const getTest = createEvent<string>();
 
-export { getKek };
+export { getTest };

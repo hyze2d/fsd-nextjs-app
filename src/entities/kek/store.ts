@@ -1,15 +1,15 @@
 import { combine, restore } from 'effector';
 
-import { getKekFx } from './effects';
-import { getKek } from './events';
+import { getTestFx } from './effects';
+import { getTest } from './events';
 
-const $id = restore(getKek, '');
+const $id = restore(getTest, '');
 
-const $value = restore(getKekFx.doneData, '');
+const $value = restore(getTestFx.doneData, '');
 
-const $kek = combine($id, $value, (id, value) => ({
+const $test = combine($id, $value, (id, value) => ({
   id,
   value
 }));
 
-export { $id, $value, $kek };
+export { $id, $value, $test };
