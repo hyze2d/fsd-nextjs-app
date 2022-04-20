@@ -2,8 +2,15 @@
 
 .button {
   color: #000;
-  background: lightcoral;
   border: none;
+
+  &.primary {
+    background: lightcoral;
+  }
+
+  &.secondary {
+    background: blue;
+  }
 
   &:hover {
     color: white;

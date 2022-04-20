@@ -1,35 +1,42 @@
-import type { Meta, Story } from '@storybook/react';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
-
-import type { ButtonProps } from './button.props';
+import type { Meta, Story } from '@storybook/react';
 import { Button } from './button.component';
+import type { ButtonProps } from './button.props';
 
-export default {
-  component: Button,
-  title: 'UI/Atoms/Button'
-} as Meta<ButtonProps>;
+// Primary
 
-const Default: Story<ButtonProps> = args => <Button {...args} />;
+const Primary: Story<ButtonProps> = args => <Button {...args} />;
 
-Default.args = {
-  children: 'Button'
+Primary.args = {
+  children: 'Primary',
+  variant: 'primary'
 };
 
-Default.parameters = {
+Primary.parameters = {
   badges: [BADGE.EXPERIMENTAL, BADGE.NEEDS_REVISION],
+
   design: {
     type: 'figma',
     url: 'https://www.figma.com/file/Klm6pxIZSaJFiOMX5FpTul9F/storybook-addon-designs-sample'
   }
 };
 
-export const Hover = () => <Button>Label</Button>;
+// Secondary
 
-Hover.parameters = {
-  badges: [BADGE.EXPERIMENTAL, BADGE.NEEDS_REVISION],
-  pseudo: {
-    hover: true
-  }
+const Secondary: Story<ButtonProps> = args => <Button {...args} />;
+
+Secondary.args = {
+  children: 'Secondary',
+  variant: 'secondary'
 };
 
-export { Default };
+Secondary.parameters = {
+  badges: [BADGE.EXPERIMENTAL, BADGE.NEEDS_REVISION]
+};
+
+export { Primary, Secondary };
+
+export default {
+  component: Button,
+  title: 'COMMON/Button'
+} as Meta<ButtonProps>;
