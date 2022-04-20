@@ -38,5 +38,5 @@ export { Primary, Secondary };
 
 export default {
   component: Button,
-  title: 'COMMON/Button'
+  title: 'Shared/Atoms/Button'
 } as Meta<ButtonProps>;

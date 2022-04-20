@@ -1,5 +1,5 @@
 import { hoc } from '@lib/react';
-import { Button } from '@ui/button';
+import { Button } from '@shared/ui/atoms/button';
 
 import { useAuthFormProps } from './auth-form.props';
 

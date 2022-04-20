@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Button } from '@ui/button';
+import { Button } from '@shared/ui/atoms/button';
 import { SessionData } from '@entities/session';
 import { useEvent } from 'effector-react';
 import { push } from '@shared/router';
