@@ -33,6 +33,7 @@
 - Forms
 - Localization
 - SEO
+- Animations
 
 ---
 
