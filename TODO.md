@@ -18,6 +18,7 @@
 
 ## Конфигурация
 
+- Commitlint 
 - ESLINT
 - STYLELINT
 - editorconfig/vscode config
