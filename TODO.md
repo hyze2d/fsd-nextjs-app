@@ -18,10 +18,9 @@
 
 ## Конфигурация
 
-- Commitlint 
+- Commitlint
 - ESLINT
 - STYLELINT
-- editorconfig/vscode config
 
 ---
 
@@ -64,3 +63,4 @@
 - ENV/Config
 - Tsconfig
 - Aliases
+- editorconfig/vscode config
