@@ -2,8 +2,8 @@
   "name": "next-based-template",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "tsc --noEmit && next dev",
+    "build": "tsc --noEmit && next build",
     "start": "next start",
     "docker": "next start",
     "lint": "next lint",
