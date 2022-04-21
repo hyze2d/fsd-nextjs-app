@@ -1,4 +1,4 @@
-import { createEffect, createEvent, restore, sample } from 'effector';
+import { createEffect, restore, sample } from 'effector';
 import { createGate } from 'effector-react';
 import { Theme, ThemeState } from './types';
 

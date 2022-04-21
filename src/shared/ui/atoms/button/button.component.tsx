@@ -1,8 +1,7 @@
-import { FC, forwardRef } from 'react';
 import cn from 'classnames';
-
-import type { ButtonProps } from './button.props';
+import { FC } from 'react';
 import styles from './button.module.scss';
+import type { ButtonProps } from './button.props';
 
 const Button: FC<ButtonProps> = ({ className, variant, ...props }) => (
   <button

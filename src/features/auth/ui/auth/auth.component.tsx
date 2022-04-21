@@ -9,8 +9,6 @@ import { useAuthProps } from './auth.props';
 const Auth = hoc(
   useAuthProps,
   ({ session: { user, loading }, onAuthFormSubmit, children }) => {
-    return <>{children}</>;
-
     if (loading) return <div>Loading...</div>;
 
     if (user) return <>{children}</>;

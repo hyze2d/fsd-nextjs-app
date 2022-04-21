@@ -18,8 +18,6 @@
 
 ## Конфигурация
 
-- Tsconfig
-- Aliases
 - ESLINT
 - STYLELINT
 - editorconfig/vscode config
@@ -63,3 +61,5 @@
 - Storybook
 - Babel config
 - ENV/Config
+- Tsconfig
+- Aliases

@@ -17,9 +17,10 @@ const HomePage: NextPage = () => {
   };
 
   const md = useMedia('>=md');
-  console.log(environment);
 
   const { t } = useTranslation('home');
+
+  console.log(environment, md);
 
   return (
     <>
