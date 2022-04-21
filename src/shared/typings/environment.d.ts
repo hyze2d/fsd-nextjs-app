@@ -1,7 +1,9 @@
 declare namespace NodeJS {
   export interface ProcessEnv {
     NEXT_PUBLIC_API_URL: string;
-    NEXT_PUBLIC_KEK: string;
-    KEK: string;
+
+    NEXTAUTH_URL: string;
+    NEXTAUTH_SECRET: string;
+    JWT_SIGNING_PRIVATE_KEY: string;
   }
 }

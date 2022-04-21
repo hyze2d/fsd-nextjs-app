@@ -19,7 +19,7 @@ sample({
 
 sample({
   clock: webviewBackendApi.auth.loginFx.done,
-  fn: () => {},
+  fn: () => ({ token: undefined }),
   target: webviewBackendApi.users.getSessionInfo
 });
 

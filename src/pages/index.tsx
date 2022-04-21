@@ -1,42 +1,59 @@
-import { useEvent, useStore } from 'effector-react/scope';
+import axios from 'axios';
 import type { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
-import { push } from '@shared/router';
-import { routes } from '@routes';
+import { useStore } from 'effector-react/scope';
 
 import { Button } from '@ui/button';
-
-import { LogoutButton, SessionData, sessionModel } from '@entities/session';
-
-import { LoginForm } from '@features/auth-by-email';
-
-const onLinkClick = push.prepend(() => routes.signIn());
+import { sessionModel } from '@entities/session';
 
 const HomePage: NextPage = () => {
   const { t } = useTranslation('home');
 
+  const viewer = useStore(sessionModel.$viewerData);
   const isAuthenticated = useStore(sessionModel.$isAuthenticated);
-  const linkClocked = useEvent(onLinkClick);
+
+  const onClick = () => {
+    axios
+      .post('/api/auth/login', {
+        email: 'admin@gmail.com',
+        password: 'admin123'
+      })
+      .then(data => data.data)
+      .then(console.log)
+      .catch(console.log);
+  };
+
+  const refresh = () => {
+    axios
+      .post('/api/auth/refresh')
+      .then(data => data.data)
+      .then(console.log)
+      .catch(console.log);
+  };
+
+  const logout = () => {
+    axios.post('/api/auth/logout').then(console.log).catch(console.log);
+  };
 
   return (
     <>
       <div>
-        <Button onClick={linkClocked}> {t('link')}</Button>
+        <Button onClick={onClick}>{t('login')}</Button>
       </div>
-
-      <hr />
-      <br />
-      {!isAuthenticated ? <LoginForm /> : <LogoutButton />}
-      <br />
-      <hr />
 
       <div>
         <br />
 
-        <SessionData />
+        <Button onClick={refresh}>{t('refresh')}</Button>
       </div>
+
+      <div>
+        <br />
+        <Button onClick={logout}>{t('logout')}</Button>
+      </div>
+
+      <div>{JSON.stringify(viewer, null, 4)}</div>
     </>
   );
 };

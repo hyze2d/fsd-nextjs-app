@@ -27,67 +27,72 @@ function authInterceptorsFactory(
 
   const $interceptorIds = createStore<InterceptorIds | null>(null);
 
-  sample({
-    clock: interceptorsUnits.initAuthInterceptors,
-    filter: Boolean,
-    target: attachInterceptorsFx
-  });
+  if (typeof window !== 'undefined') {
+    sample({
+      clock: interceptorsUnits.initAuthInterceptors,
+      filter: Boolean,
+      target: attachInterceptorsFx
+    });
 
-  attachInterceptorsFx.use(({ accessToken, refreshToken }) => {
-    const requestInterceptorId = instance.interceptors.request.use(
-      (config: AxiosRequestConfig) => {
-        if (factoryConfig.applyRequestInterceptor(config)) {
-          config.headers!.Authorization = `Bearer ${accessToken}`;
+    attachInterceptorsFx.use(({ accessToken, refreshToken }) => {
+      const requestInterceptorId = instance.interceptors.request.use(
+        (config: AxiosRequestConfig) => {
+          if (factoryConfig.applyRequestInterceptor(config)) {
+            config.headers!.Authorization = `Bearer ${accessToken}`;
+          }
+
+          return config;
         }
+      );
 
-        return config;
-      }
-    );
+      const responseInterceptorId = instance.interceptors.response.use(
+        response => response,
+        async error => {
+          if (factoryConfig.skipResponseInterceptor(error)) throw error;
 
-    const responseInterceptorId = instance.interceptors.response.use(
-      response => response,
-      async error => {
-        if (factoryConfig.skipResponseInterceptor(error)) throw error;
+          try {
+            await interceptorsUnits.refreshTokensFx({ refreshToken });
 
-        try {
-          await interceptorsUnits.refreshTokensFx({ refreshToken });
+            return baseRequestFx(error.config);
+          } catch (e) {
+            interceptorsUnits.refreshFailed();
 
-          return baseRequestFx(error.config);
-        } catch (e) {
-          interceptorsUnits.refreshFailed();
-
-          throw error;
+            throw error;
+          }
         }
-      }
-    );
+      );
 
-    return { requestInterceptorId, responseInterceptorId };
-  });
+      return { requestInterceptorId, responseInterceptorId };
+    });
 
-  $interceptorIds.on(attachInterceptorsFx.doneData, (_, ids) => ids);
+    $interceptorIds.on(attachInterceptorsFx.doneData, (_, ids) => ids);
 
-  sample({
-    clock: [
-      interceptorsUnits.refreshTokensFx.done,
-      interceptorsUnits.removeAuthInterceptors
-    ],
-    source: $interceptorIds,
-    filter: Boolean,
-    target: clearInterceptorsFx
-  });
+    sample({
+      clock: [
+        interceptorsUnits.refreshTokensFx.done,
+        interceptorsUnits.removeAuthInterceptors
+      ],
+      source: $interceptorIds,
+      filter: Boolean,
+      target: clearInterceptorsFx
+    });
 
-  clearInterceptorsFx.use(ids => {
-    instance.interceptors.request.eject(ids.requestInterceptorId);
-    instance.interceptors.response.eject(ids.responseInterceptorId);
-  });
+    clearInterceptorsFx.use(ids => {
+      instance.interceptors.request.eject(ids.requestInterceptorId);
+      instance.interceptors.response.eject(ids.responseInterceptorId);
+    });
 
-  sample({
-    clock: combineEvents({
-      events: [interceptorsUnits.refreshTokensFx.done, clearInterceptorsFx.done]
-    }),
-    source: interceptorsUnits.refreshTokensFx.doneData,
-    target: attachInterceptorsFx
-  });
+    sample({
+      clock: combineEvents({
+        events: [
+          interceptorsUnits.refreshTokensFx.done,
+          clearInterceptorsFx.done
+        ]
+      }),
+      source: interceptorsUnits.refreshTokensFx.doneData,
+      target: attachInterceptorsFx
+    });
+  }
 
   return interceptorsUnits;
 }

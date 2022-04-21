@@ -1,20 +1,13 @@
-import { createEvent, createStore, restore } from 'effector';
+import { createEvent, createStore } from 'effector';
 
-import { webviewBackendApi } from '@shared/api';
-import { reset } from 'patronum';
+import { CurrentUserContract, webviewBackendApi } from '@shared/api';
 
 const logoutClicked = createEvent<void>();
 
-const $isAuthenticated = createStore(false).on(
-  webviewBackendApi.auth.loginFx.done,
-  () => true
-);
+const $viewerData = createStore<CurrentUserContract | null>(null)
+  .on(webviewBackendApi.users.getSessionInfo.doneData, (_, data) => data)
+  .reset([webviewBackendApi.auth.logoutFx.done, logoutClicked]);
 
-const $viewerData = restore(webviewBackendApi.users.getSessionInfo, null);
-
-reset({
-  clock: [webviewBackendApi.auth.logoutFx.done, logoutClicked],
-  target: [$viewerData, $isAuthenticated]
-});
+const $isAuthenticated = $viewerData.map(Boolean);
 
 export { $viewerData, $isAuthenticated, logoutClicked };

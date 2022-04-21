@@ -3,14 +3,15 @@
   "private": true,
   "scripts": {
     "pre:start": "node ./scripts/ensure-configurations.js && node ./scripts/json-to-dotenv.js",
-    "dev": "npm run pre:start && next dev",
+    "dev": "next dev",
     "build": "npm run pre:start && next build",
     "start": "npm run pre:start && next start",
     "docker": "next start",
     "lint": "next lint",
     "stylelint": "stylelint --fix \"./src/**/*.scss\" && prettier --write \"./src/**/*.scss\"",
     "storybook": "start-storybook -p 6006 -s ./public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "generate-jwt-signing-private-key": "jose newkey -s 512 -t oct -a HS512"
   },
   "husky": {
     "hooks": {
@@ -57,6 +58,7 @@
     "formik": "^2.2.9",
     "next": "12.0.7",
     "next-i18next": "^10.5.0",
+    "node-jose-tools": "^1.6.28",
     "object-path": "^0.11.8",
     "patronum": "^1.8.2",
     "react": "17.0.2",
