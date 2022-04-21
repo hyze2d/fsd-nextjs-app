@@ -31,7 +31,8 @@ const useMedia = (query: QueryVariants) => {
   return useStoreMap({
     store: $media,
     keys: [query],
-    fn: (state, [query]) => state.find(one => one.query == query)?.matches
+    fn: (state, [query]) =>
+      state.find(one => one.query == query)?.matches || false
   });
 };
 

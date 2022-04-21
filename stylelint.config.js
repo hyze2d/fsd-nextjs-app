@@ -11,6 +11,7 @@ module.exports = {
     'prettier/prettier': true,
     'block-no-empty': true,
     'order/properties-order': [
+      'css-vars',
       'scss-mixin',
       'content',
 
