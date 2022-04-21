@@ -16,6 +16,9 @@
     "strictNullChecks": true,
     "jsx": "preserve",
     "incremental": true,
+    "keyofStringsOnly": true,
+    
+
     "paths": {
       "@app/*": ["./src/app/*"],
       "@processes/*": ["./src/processes/*"],
@@ -24,13 +27,13 @@
       "@features/*": ["./src/features/*"],
       "@entities/*": ["./src/entities/*"],
       "@shared/*": ["./src/shared/*"],
-      "@routes": ["./src/shared/config/routes.ts"],
-      "@env": ["./src/shared/config/environment.ts"],
+      "@config/*": ["./src/shared/config/*"],
       "@lib/*": ["./src/shared/lib/*"],
       "@ui/*": ["./src/shared/ui/*"],
-      "@api/*": ["./src/shared/api/*"],
+      "@api/*": ["./src/shared/api/*"]
     }
   },
+
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
