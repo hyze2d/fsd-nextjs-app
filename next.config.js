@@ -1,13 +1,23 @@
 const merge = require('webpack-merge').default;
 const { i18n } = require('./next-i18next.config');
+const { apiUrl, secret } =
+  process.env.NODE_ENV == 'production' ? process.env : require('./config.json');
 
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
-
   i18n,
 
+  reactStrictMode: true,
+
   trailingSlash: true,
+
+  serverRuntimeConfig: {
+    secret
+  },
+
+  publicRuntimeConfig: {
+    apiUrl
+  },
 
   webpack: config => {
     /**

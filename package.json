@@ -2,10 +2,9 @@
   "name": "next-based-template",
   "private": true,
   "scripts": {
-    "pre:start": "node ./scripts/ensure-configurations.js && node ./scripts/json-to-dotenv.js",
-    "dev": "npm run pre:start && next dev",
-    "build": "npm run pre:start && next build",
-    "start": "npm run pre:start && next start",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "docker": "next start",
     "lint": "next lint",
     "stylelint": "stylelint --fix \"./src/**/*.scss\" && prettier --write \"./src/**/*.scss\"",

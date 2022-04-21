@@ -18,11 +18,11 @@
 
 ## Конфигурация
 
-- Babel config
 - Tsconfig
 - Aliases
 - ENV/Config
 - ESLINT
+- STYLELINT
 - editorconfig/vscode config
 
 ---
@@ -62,3 +62,4 @@
 - Общие стили
 - Assets
 - Storybook
+- Babel config

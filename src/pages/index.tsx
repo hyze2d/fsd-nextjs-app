@@ -7,6 +7,7 @@ import { useEvent } from 'effector-react';
 import { push } from '@shared/router';
 import { routes } from '@shared/config/routes';
 import { useMedia } from '@shared/lib/media';
+import { environment } from '@shared/config/environment';
 
 const HomePage: NextPage = () => {
   const _navigate = useEvent(push);
@@ -16,6 +17,7 @@ const HomePage: NextPage = () => {
   };
 
   const md = useMedia('>=md');
+  console.log(environment);
 
   const { t } = useTranslation('home');
 
