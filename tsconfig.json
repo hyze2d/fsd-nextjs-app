@@ -13,11 +13,20 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "strictNullChecks": true,
     "jsx": "preserve",
+    "newLine": "lf",
     "incremental": true,
     "keyofStringsOnly": true,
-    
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "allowUnreachableCode": false,
+    "strictBindCallApply": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "useUnknownInCatchVariables": true,
 
     "paths": {
       "@app/*": ["./src/app/*"],
