@@ -20,7 +20,6 @@
 
 - Tsconfig
 - Aliases
-- ENV/Config
 - ESLINT
 - STYLELINT
 - editorconfig/vscode config
@@ -63,3 +62,4 @@
 - Assets
 - Storybook
 - Babel config
+- ENV/Config
