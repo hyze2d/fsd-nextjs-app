@@ -1,12 +1,18 @@
 import { AxiosRequestConfig } from 'axios';
 import { attach, Effect } from 'effector';
 
-function createRouteFactory(requestFx: Effect<AxiosRequestConfig, unknown>) {
+function createRouteFactory(
+  requestFx: Effect<AxiosRequestConfig, unknown>,
+  authenticatedRequestFx: Effect<AxiosRequestConfig, unknown>
+) {
   function createRoute<Dto = void, Contract = void, CustomError = Error>(
-    mapParams: ((data: Dto) => AxiosRequestConfig) | AxiosRequestConfig
+    mapParams: ((data: Dto) => AxiosRequestConfig) | AxiosRequestConfig,
+    config: { withAuth?: boolean } = {}
   ) {
+    const fx = config.withAuth ? authenticatedRequestFx : requestFx;
+
     return attach({
-      effect: requestFx,
+      effect: fx,
       mapParams: (dto): AxiosRequestConfig => {
         if (typeof mapParams === 'function') {
           return mapParams(dto);

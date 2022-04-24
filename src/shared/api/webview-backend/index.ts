@@ -1,3 +1,5 @@
+import './bind-auth';
+
 import { api } from './instance';
 
 import { routes as authRoutes } from './auth';

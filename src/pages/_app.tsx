@@ -4,10 +4,7 @@ import { appWithTranslation } from 'next-i18next';
 
 import { webviewBackendApi } from '@shared/api';
 
-import {
-  getAccessTokenFromRequest,
-  isRequestWithCookies
-} from '@lib/effector-api';
+import { isRequestWithCookies } from '@lib/next-jwt-auth';
 
 import { Provider } from '@app/provider.component';
 import '@app/app.scss';
@@ -53,13 +50,10 @@ CustomApp.getInitialProps = async (context: AppContext) => {
 
   if (isRequestWithCookies(context.ctx.req)) {
     try {
-      const token = getAccessTokenFromRequest(context.ctx.req);
-
       appScope = fork();
 
       await allSettled(webviewBackendApi.users.getSessionInfo, {
-        scope: appScope,
-        params: { token }
+        scope: appScope
       });
     } catch (e) {}
   }

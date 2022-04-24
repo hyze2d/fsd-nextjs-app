@@ -2,17 +2,12 @@ import { api } from '../instance';
 
 import { CurrentUserContract } from './types';
 
-const getSessionInfo = api.createRoute<{ token?: string }, CurrentUserContract>(
-  ({ token }) => ({
-    url: '/users/current',
-    headers: {
-      ...(token
-        ? {
-            Authorization: `Bearer ${token}`
-          }
-        : {})
-    }
-  })
+const getSessionInfo = api.createRoute<void, CurrentUserContract>(
+  {
+    url: '/users/current'
+  },
+  //TODO: Bind refresh token from api-route handler
+  { withAuth: true }
 );
 
 export { getSessionInfo };

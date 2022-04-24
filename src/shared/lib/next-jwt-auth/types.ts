@@ -1,18 +1,18 @@
 import { Effect, Event } from 'effector';
 import { AxiosRequestConfig } from 'axios';
 
-type InterceptorIds = {
-  requestInterceptorId: number;
-  responseInterceptorId: number;
-};
+type InterceptorId = number;
+
+type AccessToken = string;
+type RefreshToken = string;
 
 type Tokens = {
-  accessToken: string;
-  refreshToken: string;
+  accessToken: AccessToken;
+  refreshToken: RefreshToken;
 };
 
-type InterceptorsUnits = {
-  initAuthInterceptors: Event<Tokens>;
+type InterceptorUnits = {
+  initAuthInterceptors: Event<Tokens['refreshToken']>;
   refreshTokensFx: Effect<Pick<Tokens, 'refreshToken'>, Tokens>;
   removeAuthInterceptors: Event<void>;
   refreshFailed: Event<void>;
@@ -23,4 +23,11 @@ type InterceptorConfig = {
   skipResponseInterceptor?: (error: any) => boolean;
 };
 
-export type { InterceptorIds, Tokens, InterceptorsUnits, InterceptorConfig };
+export type {
+  Tokens,
+  AccessToken,
+  RefreshToken,
+  InterceptorConfig,
+  InterceptorUnits,
+  InterceptorId
+};

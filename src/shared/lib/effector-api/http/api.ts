@@ -2,7 +2,6 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import { createRequestFactory } from './request';
 import { createRouteFactory } from './route';
-import { authInterceptorsFactory } from './auth';
 
 function createHttpApi(
   instanceConfig: AxiosRequestConfig,
@@ -10,20 +9,20 @@ function createHttpApi(
 ) {
   const instance = axios.create(instanceConfig);
 
-  const baseRequestFx = createRequestFactory(instance, config.responseMapper);
+  const { baseRequestFx, authenticatedRequestFx, ...units } =
+    createRequestFactory(instance, config.responseMapper);
 
-  const createRoute = createRouteFactory(baseRequestFx);
-
-  const interceptors = authInterceptorsFactory(instance, baseRequestFx);
+  const createRoute = createRouteFactory(baseRequestFx, authenticatedRequestFx);
 
   return {
     instance,
 
     baseRequestFx,
+    authenticatedRequestFx,
 
     createRoute,
 
-    interceptors
+    units
   };
 }
 

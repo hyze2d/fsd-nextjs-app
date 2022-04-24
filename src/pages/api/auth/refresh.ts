@@ -5,7 +5,7 @@ import { webviewBackendApi } from '@shared/api';
 import {
   getRefreshTokenFromRequest,
   setTokensToCookie
-} from '@lib/effector-api';
+} from '@lib/next-jwt-auth';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const refreshToken = getRefreshTokenFromRequest(req);
