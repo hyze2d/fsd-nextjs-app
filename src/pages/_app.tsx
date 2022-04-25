@@ -2,8 +2,6 @@ import NextApp, { AppContext, AppProps } from 'next/app';
 import { fork, Scope, serialize } from 'effector';
 import { appWithTranslation } from 'next-i18next';
 
-import { isRequestWithCookies } from '@lib/next-jwt-auth';
-
 import { Provider } from '@app/provider.component';
 import '@app/app.scss';
 
@@ -44,17 +42,7 @@ const CustomApp = ({
 };
 
 CustomApp.getInitialProps = async (context: AppContext) => {
-  let appScope: Scope | undefined;
-
-  if (isRequestWithCookies(context.ctx.req)) {
-    try {
-      // appScope = fork();
-      //
-      // await allSettled(webviewBackendApi.users.getSessionInfo, {
-      //   scope: appScope
-      // });
-    } catch (e) {}
-  }
+  const appScope = fork();
 
   const initialAppProps = await NextApp.getInitialProps(context);
 

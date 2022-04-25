@@ -11,8 +11,9 @@ function createInterceptorUnits<LoginDto>(
 
   const loginFx = createEffect(async (data: LoginDto) => {
     const result = await requestFx({
-      url: '/api/login',
+      url: '/api/auth/login',
       method: 'POST',
+      baseURL: '/',
       data
     });
 
@@ -21,14 +22,20 @@ function createInterceptorUnits<LoginDto>(
 
   const refreshTokensFx = createEffect(async () => {
     const result = await requestFx({
-      url: '/api/refresh',
-      method: 'POST'
+      url: '/api/auth/refresh',
+      method: 'POST',
+      baseURL: '/'
     });
 
     return result as Pick<Tokens, 'accessToken'>;
   });
 
-  const logoutFx = createEffect(() => requestFx({ url: '/api/logout' }));
+  const logoutFx = createEffect(() =>
+    requestFx({
+      url: '/api/auth/logout',
+      baseURL: '/'
+    })
+  );
 
   return {
     refreshFailed,
