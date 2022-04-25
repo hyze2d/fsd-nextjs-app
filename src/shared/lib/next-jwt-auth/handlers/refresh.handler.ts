@@ -4,18 +4,18 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Tokens } from '../types';
 import { getRefreshTokenFromRequest, setTokensToCookie } from '../cookies';
 
-function refreshHandlerFactory(
-  effect: Effect<Pick<Tokens, 'refreshToken'>, Tokens>
-) {
+function refreshHandler(effect: Effect<Pick<Tokens, 'refreshToken'>, Tokens>) {
   return async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const refreshToken = getRefreshTokenFromRequest(req);
+    const oldRefreshToken = getRefreshTokenFromRequest(req);
 
-    const tokens = await effect({ refreshToken });
+    const { refreshToken, accessToken } = await effect({
+      refreshToken: oldRefreshToken
+    });
 
-    setTokensToCookie(res, tokens);
+    setTokensToCookie(res, refreshToken);
 
-    res.status(201).json({ accessToken: tokens.accessToken });
+    res.status(201).json({ accessToken });
   };
 }
 
-export { refreshHandlerFactory };
+export { refreshHandler };

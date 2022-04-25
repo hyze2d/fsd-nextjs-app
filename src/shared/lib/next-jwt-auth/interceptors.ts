@@ -1,41 +1,31 @@
 import axios, { AxiosInstance } from 'axios';
-import { createEffect, createStore, sample, scopeBind } from 'effector';
-import { combineEvents } from 'patronum';
+import { createEffect, sample, scopeBind } from 'effector';
 
-import { isClientSide } from '@lib/environment';
 import type { BaseRequest } from '@lib/effector-api';
+import { isClientSide } from '@lib/environment';
 
-import type {
-  InterceptorConfig,
-  InterceptorId,
-  InterceptorUnits,
-  RefreshToken
-} from './types';
+import type { InterceptorConfig } from './types';
 import { createInterceptorUnits } from './interceptors-units';
 import { getConfig } from './config';
 
-function createAuthInterceptor(
+function createJwtAuth<LoginDto>(
   instance: AxiosInstance,
   baseRequestFx: BaseRequest,
   config: InterceptorConfig = {}
-): InterceptorUnits {
+) {
   const factoryConfig = getConfig(config);
 
-  const interceptorUnits = createInterceptorUnits();
+  const interceptorUnits = createInterceptorUnits<LoginDto>(baseRequestFx);
 
   if (isClientSide()) {
-    const attachInterceptorFx = createEffect<RefreshToken, InterceptorId>();
-    const clearInterceptorFx = createEffect<InterceptorId, void>();
-
-    const $interceptorId = createStore<InterceptorId | null>(null);
+    const attachInterceptorFx = createEffect<void, void>();
 
     sample({
       clock: interceptorUnits.initAuthInterceptors,
-      filter: Boolean,
       target: attachInterceptorFx
     });
 
-    attachInterceptorFx.use(refreshToken =>
+    attachInterceptorFx.use(() => {
       instance.interceptors.response.use(
         response => response,
         async error => {
@@ -46,7 +36,7 @@ function createAuthInterceptor(
             throw error;
 
           try {
-            await interceptorUnits.refreshTokensFx({ refreshToken });
+            await interceptorUnits.refreshTokensFx();
 
             return baseRequestFx(error.config);
           } catch (e) {
@@ -55,36 +45,11 @@ function createAuthInterceptor(
             throw error;
           }
         }
-      )
-    );
-
-    $interceptorId.on(attachInterceptorFx.doneData, (_, ids) => ids);
-
-    sample({
-      clock: [
-        interceptorUnits.refreshTokensFx.done,
-        interceptorUnits.removeAuthInterceptors
-      ],
-      source: $interceptorId,
-      filter: Boolean,
-      target: clearInterceptorFx
-    });
-
-    clearInterceptorFx.use(responseInterceptorId => {
-      instance.interceptors.request.eject(responseInterceptorId);
-    });
-
-    sample({
-      clock: combineEvents({
-        events: [interceptorUnits.refreshTokensFx.done, clearInterceptorFx.done]
-      }),
-      source: interceptorUnits.refreshTokensFx.doneData,
-      fn: ({ refreshToken }) => refreshToken,
-      target: attachInterceptorFx
+      );
     });
   }
 
   return interceptorUnits;
 }
 
-export { createAuthInterceptor };
+export { createJwtAuth };

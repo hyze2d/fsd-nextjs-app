@@ -1,11 +1,10 @@
-import axios from 'axios';
 import type { GetStaticProps, NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useStore } from 'effector-react/scope';
-
-import { Button } from '@ui/button';
 import { sessionModel } from '@entities/session';
+import { isServerSide } from '@lib/environment';
+import { AuthByEmailForm } from '@features/auth-by-email';
 
 const HomePage: NextPage = () => {
   const { t } = useTranslation('home');
@@ -13,57 +12,30 @@ const HomePage: NextPage = () => {
   const viewer = useStore(sessionModel.$viewerData);
   const isAuthenticated = useStore(sessionModel.$isAuthenticated);
 
-  const onClick = () => {
-    axios
-      .post('/api/auth/login', {
-        email: 'admin@gmail.com',
-        password: 'admin123'
-      })
-      .then(data => data.data)
-      .then(console.log)
-      .catch(console.log);
-  };
-
-  const refresh = () => {
-    axios
-      .post('/api/auth/refresh')
-      .then(data => data.data)
-      .then(console.log)
-      .catch(console.log);
-  };
-
-  const logout = () => {
-    axios.post('/api/auth/logout').then(console.log).catch(console.log);
-  };
-
   return (
     <>
-      <div>
-        <Button onClick={onClick}>{t('login')}</Button>
-      </div>
+      <AuthByEmailForm />
 
-      <div>
-        <br />
-
-        <Button onClick={refresh}>{t('refresh')}</Button>
-      </div>
-
-      <div>
-        <br />
-        <Button onClick={logout}>{t('logout')}</Button>
-      </div>
-
-      <div>{JSON.stringify(viewer, null, 4)}</div>
+      <div>isAuthenticated: {isAuthenticated}</div>
     </>
   );
 };
 
-const getStaticProps: GetStaticProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale as Locale, ['common', 'home']))
+const getServerSideProps: GetStaticProps = async context => {
+  if (isServerSide()) {
+    console.log('serverSide');
   }
-});
 
-export { getStaticProps };
+  return {
+    props: {
+      ...(await serverSideTranslations(context.locale as Locale, [
+        'common',
+        'home'
+      ]))
+    }
+  };
+};
+
+export { getServerSideProps };
 
 export default HomePage;

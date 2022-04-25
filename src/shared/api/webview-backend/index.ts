@@ -1,13 +1,12 @@
-import './bind-auth';
-
 import { api } from './instance';
+import { auth } from './bind-auth';
 
-import { routes as authRoutes } from './auth';
 import { routes as usersRoutes } from './users';
 
 const webviewBackendApi = {
-  auth: authRoutes,
   users: usersRoutes,
+
+  auth,
 
   config: api
 };

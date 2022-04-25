@@ -1,16 +1,8 @@
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from './constants';
+import { REFRESH_TOKEN_KEY } from './constants';
 import { CookieRequest } from './types';
 
 function getRefreshTokenFromRequest(req: CookieRequest): string {
-  const refreshToken = req.cookies[REFRESH_TOKEN_KEY];
-
-  return refreshToken;
+  return req.cookies[REFRESH_TOKEN_KEY];
 }
 
-function getAccessTokenFromRequest(req: CookieRequest): string {
-  const accessToken = req.cookies[ACCESS_TOKEN_KEY];
-
-  return accessToken;
-}
-
-export { getAccessTokenFromRequest, getRefreshTokenFromRequest };
+export { getRefreshTokenFromRequest };

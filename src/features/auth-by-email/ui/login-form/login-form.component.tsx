@@ -3,7 +3,7 @@ import { Button } from '@ui/button';
 
 import { useLoginForm } from './login-form.props';
 
-const LoginForm = hoc(
+const AuthByEmailForm = hoc(
   useLoginForm,
   ({ email, password, onEmailChange, onPasswordChange, onSubmit }) => (
     <form onSubmit={onSubmit}>
@@ -26,4 +26,4 @@ const LoginForm = hoc(
   )
 );
 
-export { LoginForm };
+export { AuthByEmailForm };
