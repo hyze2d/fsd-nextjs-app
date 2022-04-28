@@ -1,6 +1,12 @@
-import { attach, createEvent, createStore, sample } from 'effector';
+import {
+  attach,
+  createEffect,
+  createEvent,
+  createStore,
+  sample
+} from 'effector';
 import { createGate } from 'effector-react';
-import { NextRouter } from 'next/router';
+import NextRouterRoot, { NextRouter } from 'next/router';
 
 type Url = Parameters<NextRouter['push']>[0];
 
@@ -19,9 +25,11 @@ const pushFx = attach({
   effect: (router, url: Url) => router?.push(url)
 });
 
+const changeRouteFx = createEffect(NextRouterRoot.push);
+
 sample({
   clock: push,
   target: pushFx
 });
 
-export { RouterGate, push, pushFx };
+export { RouterGate, push, pushFx, changeRouteFx };
