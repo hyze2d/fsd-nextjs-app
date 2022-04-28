@@ -1,3 +1,2 @@
-export * from './model';
+export * as sessionModel from './model';
 export * from './ui';
-export { AUTH_TOKEN_COOKIE_KEY } from './lib';
