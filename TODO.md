@@ -1,3 +1,13 @@
+
+## IN PROGRESS
+- Commitlint
+- ESLINT
+- STYLELINT
+- Localization
+
+- Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo)
+- SSG
+
 ## Тестирование
 
 - Юнит тесты
@@ -10,25 +20,13 @@
 - Структура файлов
 - Next pages
 - Model structure
-- Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo)
-- SSG
 - Вопросы по типизации
-
----
-
-## Конфигурация
-
-- Commitlint
-- ESLINT
-- STYLELINT
-
 ---
 
 ## Общие решения
 
 - API
 - Forms
-- Localization
 - SEO
 - Animations
 
