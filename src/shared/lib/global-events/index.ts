@@ -5,6 +5,10 @@ import { debounce } from 'patronum';
 const isEqualKeys = (a: Record<string, unknown>, b: Record<string, unknown>) =>
   Object.keys(a).every(key => a[key] == b[key]);
 
+const setVisibleHeight = (height: number) => {
+  document.documentElement.style.setProperty('--vh', `${height * 0.01}px`);
+};
+
 const defaultState = {
   altKey: false,
   ctrlKey: false,
@@ -30,9 +34,7 @@ const $windowSize = createStore({
   height: window.innerHeight
 }));
 
-const setVisibleHeightFx = createEffect((height: number) => {
-  document.documentElement.style.setProperty('--vh', `${height * 0.01}px`);
-});
+const setVisibleHeightFx = createEffect(setVisibleHeight);
 
 const $keyboardState = createStore<{
   keys: string[];
@@ -80,6 +82,8 @@ if (typeof window != 'undefined') {
   document.addEventListener('mouseup', mouseUp);
 
   window.addEventListener('resize', resize);
+
+  setVisibleHeight(window.innerHeight);
 
   sample({
     clock: debounce({
