@@ -1,13 +1,24 @@
-import type { GetStaticProps, NextPage } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Button } from '@shared/ui/atoms/button';
-import { SessionData } from '@entities/session';
 import { useEvent } from 'effector-react';
-import { push } from '@shared/router';
-import { routes } from '@shared/config/routes';
-import { useMedia } from '@shared/lib/media';
+
+import type { GetStaticProps, NextPage } from 'next';
+
+import { useTranslation } from 'next-i18next';
+
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+import { SessionData } from '@entities/session';
+
 import { environment } from '@shared/config/environment';
+
+import type { Locale } from '@shared/config/i18n';
+
+import { routes } from '@shared/config/routes';
+
+import { useMedia } from '@shared/lib/media';
+
+import { push } from '@shared/router';
+
+import { Button } from '@shared/ui/atoms/button';
 
 const HomePage: NextPage = () => {
   const _navigate = useEvent(push);

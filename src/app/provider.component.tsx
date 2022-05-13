@@ -1,14 +1,22 @@
-import { useGate, useStore } from 'effector-react';
-import { RouterGate } from '@shared/router';
 import type { Scope } from 'effector';
+
+import { useGate, useStore } from 'effector-react';
+
 import { Provider as EffectorProvider } from 'effector-react/scope';
+
 import { useRouter } from 'next/router';
-import { FC } from 'react';
-import { ThemeGate } from '@shared/theme';
+
+import type { FC } from 'react';
+
 import { $user } from '@entities/session';
+
 import { dark, light } from '@shared/config/theme';
-import { User } from '@shared/api/devbay';
+
 import { MediaListener } from '@shared/lib/media';
+
+import { RouterGate } from '@shared/router';
+
+import { ThemeGate } from '@shared/theme';
 
 type ProviderProps = {
   /**
@@ -23,9 +31,9 @@ const themes = {
 };
 
 const ThemeProvider: FC = ({ children }) => {
-  const { theme } = useStore($user) as User;
+  const user = useStore($user);
 
-  useGate(ThemeGate, themes[theme]);
+  useGate(ThemeGate, themes[user?.theme ?? 'light']);
 
   return <>{children}</>;
 };
@@ -46,4 +54,5 @@ const Provider: FC<ProviderProps> = ({ children, scope }) => {
 };
 
 export { Provider };
+
 export type { ProviderProps };

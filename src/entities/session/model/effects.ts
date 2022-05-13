@@ -1,6 +1,6 @@
-import type { User } from '@shared/api/devbay';
-
 import { createEffect } from 'effector';
+
+import type { User } from '@shared/api/devbay';
 
 const getUserFx = createEffect(async () => {
   await new Promise(res => {

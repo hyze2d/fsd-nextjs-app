@@ -1,24 +1,38 @@
-import type { AppContext, AppProps } from 'next/app';
-import NextApp from 'next/app';
-import type { Scope } from 'effector';
-import { allSettled, fork, serialize } from 'effector';
-import { appWithTranslation } from 'next-i18next';
+import '@app/app.scss';
+
 import Cookies from 'cookies';
 
-import { $token, AUTH_TOKEN_COOKIE_KEY, getUser } from '@entities/session';
+import type { Scope } from 'effector';
+
+import { allSettled, fork, serialize } from 'effector';
+
+import { appWithTranslation } from 'next-i18next';
+
+import type { ComponentType, ReactNode } from 'react';
+
+import { Provider } from '@app/provider.component';
+
+import type { AppContext, AppProps } from 'next/app';
+
+import NextApp from 'next/app';
 
 import { Auth } from '@features/auth';
 
-import { Provider } from '@app/provider.component';
-import '@app/app.scss';
+import { $token, AUTH_TOKEN_COOKIE_KEY, getUser } from '@entities/session';
 
-let clientScope: Scope;
+let clientScope: Scope | undefined;
 
-type CustomAppProps = AppProps & {
+type CustomAppProps = Omit<AppProps, 'pageProps'> & {
   /**
    * For initial effector scope
    */
-  initialAppState: Record<string, any>;
+  initialAppState: Record<string, unknown>;
+
+  pageProps: Record<string, unknown> & {
+    initialState?: Record<string, unknown>;
+
+    children: ReactNode;
+  };
 };
 
 const CustomApp = ({
@@ -33,7 +47,7 @@ const CustomApp = ({
       ...(clientScope ? serialize(clientScope) : {}),
 
       //FIXME: Add types or comments to annotate 'initialState' key
-      ...(pageProps?.initialState || {})
+      ...(pageProps.initialState ?? {})
     }
   });
 
@@ -52,9 +66,10 @@ const CustomApp = ({
 
 CustomApp.getInitialProps = async (context: AppContext) => {
   let appScope: Scope | undefined;
+  let { req, res } = context.ctx;
 
-  if (typeof window === 'undefined') {
-    const cookies = new Cookies(context.ctx.req!, context.ctx.res!);
+  if (typeof window === 'undefined' && req && res) {
+    const cookies = new Cookies(req, res);
 
     appScope = fork({
       values: [[$token, cookies.get(AUTH_TOKEN_COOKIE_KEY)]]
@@ -72,4 +87,7 @@ CustomApp.getInitialProps = async (context: AppContext) => {
   };
 };
 
-export default appWithTranslation(CustomApp);
+export default appWithTranslation(
+  // TODO: FIX
+  CustomApp as unknown as ComponentType<AppProps>
+);

@@ -1,4 +1,5 @@
 import type { NextMiddleware } from 'next/server';
+
 import { NextResponse } from 'next/server';
 
 const PUBLIC_FILE = /\.(.*)$/;
