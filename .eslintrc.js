@@ -1,21 +1,28 @@
 module.exports = {
   extends: [
     'eslint:recommended',
+    'plugin:react/recommended',
+
     'next/core-web-vitals',
+
     'plugin:effector/recommended',
     'plugin:effector/scope',
+
     '@feature-sliced',
     '@feature-sliced/eslint-config/rules/public-api/lite',
     '@feature-sliced/eslint-config/rules/import-order',
+
     'prettier/@typescript-eslint',
+
     'plugin:json/recommended'
   ],
 
   plugins: [
-    'react',
     '@typescript-eslint',
+    'react',
     'prettier',
     'effector',
+    'import',
     'unused-imports'
   ],
 
@@ -230,7 +237,6 @@ module.exports = {
     '@typescript-eslint/no-base-to-string': 'error',
     '@typescript-eslint/no-confusing-non-null-assertion': 'error',
     '@typescript-eslint/no-extra-non-null-assertion': 'error',
-
     '@typescript-eslint/brace-style': ['error', '1tbs'],
     '@typescript-eslint/lines-between-class-members': ['error', 'always'],
     '@typescript-eslint/method-signature-style': ['error', 'property'],
@@ -376,19 +382,63 @@ module.exports = {
       }
     ],
 
-    'react/void-dom-elements-no-children': 'warn',
-    'react/no-unsafe': 'warn',
-    'react/no-unused-state': 'warn',
-    'react/prefer-stateless-function': 'warn',
-    'react/self-closing-comp': 'warn',
-    'react/no-will-update-set-state': 'warn',
-    'react/no-this-in-sfc': 'warn',
-    'react/no-string-refs': 'warn',
-    'react/no-redundant-should-component-update': 'warn',
-    'react/jsx-boolean-value': ['warn', 'never'],
-    'react/jsx-key': 'warn',
-    'react/jsx-max-props-per-line': ['warn', { maximum: 7 }],
-    'react/jsx-max-depth': ['warn', { max: 8 }]
+    'react/button-has-type': 'error',
+    'react/no-array-index-key': 'error',
+    'react/no-danger-with-children': 'error',
+    'react/no-deprecated': 'error',
+    'react/no-find-dom-node': 'error',
+    'react/no-invalid-html-attribute': 'error',
+    'react/forbid-foreign-prop-types': 'error',
+    'react/no-render-return-value': 'error',
+    'react/no-string-refs': 'error',
+    'react/no-this-in-sfc': 'error',
+    'react/no-unescaped-entities': 'error',
+    'react/no-unknown-property': 'error',
+    'react/no-namespace': 'error',
+    'react/no-unstable-nested-components': 'error',
+    'react/no-unused-prop-types': 'error',
+    'react/prefer-stateless-function': 'error',
+    'react/self-closing-comp': 'error',
+    'react/style-prop-object': 'error',
+    'react/void-dom-elements-no-children': 'error',
+    'react/jsx-closing-tag-location': 'error',
+    'react/jsx-pascal-case': 'error',
+    'react/jsx-key': 'error',
+    'react/jsx-newline': 'error',
+    'react/jsx-no-constructed-context-values': 'error',
+    'react/jsx-no-duplicate-props': 'error',
+    'react/jsx-no-script-url': 'error',
+    'react/jsx-no-target-blank': 'error',
+
+    // TODO: consider
+    'react/jsx-props-no-spreading': 'error',
+
+    'react/jsx-fragments': ['error', 'element'],
+    'react/jsx-curly-brace-presence': ['error', 'never'],
+    'react/jsx-boolean-value': ['error', 'never'],
+    'react/destructuring-assignment': ['error', 'always'],
+
+    'react/jsx-no-useless-fragment': ['error', { allowExpressions: true }],
+    'react/jsx-max-depth': ['error', { max: 7 }],
+    'react/no-children-prop': ['error', { allowFunctions: true }],
+
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function'
+      }
+    ],
+
+    'react/jsx-handler-names': [
+      'error',
+      {
+        eventHandlerPrefix: 'on',
+        eventHandlerPropPrefix: 'on',
+        checkLocalVariables: true,
+        checkInlineFunction: true
+      }
+    ]
   }
 };
 
