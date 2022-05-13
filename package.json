@@ -11,38 +11,6 @@
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "src/**/*.scss": [
-      "prettier --write",
-      "stylelint --fix",
-      "git add"
-    ]
-  },
-  "commitlint": {
-    "plugins": [
-      "commitlint-plugin-jira-rules"
-    ],
-    "extends": [
-      "jira"
-    ],
-    "rules": {
-      "jira-task-id-max-length": [
-        2,
-        "always",
-        12
-      ]
-    }
-  },
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",

@@ -489,3 +489,37 @@ module.exports = {
     }
   }
 };
+
+// "lint-staged": {
+//   "src/**/*.{ts,tsx}": [
+//     "prettier --write",
+//     "eslint --fix",
+//     "git add"
+//   ],
+//   "src/**/*.scss": [
+//     "prettier --write",
+//     "stylelint --fix",
+//     "git add"
+//   ]
+// },
+// "husky": {
+//   "hooks": {
+//     "pre-commit": "lint-staged"
+//   }
+// },
+
+// "commitlint": {
+//   "plugins": [
+//     "commitlint-plugin-jira-rules"
+//   ],
+//   "extends": [
+//     "jira"
+//   ],
+//   "rules": {
+//     "jira-task-id-max-length": [
+//       2,
+//       "always",
+//       12
+//     ]
+//   }
+// },

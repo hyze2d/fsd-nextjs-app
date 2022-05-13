@@ -6,11 +6,8 @@ const PUBLIC_FILE = /\.(.*)$/;
 const MOCK_LOCALE_CODE = 'default';
 const REDIRECT_DEFAULT_LOCALE_CODE = 'uk';
 
-const stripDefaultLocale = (str: string): string => {
-  const stripped = str.replace(`/${MOCK_LOCALE_CODE}`, '');
-
-  return stripped;
-};
+const stripDefaultLocale = (str: string): string =>
+  str.replace(`/${MOCK_LOCALE_CODE}`, '');
 
 const _middleware: NextMiddleware = request => {
   const shouldHandleLocale =

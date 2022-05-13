@@ -16,9 +16,7 @@ import type { AppContext, AppProps } from 'next/app';
 
 import NextApp from 'next/app';
 
-import { Auth } from '@features/auth';
-
-import { $token, AUTH_TOKEN_COOKIE_KEY, getUser } from '@entities/session';
+import { $token, AUTH_TOKEN_COOKIE_KEY } from '@entities/session';
 
 let clientScope: Scope | undefined;
 
@@ -57,9 +55,7 @@ const CustomApp = ({
 
   return (
     <Provider scope={scope}>
-      <Auth>
-        <Component {...pageProps} />
-      </Auth>
+      <Component {...pageProps} />
     </Provider>
   );
 };

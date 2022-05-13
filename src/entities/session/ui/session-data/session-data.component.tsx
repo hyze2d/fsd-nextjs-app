@@ -1,25 +1,14 @@
-//FIXME: Check `effector-react/scope` vs `effector-react` import
-import { useStore } from 'effector-react/scope';
-
 import { hoc } from '@lib/react';
 
-import { $user } from '../../model';
+import { useSessionData } from './session-data.props';
 
-const useSessionData = () => {
-  const user = useStore($user);
-
-  return {
-    user
-  };
-};
-
-const SessionData = hoc(useSessionData, ({ user }) => (
+const SessionData = hoc(useSessionData, ({ isAuthenticated, data }) => (
   <div>
     <hr />
 
     <h2>User-data</h2>
 
-    <pre>{JSON.stringify(user, null, 4)}</pre>
+    <pre>{JSON.stringify({ ...data, isAuthenticated }, null, 4)}</pre>
   </div>
 ));
 
