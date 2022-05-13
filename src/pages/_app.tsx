@@ -16,7 +16,7 @@ import type { AppContext, AppProps } from 'next/app';
 
 import NextApp from 'next/app';
 
-import { $token, AUTH_TOKEN_COOKIE_KEY } from '@entities/session';
+import { $token, AUTH_TOKEN_COOKIE_KEY, getUserFx } from '@entities/session';
 
 let clientScope: Scope | undefined;
 
@@ -71,7 +71,7 @@ CustomApp.getInitialProps = async (context: AppContext) => {
       values: [[$token, cookies.get(AUTH_TOKEN_COOKIE_KEY)]]
     });
 
-    await allSettled(getUser, { scope: appScope });
+    await allSettled(getUserFx, { scope: appScope });
   }
 
   const initialAppProps = await NextApp.getInitialProps(context);

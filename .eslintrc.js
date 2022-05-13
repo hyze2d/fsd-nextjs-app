@@ -16,6 +16,8 @@ module.exports = {
     'plugin:json/recommended'
   ],
 
+  ignorePatterns: ['postcss.config.js'],
+
   plugins: [
     '@typescript-eslint',
     'react',
@@ -428,7 +430,7 @@ module.exports = {
     'react/jsx-no-target-blank': 'error',
 
     // TODO: consider
-    'react/jsx-props-no-spreading': 'error',
+    // 'react/jsx-props-no-spreading': 'error',
 
     'react/jsx-fragments': ['error', 'element'],
     'react/jsx-curly-brace-presence': ['error', 'never'],

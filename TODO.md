@@ -1,10 +1,8 @@
-
 ## IN PROGRESS
+
 - Commitlint
-- ESLINT
 - STYLELINT
 - Localization
-
 - Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo)
 - SSG
 
@@ -21,6 +19,7 @@
 - Next pages
 - Model structure
 - Вопросы по типизации
+
 ---
 
 ## Общие решения
@@ -62,3 +61,4 @@
 - Tsconfig
 - Aliases
 - editorconfig/vscode config
+- ESLINT

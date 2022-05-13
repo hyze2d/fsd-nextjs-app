@@ -39,3 +39,17 @@
   padding-left: $value;
   padding-right: $value;
 }
+
+@mixin min-height-100vh() {
+  min-height: 100vh;
+  min-height: -moz-available;
+  min-height: -webkit-fill-available;
+  min-height: fill-available;
+}
+
+@mixin height-100vh() {
+  height: 100vh;
+  height: -moz-available;
+  height: -webkit-fill-available;
+  height: fill-available;
+}
