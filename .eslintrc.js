@@ -429,10 +429,6 @@ module.exports = {
     'react/jsx-no-duplicate-props': 'error',
     'react/jsx-no-script-url': 'error',
     'react/jsx-no-target-blank': 'error',
-
-    // TODO: consider
-    // 'react/jsx-props-no-spreading': 'error',
-
     'react/jsx-fragments': ['error', 'syntax'],
     'react/jsx-curly-brace-presence': ['error', 'never'],
     'react/jsx-boolean-value': ['error', 'never'],

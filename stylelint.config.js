@@ -310,9 +310,6 @@ module.exports = {
     'selector-disallowed-list': [/element/, /block/],
     'max-nesting-depth': 8,
 
-    // TODO: add regexp
-    // 'keyframes-name-pattern':  /reg/,
-    // 'custom-property-pattern':  /reg/,
     'number-max-precision': 4,
     'shorthand-property-no-redundant-values': true,
     'value-no-vendor-prefix': true,
@@ -324,18 +321,17 @@ module.exports = {
     // Stylistic
     'value-keyword-case': 'lower',
     'function-name-case': 'lower',
-    // TODO: conflicts with scss
-    // 'rule-empty-line-before': 'always',
-
     'color-hex-case': 'lower',
     'number-leading-zero': 'never',
-    'number-no-trailing-zeros': true,
     'string-quotes': 'single',
     'unit-case': 'lower',
     'property-case': 'lower',
     'declaration-bang-space-after': 'always',
+    'number-no-trailing-zeros': true,
     'no-empty-first-line': true,
     'no-missing-end-of-source-newline': true,
+    // TODO: conflicts with scss
+    // 'rule-empty-line-before': 'always',
 
     // scss
     'scss/at-extend-no-missing-placeholder': true,

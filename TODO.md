@@ -1,7 +1,6 @@
 ## IN PROGRESS
 
 - Commitlint
-- STYLELINT
 - Localization
 - Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo)
 - SSG
@@ -33,6 +32,8 @@
 
 ## База
 
+по
+
 - Utils/Helpers
 - Дефолтная либа компонентов
 - Набор фич/entities/структуры, который закрывает стандартную структуру авторизации/регистрации/профиля юзера/дешборда (для базы и для примера)
@@ -62,3 +63,4 @@
 - Aliases
 - editorconfig/vscode config
 - ESLINT
+- STYLELINT
