@@ -5,16 +5,3 @@
 @import './mixins/position.scss';
 
 @import './mixins/text.scss';
-
-.test {
-  position: absolute;
-
-  display: block;
-  border: 1px solid black;
-
-  color: red;
-
-  cursor: pointer;
-
-  content: '';
-}
