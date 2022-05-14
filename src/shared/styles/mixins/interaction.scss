@@ -1,4 +1,4 @@
-@mixin clickable($color: 'none', $transition: 0.25s) {
+@mixin clickable($color: 'none', $transition: .25s) {
   cursor: pointer;
 
   @if ($color != 'none') {

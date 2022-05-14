@@ -6,8 +6,8 @@
     "build": "tsc --noEmit && next build",
     "start": "next start",
     "docker": "next start",
-    "lint": "next lint",
-    "stylelint": "stylelint --fix \"./src/**/*.scss\" && prettier --write \"./src/**/*.scss\"",
+    "lint": "next lint --fix",
+    "stylelint": "stylelint --fix \"./src/**/*.scss\"",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public"
   },

@@ -433,7 +433,7 @@ module.exports = {
     // TODO: consider
     // 'react/jsx-props-no-spreading': 'error',
 
-    'react/jsx-fragments': ['error', 'element'],
+    'react/jsx-fragments': ['error', 'syntax'],
     'react/jsx-curly-brace-presence': ['error', 'never'],
     'react/jsx-boolean-value': ['error', 'never'],
     'react/destructuring-assignment': ['error', 'always'],

@@ -1,8 +1,8 @@
 @mixin flex($j: flex-start, $a: center, $d: row) {
   display: flex;
   flex-direction: $d;
-  justify-content: $j;
   align-items: $a;
+  justify-content: $j;
 }
 
 @mixin size($size) {
@@ -26,8 +26,8 @@
 }
 
 @mixin mh($value) {
-  margin-left: $value;
   margin-right: $value;
+  margin-left: $value;
 }
 
 @mixin pv($value) {
@@ -36,20 +36,20 @@
 }
 
 @mixin ph($value) {
-  padding-left: $value;
   padding-right: $value;
+  padding-left: $value;
 }
 
 @mixin min-height-100vh() {
   min-height: 100vh;
-  min-height: -moz-available;
-  min-height: -webkit-fill-available;
+  min-height: available;
+  min-height: fill-available;
   min-height: fill-available;
 }
 
 @mixin height-100vh() {
   height: 100vh;
-  height: -moz-available;
-  height: -webkit-fill-available;
+  height: available;
+  height: fill-available;
   height: fill-available;
 }

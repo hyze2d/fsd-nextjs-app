@@ -1,7 +1,10 @@
 import type { GetStaticProps, NextPage } from 'next';
+
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { AuthByEmailForm } from '@features/auth-by-email';
+
+import type { Locale } from '@shared/config/i18n';
 
 const HomePage: NextPage = () => <AuthByEmailForm />;
 

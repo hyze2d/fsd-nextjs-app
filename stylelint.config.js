@@ -342,7 +342,6 @@ module.exports = {
     'scss/at-mixin-argumentless-call-parentheses': 'never',
     'scss/comment-no-empty': true,
     'scss/declaration-nested-properties-no-divided-groups': true,
-    'scss/map-keys-quotes': 'always',
     'scss/selector-nest-combinators': 'always',
     'scss/selector-no-union-class-name': true,
 

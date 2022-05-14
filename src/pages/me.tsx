@@ -1,11 +1,12 @@
-import type { GetServerSideProps, NextPage } from 'next';
 import { allSettled, fork, serialize } from 'effector';
 
-import { webviewBackendApi } from '@shared/api';
+import type { GetServerSideProps, NextPage } from 'next';
 
 import { routes } from '@config/routes';
 
 import { SessionData } from '@entities/session';
+
+import { webviewBackendApi } from '@shared/api';
 
 const MePage: NextPage = () => <SessionData />;
 
@@ -44,4 +45,5 @@ const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 };
 
 export { getServerSideProps };
+
 export default MePage;

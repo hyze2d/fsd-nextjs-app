@@ -1,11 +1,11 @@
 @mixin truncate() {
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @mixin font($s, $w: 400, $lh: 1.2) {
-  font-size: $s;
   font-weight: $w;
+  font-size: $s;
   line-height: $lh;
 }
