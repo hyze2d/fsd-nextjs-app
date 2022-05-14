@@ -16,7 +16,7 @@ module.exports = {
     'plugin:json/recommended'
   ],
 
-  ignorePatterns: ['postcss.config.js'],
+  ignorePatterns: ['*.js'],
 
   plugins: [
     '@typescript-eslint',
@@ -69,6 +69,7 @@ module.exports = {
     'prefer-arrow-callback': 'error',
     'prefer-template': 'error',
     'require-await': 'error',
+    'eol-last': ['error', 'always'],
 
     'comma-dangle': ['error', 'never'],
     'operator-assignment': ['error', 'always'],

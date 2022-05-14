@@ -245,6 +245,7 @@ module.exports = {
   plugins: [
     'stylelint-prettier',
     'stylelint-order',
+    'stylelint-scss',
     'stylelint-config-rational-order/plugin',
     'stylelint-high-performance-animation'
   ],
@@ -323,7 +324,9 @@ module.exports = {
     // Stylistic
     'value-keyword-case': 'lower',
     'function-name-case': 'lower',
-    'rule-empty-line-before': 'always',
+    // TODO: conflicts with scss
+    // 'rule-empty-line-before': 'always',
+
     'color-hex-case': 'lower',
     'number-leading-zero': 'never',
     'number-no-trailing-zeros': true,
@@ -333,6 +336,15 @@ module.exports = {
     'declaration-bang-space-after': 'always',
     'no-empty-first-line': true,
     'no-missing-end-of-source-newline': true,
+
+    // scss
+    'scss/at-extend-no-missing-placeholder': true,
+    'scss/at-mixin-argumentless-call-parentheses': 'never',
+    'scss/comment-no-empty': true,
+    'scss/declaration-nested-properties-no-divided-groups': true,
+    'scss/map-keys-quotes': 'always',
+    'scss/selector-nest-combinators': 'always',
+    'scss/selector-no-union-class-name': true,
 
     // animations
     'plugin/no-low-performance-animation-properties': true,

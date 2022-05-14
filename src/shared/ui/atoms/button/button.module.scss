@@ -1,19 +1,19 @@
 @import '@styles/core.scss';
 
 .button {
-  color: #000;
   border: none;
+  color: #000000;
 
   &.primary {
-    background: lightcoral;
+    background: #f5faaa;
   }
 
   &.secondary {
-    background: blue;
+    background: #f5faaa;
   }
 
   &:hover {
-    color: white;
-    background: red;
+    color: #ffffff;
+    background: #f5faaa;
   }
 }
