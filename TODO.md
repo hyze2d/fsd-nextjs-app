@@ -1,9 +1,6 @@
 ## IN PROGRESS
 
-- Commitlint
-- Localization
 - Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo)
-- SSG
 
 ## Тестирование
 
@@ -18,6 +15,7 @@
 - Next pages
 - Model structure
 - Вопросы по типизации
+- SSG
 
 ---
 
@@ -26,6 +24,7 @@
 - API
 - Forms
 - SEO
+- Localization
 - Animations
 
 ---
@@ -64,3 +63,4 @@
 - editorconfig/vscode config
 - ESLINT
 - STYLELINT
+- Commitlint
