@@ -4,7 +4,6 @@ ein1x3x
 
 - API
 - Forms
-- SEO
 - Localization
 - Apicodegen
 
@@ -67,3 +66,4 @@ NazariiShvets
 - ESLINT
 - STYLELINT
 - Commitlint
+- SEO
