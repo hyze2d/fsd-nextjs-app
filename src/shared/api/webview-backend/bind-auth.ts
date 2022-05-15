@@ -8,7 +8,7 @@ import {
   refreshHandler
 } from '@lib/next-jwt-auth/handlers';
 
-import type { LoginDto } from './auth';
+import type { LoginDto, Tokens } from './auth';
 
 import { routes as authRoutes } from './auth';
 
@@ -20,7 +20,7 @@ const auth = createJwtAuth<LoginDto>(api.instance, api.baseRequestFx);
 
 sample({
   clock: [auth.loginFx.doneData, auth.refreshFx.doneData, refreshFx.doneData],
-  fn: ({ accessToken }) => accessToken,
+  fn: ({ accessToken }: Tokens) => accessToken,
   target: api.units.setAccessToken
 });
 

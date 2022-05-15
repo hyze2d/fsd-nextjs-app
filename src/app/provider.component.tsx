@@ -55,5 +55,4 @@ const Provider: FC<ProviderProps> = ({ children, scope }) => {
 };
 
 export { Provider };
-
 export type { ProviderProps };

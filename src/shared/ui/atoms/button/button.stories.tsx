@@ -43,5 +43,4 @@ const story: Meta<ButtonProps> = {
 };
 
 export { Primary, Secondary };
-
 export default story;

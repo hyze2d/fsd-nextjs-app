@@ -21,9 +21,12 @@ const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
     await webviewBackendApi.config.handlers.refresh(req, res);
 
-    const response = await allSettled(webviewBackendApi.users.getSessionInfo, {
-      scope
-    });
+    const response = await allSettled(
+      webviewBackendApi.users.getSessionInfoFx,
+      {
+        scope
+      }
+    );
 
     if (response.status === 'fail') {
       return {
@@ -50,5 +53,4 @@ const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 };
 
 export { getServerSideProps };
-
 export default MePage;

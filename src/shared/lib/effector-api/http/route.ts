@@ -12,11 +12,11 @@ function createRouteFactory(
     mapParams: ((data: Dto) => AxiosRequestConfig) | AxiosRequestConfig,
     config: { withAuth?: boolean } = {}
   ) {
-    const fx = config.withAuth ? authenticatedRequestFx : requestFx;
+    const baseRequestFx = config.withAuth ? authenticatedRequestFx : requestFx;
 
     return attach({
-      effect: fx,
-      mapParams: (dto): AxiosRequestConfig => {
+      effect: baseRequestFx,
+      mapParams: (dto: Dto): AxiosRequestConfig => {
         if (typeof mapParams === 'function') {
           return mapParams(dto);
         }

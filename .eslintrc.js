@@ -94,7 +94,7 @@ module.exports = {
       'error',
 
       {
-        blankLine: 'always',
+        blankLine: 'any',
         prev: 'import',
         next: 'import'
       },
@@ -112,8 +112,8 @@ module.exports = {
       },
 
       {
-        blankLine: 'always',
-        prev: '*',
+        blankLine: 'never',
+        prev: 'export',
         next: 'export'
       },
 
@@ -221,7 +221,6 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/no-for-in-array': 'error',
     '@typescript-eslint/no-inferrable-types': 'error',
-    '@typescript-eslint/no-invalid-void-type': 'error',
     '@typescript-eslint/no-meaningless-void-operator': 'error',
     '@typescript-eslint/no-misused-new': 'error',
     '@typescript-eslint/no-misused-promises': 'error',
@@ -407,6 +406,7 @@ module.exports = {
       }
     ],
 
+    'react/display-name': 'off',
     'react/button-has-type': 'error',
     'react/no-array-index-key': 'error',
     'react/no-danger-with-children': 'error',

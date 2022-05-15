@@ -4,3 +4,5 @@ type CreateAndUpdate<T> = T & {
   updatedAt: DateTimeString;
   createdAt: DateTimeString;
 };
+
+export type { DateTimeString, CreateAndUpdate };

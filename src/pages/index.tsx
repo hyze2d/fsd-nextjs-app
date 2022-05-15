@@ -55,5 +55,4 @@ const getStaticProps: GetStaticProps = async ({ locale }) => ({
 });
 
 export { getStaticProps };
-
 export default HomePage;

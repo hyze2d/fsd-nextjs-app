@@ -1,3 +1,5 @@
+import type { CreateAndUpdate, Locale } from '@shared/typings';
+
 type CurrentUserContract = CreateAndUpdate<{
   id: number;
   status: 'active';

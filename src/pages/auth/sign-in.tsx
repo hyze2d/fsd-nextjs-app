@@ -18,5 +18,4 @@ const getStaticProps: GetStaticProps = async context => ({
 });
 
 export { getStaticProps };
-
 export default HomePage;

@@ -4,8 +4,8 @@ import { Button } from '@ui/atoms/button';
 
 import { useLogoutButton } from './logout-button.props';
 
-const LogoutButton = hoc(useLogoutButton, ({ logoutClicked }) => (
-  <Button onClick={logoutClicked}>Logout</Button>
+const LogoutButton = hoc(useLogoutButton, ({ onLogoutClick }) => (
+  <Button onClick={onLogoutClick}>Logout</Button>
 ));
 
 export { LogoutButton };

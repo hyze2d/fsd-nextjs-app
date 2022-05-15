@@ -85,4 +85,5 @@
 
 // export { Login };
 
-export {};
+let a;
+export { a };

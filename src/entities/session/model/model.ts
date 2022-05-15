@@ -24,7 +24,7 @@ const getUserFx = createEffect(async () => {
 const logoutClicked = createEvent();
 
 const $viewerData = createStore<CurrentUserContract | null>(null)
-  .on(webviewBackendApi.users.getSessionInfo.doneData, (_, data) => data)
+  .on(webviewBackendApi.users.getSessionInfoFx.doneData, (_, data) => data)
   .reset([webviewBackendApi.auth.logoutFx.done, logoutClicked]);
 
 const $isAuthenticated = $viewerData.map(Boolean);

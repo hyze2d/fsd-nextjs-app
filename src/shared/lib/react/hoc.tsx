@@ -4,7 +4,7 @@ import type { ComponentType, FC } from 'react';
  * Decorator for React components to split logic & view and make testing easier
  */
 const hoc = function <SP, HP extends object = {}>(
-  hook: (props: SP) => HP | null | undefined,
+  hook: (props: SP) => HP,
   Source: ComponentType<HP & SP>
 ) {
   type ResultComponentType = FC<Partial<HP> & SP> & {
@@ -13,7 +13,7 @@ const hoc = function <SP, HP extends object = {}>(
   };
 
   const Result: ResultComponentType = props => (
-    <Source {...(hook(props) ?? {})} {...props} />
+    <Source {...hook(props)} {...props} />
   );
 
   Result.Original = Source;

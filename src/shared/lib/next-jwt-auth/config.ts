@@ -12,15 +12,15 @@ function getConfig(
 ): Required<InterceptorConfig> {
   return {
     applyRequestInterceptor:
-      externalConfig.applyRequestInterceptor || applyRequestInterceptorCheck,
+      externalConfig.applyRequestInterceptor ?? applyRequestInterceptorCheck,
 
     skipResponseInterceptor:
-      externalConfig.skipResponseInterceptor || skipResponseInterceptorCheck,
+      externalConfig.skipResponseInterceptor ?? skipResponseInterceptorCheck,
 
     apiRoutes: {
-      login: externalConfig.apiRoutes?.login || apiRoutes.loginPath,
-      refresh: externalConfig.apiRoutes?.refresh || apiRoutes.refreshPath,
-      logout: externalConfig.apiRoutes?.logout || apiRoutes.logoutPath
+      login: externalConfig.apiRoutes?.login ?? apiRoutes.loginPath,
+      refresh: externalConfig.apiRoutes?.refresh ?? apiRoutes.refreshPath,
+      logout: externalConfig.apiRoutes?.logout ?? apiRoutes.logoutPath
     }
   };
 }

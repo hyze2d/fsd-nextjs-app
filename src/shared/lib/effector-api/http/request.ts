@@ -71,5 +71,4 @@ function baseResponseMapper({ data }: AxiosResponse<unknown>) {
 }
 
 export { createRequestFactory, defaultResponseMapper };
-
 export type { BaseRequest, BaseRequestConfig };
