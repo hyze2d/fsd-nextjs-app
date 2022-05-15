@@ -23,7 +23,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "dependencies": {
@@ -90,7 +91,7 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-sort-imports-es6-autofix": "^0.5.0",
     "eslint-plugin-unused-imports": "^1.0.0",
-    "husky": "^3.0.9",
+    "husky": "^8.0.1",
     "lint-staged": "^9.4.3",
     "postcss": "^8.4.13",
     "postcss-cli": "^9.1.0",
