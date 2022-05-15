@@ -1,3 +1,8 @@
 {
-  "ignoreUnused": ["include-media"]
+  "ignoreUnused": ["include-media"],
+
+  "ignoreUnimported": [
+    "src/**/*.stories.{js,jsx,ts,tsx}",
+    "src/**/*.spec.{js,jsx,ts,tsx}"
+  ]
 }
