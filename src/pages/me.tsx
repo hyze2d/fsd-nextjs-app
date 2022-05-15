@@ -14,6 +14,8 @@ const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   try {
     const scope = fork();
           console.log('kek')
+          console.log('kekdsa')
+
     await webviewBackendApi.config.handlers.refresh(req, res);
 
     const response = await allSettled(webviewBackendApi.users.getSessionInfo, {
