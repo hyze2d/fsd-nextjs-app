@@ -16,6 +16,7 @@ const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
           console.log('kek')
           console.log('kekdsa')
           console.log('kekdsa')
+          console.log('kekdsa')
 
     await webviewBackendApi.config.handlers.refresh(req, res);
 
