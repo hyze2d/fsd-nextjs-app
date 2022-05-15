@@ -1,5 +1,15 @@
 ## IN PROGRESS
 
+ein1x3x
+
+- API
+- Forms
+- SEO
+- Localization
+- Apicodegen
+
+NazariiShvets
+
 - Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo)
 
 ## Тестирование
@@ -21,17 +31,11 @@
 
 ## Общие решения
 
-- API
-- Forms
-- SEO
-- Localization
 - Animations
 
 ---
 
 ## База
-
-по
 
 - Utils/Helpers
 - Дефолтная либа компонентов
@@ -42,7 +46,7 @@
 ## Вспомогательное
 
 - Template generation
-- Apicodegen
+
 - Список плагинов для шторма/кода
 - Перформанс & Профайлинг
 
