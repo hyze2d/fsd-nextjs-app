@@ -1,4 +1,5 @@
 import type { Effect } from 'effector';
+
 import { createEffect, createEvent } from 'effector';
 
 import type { BaseRequestConfig } from '@lib/effector-api';
@@ -38,7 +39,7 @@ function createInterceptorUnits<LoginDto>(
     return result as Pick<Tokens, 'accessToken'>;
   });
 
-  const logoutFx = createEffect(() =>
+  const logoutFx = createEffect(async () =>
     requestFx({
       url: config.apiRoutes.logout,
       method: 'POST',

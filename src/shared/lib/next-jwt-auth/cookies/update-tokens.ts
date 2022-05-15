@@ -1,7 +1,9 @@
 import type { HandlerResponse } from '../handlers/types';
+
 import type { RefreshToken } from '../types';
 
 import { REFRESH_TOKEN_KEY } from './constants';
+
 import { clearCookies, setCookies } from './lib';
 
 function setTokensToCookie(res: HandlerResponse, refreshToken: RefreshToken) {

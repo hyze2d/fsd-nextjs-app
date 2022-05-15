@@ -47,9 +47,22 @@ module.exports = {
     }
   },
 
+  globals: {
+    NodeJS: true
+  },
+
   overrides: [{ files: ['src/**/*.{ts,tsx}'] }],
 
   rules: {
+    // disable
+    'no-useless-escape': 'off',
+    'no-extra-boolean-cast': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+
+    // didnt work well
+    // '@typescript-eslint/strict-boolean-expressions': 'error',
+    // 'require-await': 'error',
+
     'dot-notation': 'warn',
     'valid-typeof': 'warn',
     'no-implicit-globals': 'error',
@@ -68,7 +81,6 @@ module.exports = {
     'no-useless-constructor': 'error',
     'prefer-arrow-callback': 'error',
     'prefer-template': 'error',
-    'require-await': 'error',
     'eol-last': ['error', 'always'],
 
     'comma-dangle': ['error', 'never'],
@@ -247,7 +259,6 @@ module.exports = {
     '@typescript-eslint/promise-function-async': 'error',
     '@typescript-eslint/require-array-sort-compare': 'error',
     '@typescript-eslint/restrict-plus-operands': 'error',
-    '@typescript-eslint/strict-boolean-expressions': 'error',
     '@typescript-eslint/switch-exhaustiveness-check': 'error',
     '@typescript-eslint/unified-signatures': 'error',
     '@typescript-eslint/return-await': 'error',
@@ -278,11 +289,6 @@ module.exports = {
     '@typescript-eslint/restrict-template-expressions': [
       'error',
       { allowNumber: true }
-    ],
-
-    '@typescript-eslint/type-annotation-spacing': [
-      'error',
-      { before: false, after: true }
     ],
 
     '@typescript-eslint/array-type': [

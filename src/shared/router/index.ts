@@ -5,8 +5,12 @@ import {
   createStore,
   sample
 } from 'effector';
+
 import { createGate } from 'effector-react';
-import NextRouterRoot, { NextRouter } from 'next/router';
+
+import type { NextRouter } from 'next/router';
+
+import NextRouterRoot from 'next/router';
 
 type Url = Parameters<NextRouter['push']>[0];
 

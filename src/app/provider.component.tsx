@@ -45,6 +45,7 @@ const Provider: FC<ProviderProps> = ({ children, scope }) => {
     <EffectorProvider value={scope}>
       <ThemeProvider>
         <RouterGate router={router} />
+
         <MediaListener />
 
         {children}

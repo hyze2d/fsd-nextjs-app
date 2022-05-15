@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 function wrapResponse(
   callback: (req: NextApiRequest, res: NextApiResponse) => Promise<object>
@@ -7,6 +7,7 @@ function wrapResponse(
     const data = await callback(req, res);
 
     res.status(200).json(data);
+
     return;
   };
 }

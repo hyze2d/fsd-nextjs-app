@@ -1,7 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import type { Effect } from 'effector';
 
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { setTokensToCookie } from '../cookies';
+
 import type { Tokens } from '../types';
 
 function loginHandler<Body>(effect: Effect<Body, Tokens>) {

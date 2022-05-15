@@ -1,5 +1,8 @@
-import { AxiosRequestConfig } from 'axios';
-import { attach, Effect } from 'effector';
+import type { AxiosRequestConfig } from 'axios';
+
+import type { Effect } from 'effector';
+
+import { attach } from 'effector';
 
 function createRouteFactory(
   requestFx: Effect<AxiosRequestConfig, unknown>,

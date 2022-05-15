@@ -1,6 +1,9 @@
-import { breakpoints } from '@shared/config/breakpoints';
 import { useEvent, useStoreMap } from 'effector-react';
+
 import { useEffect } from 'react';
+
+import type { breakpoints } from '@shared/config/breakpoints';
+
 import { $media, add, remove } from './model';
 
 type QueryValue = number | keyof typeof breakpoints;
@@ -31,8 +34,7 @@ const useMedia = (query: QueryVariants) => {
   return useStoreMap({
     store: $media,
     keys: [query],
-    fn: (state, [query]) =>
-      state.find(one => one.query == query)?.matches || false
+    fn: (state, [query]) => !!state.find(one => one.query == query)?.matches
   });
 };
 

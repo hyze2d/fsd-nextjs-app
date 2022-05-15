@@ -1,6 +1,9 @@
-import { breakpoints } from '@shared/config/breakpoints';
 import { createEvent, restore } from 'effector';
-import { QueryState } from './types';
+
+import type { breakpoints } from '@shared/config/breakpoints';
+
+import type { QueryState } from './types';
+
 import { toRawQuery } from './utils';
 
 const remove = createEvent<string>();
@@ -17,7 +20,7 @@ const $media = restore<QueryState[]>(set, [])
       ...state,
       {
         query,
-        matches: raw ? matchMedia(raw)?.matches : false
+        matches: raw ? matchMedia(raw).matches : false
       }
     ];
   })

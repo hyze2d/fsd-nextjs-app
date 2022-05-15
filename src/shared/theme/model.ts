@@ -1,6 +1,8 @@
 import { createEffect, restore, sample } from 'effector';
+
 import { createGate } from 'effector-react';
-import { Theme, ThemeState } from './types';
+
+import type { Theme, ThemeState } from './types';
 
 /**
  * Set current theme

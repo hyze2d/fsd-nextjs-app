@@ -4,7 +4,7 @@ const toRawQuery = (text: keyof typeof breakpoints) => {
   let clean = text.replace(/\>|\=|\</gi, '') as typeof text;
   let value = breakpoints[clean];
 
-  if (value == undefined) {
+  if (value) {
     value = Number(clean);
   }
 

@@ -1,6 +1,9 @@
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
+
 import type { Meta, Story } from '@storybook/react';
+
 import { Button } from './button.component';
+
 import type { ButtonProps } from './button.props';
 
 // Primary
@@ -34,9 +37,11 @@ Secondary.parameters = {
   badges: [BADGE.EXPERIMENTAL, BADGE.NEEDS_REVISION]
 };
 
-export { Primary, Secondary };
-
-export default {
+const story: Meta<ButtonProps> = {
   component: Button,
   title: 'Shared/Atoms/Button'
-} as Meta<ButtonProps>;
+};
+
+export { Primary, Secondary };
+
+export default story;

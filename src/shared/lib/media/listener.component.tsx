@@ -1,8 +1,15 @@
-import { breakpoints } from '@shared/config/breakpoints';
 import { useStore } from 'effector-react';
+
 import { useEvent } from 'effector-react/scope';
-import { FC, useEffect } from 'react';
+
+import type { FC } from 'react';
+
+import { useEffect } from 'react';
+
+import type { breakpoints } from '@shared/config/breakpoints';
+
 import { $media, set } from './model';
+
 import { toRawQuery } from './utils';
 
 const MediaListener: FC = () => {
@@ -18,7 +25,7 @@ const MediaListener: FC = () => {
 
         return {
           ...item,
-          matches: raw ? matchMedia(raw)?.matches : false
+          matches: !!raw && matchMedia(raw).matches
         };
       });
 
@@ -34,7 +41,7 @@ const MediaListener: FC = () => {
     return () => {
       window.removeEventListener('resize', listener);
     };
-  }, [state]);
+  }, [state, onQueryStateUpdate]);
 
   return null;
 };

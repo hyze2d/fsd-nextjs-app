@@ -1,12 +1,14 @@
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+
 import axios from 'axios';
 
 import { createRequestFactory } from './request';
+
 import { createRouteFactory } from './route';
 
 function createHttpApi(
   instanceConfig: AxiosRequestConfig,
-  config: { responseMapper?: (response: AxiosResponse) => any } = {}
+  config: { responseMapper?: (response: AxiosResponse) => unknown } = {}
 ) {
   const instance = axios.create(instanceConfig);
 

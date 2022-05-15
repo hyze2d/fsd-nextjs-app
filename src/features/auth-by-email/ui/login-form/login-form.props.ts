@@ -1,5 +1,6 @@
-import { ChangeEvent, FormEvent } from 'react';
 import { useEvent, useStore } from 'effector-react/scope';
+
+import type { ChangeEvent, FormEvent } from 'react';
 
 import {
   $email,

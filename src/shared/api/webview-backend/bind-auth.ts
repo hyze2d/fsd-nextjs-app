@@ -1,17 +1,20 @@
 import { sample } from 'effector';
 
 import { createJwtAuth } from '@lib/next-jwt-auth';
+
 import {
   loginHandler,
   logoutHandler,
   refreshHandler
 } from '@lib/next-jwt-auth/handlers';
 
-import { api } from './instance';
-
 import type { LoginDto } from './auth';
+
 import { routes as authRoutes } from './auth';
+
 import { refreshFx } from './auth/routes';
+
+import { api } from './instance';
 
 const auth = createJwtAuth<LoginDto>(api.instance, api.baseRequestFx);
 

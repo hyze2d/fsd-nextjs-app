@@ -1,6 +1,6 @@
 import { api } from '../instance';
 
-import { CurrentUserContract } from './types';
+import type { CurrentUserContract } from './types';
 
 const getSessionInfo = api.createRoute<void, CurrentUserContract>(
   {

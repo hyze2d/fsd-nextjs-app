@@ -1,8 +1,10 @@
 import { combine, createEvent, restore, sample } from 'effector';
 
-import { webviewBackendApi } from '@shared/api';
-import { changeRouteFx } from '@shared/router';
 import { routes } from '@config/routes';
+
+import { webviewBackendApi } from '@shared/api';
+
+import { changeRouteFx } from '@shared/router';
 
 const formSubmitted = createEvent();
 const emailChanged = createEvent<string>();

@@ -1,4 +1,5 @@
-import { FC } from 'react';
+import type { FC } from 'react';
+
 import { useMedia } from './use-media';
 
 type MediaProps = {

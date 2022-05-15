@@ -1,6 +1,7 @@
 import { combine, restore } from 'effector';
 
 import { getTestFx } from './effects';
+
 import { getTest } from './events';
 
 const $id = restore(getTest, '');

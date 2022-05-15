@@ -1,5 +1,7 @@
-import { api } from './instance';
 import { auth, handlers } from './bind-auth';
+
+import { api } from './instance';
+
 import { routes as usersRoutes } from './users';
 
 const webviewBackendApi = {
@@ -14,5 +16,7 @@ const webviewBackendApi = {
 };
 
 export * from './users/types';
+
 export * from './auth/types';
+
 export { webviewBackendApi };

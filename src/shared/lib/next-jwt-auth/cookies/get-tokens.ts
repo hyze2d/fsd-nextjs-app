@@ -1,4 +1,5 @@
 import { REFRESH_TOKEN_KEY } from './constants';
+
 import type { CookieRequest } from './types';
 
 function getRefreshTokenFromRequest(req: CookieRequest) {

@@ -10,7 +10,7 @@ type Tokens = {
 
 type InterceptorConfig = {
   applyRequestInterceptor?: (config: AxiosRequestConfig) => boolean;
-  skipResponseInterceptor?: (error: any) => boolean;
+  skipResponseInterceptor?: (error: unknown) => boolean;
 
   apiRoutes?: {
     login?: string;

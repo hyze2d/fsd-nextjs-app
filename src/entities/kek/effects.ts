@@ -5,7 +5,7 @@ const getTestFx = createEffect(async (id: string) => {
     setTimeout(resolve, 1000);
   });
 
-  return Math.random() + ' - ' + id;
+  return `${Math.random()} - ${id}`;
 });
 
 export { getTestFx };

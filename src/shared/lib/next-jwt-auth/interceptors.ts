@@ -1,13 +1,18 @@
 import type { AxiosInstance } from 'axios';
+
 import axios from 'axios';
+
 import { createEffect, sample, scopeBind } from 'effector';
 
 import type { BaseRequest } from '@lib/effector-api';
+
 import { isClientSide } from '@lib/environment';
 
-import type { InterceptorConfig } from './types';
-import { createInterceptorUnits } from './interceptors-units';
 import { getConfig } from './config';
+
+import { createInterceptorUnits } from './interceptors-units';
+
+import type { InterceptorConfig } from './types';
 
 function createJwtAuth<LoginDto>(
   instance: AxiosInstance,
@@ -22,7 +27,7 @@ function createJwtAuth<LoginDto>(
   );
 
   if (isClientSide()) {
-    const attachInterceptorFx = createEffect<void, void>();
+    const attachInterceptorFx = createEffect<unknown, unknown>();
 
     sample({
       clock: interceptorUnits.initAuthInterceptors,
@@ -42,7 +47,7 @@ function createJwtAuth<LoginDto>(
           try {
             await interceptorUnits.refreshFx();
 
-            return baseRequestFx(error.config);
+            return await baseRequestFx(error.config);
           } catch (e) {
             scopeBind(interceptorUnits.refreshFailed);
 

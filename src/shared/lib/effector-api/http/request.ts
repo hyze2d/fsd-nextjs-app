@@ -1,12 +1,14 @@
-import type { Effect } from 'effector';
-import { attach, createEffect, createEvent, createStore } from 'effector';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+
+import type { Effect } from 'effector';
+
+import { attach, createEffect, createEvent, createStore } from 'effector';
 
 type BaseRequestConfig = AxiosRequestConfig & {
   disabledResponseMapper?: boolean;
 };
 
-type BaseRequest = Effect<BaseRequestConfig, unknown, Error>;
+type BaseRequest = Effect<BaseRequestConfig, unknown>;
 
 function createRequestFactory(
   instance: AxiosInstance,
@@ -20,7 +22,7 @@ function createRequestFactory(
     .reset(resetAccessToken);
 
   const baseRequestFx: BaseRequest = createEffect(
-    (requestConfig: BaseRequestConfig) =>
+    async (requestConfig: BaseRequestConfig) =>
       instance
         .request(requestConfig)
         .then(
@@ -58,13 +60,16 @@ function createRequestFactory(
   };
 }
 
-function defaultResponseMapper({ data }: AxiosResponse) {
+function defaultResponseMapper<T extends { data: unknown }>({
+  data
+}: AxiosResponse<T>) {
   return data.data;
 }
 
-function baseResponseMapper({ data }: AxiosResponse) {
+function baseResponseMapper({ data }: AxiosResponse<unknown>) {
   return data;
 }
 
 export { createRequestFactory, defaultResponseMapper };
+
 export type { BaseRequest, BaseRequestConfig };

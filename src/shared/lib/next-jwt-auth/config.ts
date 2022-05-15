@@ -1,11 +1,11 @@
-import type { InterceptorConfig } from './types';
+import { apiRoutes } from './api-routes.config';
 
 import {
   applyRequestInterceptorCheck,
   skipResponseInterceptorCheck
 } from './guards';
 
-import { apiRoutes } from './api-routes.config';
+import type { InterceptorConfig } from './types';
 
 function getConfig(
   externalConfig: Partial<InterceptorConfig>

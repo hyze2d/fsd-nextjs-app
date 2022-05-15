@@ -6,7 +6,7 @@
     "build": "tsc --noEmit && next build",
     "start": "next start",
     "docker": "next start",
-    "lint": "next lint --fix",
+    "lint": "eslint \"./src/**/*.{ts,tsx}\" --fix",
     "stylelint": "stylelint --fix \"./src/**/*.scss\"",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
@@ -16,7 +16,7 @@
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
-      "eslint --fix",
+      "yarn lint",
       "git add"
     ],
     "src/**/*.scss": [
