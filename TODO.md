@@ -2,14 +2,17 @@
 
 ein1x3x
 
+- SEO
 - API
 - Forms
 - Localization
 - Apicodegen
+- Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo)
 
 NazariiShvets
 
-- Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo)
+- Animations
+- SSG
 
 ## Тестирование
 
@@ -24,13 +27,6 @@ NazariiShvets
 - Next pages
 - Model structure
 - Вопросы по типизации
-- SSG
-
----
-
-## Общие решения
-
-- Animations
 
 ---
 
@@ -66,4 +62,3 @@ NazariiShvets
 - ESLINT
 - STYLELINT
 - Commitlint
-- SEO
