@@ -13,7 +13,6 @@ const MePage: NextPage = () => <SessionData />;
 const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   try {
     const scope = fork();
-    console.log('test');
 
     await webviewBackendApi.config.handlers.refresh(req, res);
 
