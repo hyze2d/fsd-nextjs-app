@@ -11,7 +11,7 @@ function refreshHandler(effect: Effect<Pick<Tokens, 'refreshToken'>, Tokens>) {
     const oldRefreshToken = getRefreshTokenFromRequest(req);
 
     const { refreshToken, accessToken } = await effect({
-      refreshToken: oldRefreshToken as string
+      refreshToken: oldRefreshToken
     });
 
     setTokensToCookie(res, refreshToken);
