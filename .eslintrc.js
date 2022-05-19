@@ -51,6 +51,11 @@ module.exports = {
     NodeJS: true
   },
 
+  env: {
+    browser: true,
+    node: true
+  },
+
   overrides: [{ files: ['src/**/*.{ts,tsx}'] }],
 
   rules: {
@@ -62,6 +67,8 @@ module.exports = {
     // didnt work well
     // '@typescript-eslint/strict-boolean-expressions': 'error',
     // 'require-await': 'error',
+    // '@typescript-eslint/no-floating-promises': 'error',
+    // 'react/button-has-type': 'error',
 
     'dot-notation': 'warn',
     'valid-typeof': 'warn',
@@ -218,7 +225,6 @@ module.exports = {
 
     'prettier/prettier': ['warn', { usePrettierrc: true }],
 
-    '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/no-for-in-array': 'error',
     '@typescript-eslint/no-inferrable-types': 'error',
     '@typescript-eslint/no-meaningless-void-operator': 'error',
@@ -236,12 +242,12 @@ module.exports = {
     '@typescript-eslint/no-unnecessary-type-arguments': 'error',
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
     '@typescript-eslint/no-unnecessary-type-constraint': 'error',
-    '@typescript-eslint/no-unsafe-argument': 'error',
-    '@typescript-eslint/no-unsafe-assignment': 'error',
-    '@typescript-eslint/no-unsafe-call': 'error',
+    // '@typescript-eslint/no-unsafe-argument': 'error',
+    // '@typescript-eslint/no-unsafe-assignment': 'error',
+    // '@typescript-eslint/no-unsafe-call': 'error',
+    // '@typescript-eslint/no-unsafe-member-access': 'error',
+    // '@typescript-eslint/no-unsafe-return': 'error',
     '@typescript-eslint/await-thenable': 'error',
-    '@typescript-eslint/no-unsafe-member-access': 'error',
-    '@typescript-eslint/no-unsafe-return': 'error',
     '@typescript-eslint/no-useless-empty-export': 'error',
     '@typescript-eslint/no-var-requires': 'error',
     '@typescript-eslint/prefer-as-const': 'error',
@@ -270,7 +276,7 @@ module.exports = {
     '@typescript-eslint/lines-between-class-members': ['error', 'always'],
     '@typescript-eslint/method-signature-style': ['error', 'property'],
     '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
-    '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
+    // '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
 
     '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
@@ -347,13 +353,13 @@ module.exports = {
       }
     ],
 
-    '@typescript-eslint/no-explicit-any': [
-      'error',
-      {
-        fixToUnknown: true,
-        ignoreRestArgs: true
-      }
-    ],
+    // '@typescript-eslint/no-explicit-any': [
+    //   'error',
+    //   {
+    //     fixToUnknown: true,
+    //     ignoreRestArgs: true
+    //   }
+    // ],
 
     '@typescript-eslint/member-ordering': [
       'error',
