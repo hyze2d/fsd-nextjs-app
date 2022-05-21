@@ -7,7 +7,7 @@ ein1x3x
 - Forms
 - Localization
 - Apicodegen
-- Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo)
+
 
 NazariiShvets
 
@@ -62,3 +62,4 @@ NazariiShvets
 - ESLINT
 - STYLELINT
 - Commitlint
+- Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo) - create view now.
