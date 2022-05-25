@@ -1,15 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import type { Event, Store } from 'effector';
-import { combine } from 'effector';
-import { is } from 'effector';
+import { combine, is } from 'effector';
 import { useEvent, useStore } from 'effector-react';
-import type { FC } from 'react';
+import type { ComponentType, ReactElement } from 'react';
 import { useEffect } from 'react';
+import { memo } from 'react';
 
-type PropsMapper<P, T = any> = (props: P) => T;
+type RenderReturnType = ReactElement<any, any> | null;
 
-type Listener = Event<void> | (() => void);
-
-type VoidFn = () => void;
+type MapProps<P, T = any> = (props: P) => T;
 
 type MapStoresToValues<
   T extends {
@@ -23,32 +25,54 @@ type MapStoresToValues<
     : T[P];
 };
 
-class ViewBuilder<P, MP = {}> {
-  private displayName: string | null = null;
+type View<P, MP> = ComponentType<Omit<P, keyof MP>> & {
+  Original: (props: P & MP) => RenderReturnType;
+};
 
-  private defaultProps: Partial<P> | null = null;
+type MappedStaticProps = {
+  store: Store<Record<string, unknown>>;
+  events: Record<string, Event<unknown>>;
+  rest: Record<string, unknown>;
+};
 
-  private readonly maps: any[] = [];
+type PropsMap<P = any> = MapProps<P> | MappedStaticProps;
 
-  private readonly mappers: PropsMapper<P>[] = [];
+class ViewBuilder<P extends {}, MP = {}> {
+  private static isMappedStaticProps(
+    payload: PropsMap
+  ): payload is MappedStaticProps {
+    return typeof payload == 'object';
+  }
 
-  private readonly listeners: {
-    mount: Listener[];
-    unmount: Listener[];
-  } = {
-    mount: [],
-    unmount: []
-  };
+  private static isMapProps(payload: PropsMap): payload is MapProps<any> {
+    return typeof payload == 'function';
+  }
 
-  private getMappedProps() {
-    const props = this.maps.reduce(
-      (result, item) => ({
-        ...result,
-        ...item
-      }),
-      {}
-    );
+  private static useLifeCycle(mounted: Event<void>, unmounted: Event<void>) {
+    const [onMount, onUnmount] = useEvent([mounted, unmounted]);
 
+    if (!mounted && !unmounted) return;
+
+    useEffect(() => {
+      onMount();
+
+      return onUnmount;
+    }, []);
+  }
+
+  private _displayName?: string;
+
+  private _defaultProps?: Partial<P>;
+
+  private _unmounted?: Event<void>;
+
+  private _mounted?: Event<void>;
+
+  private _memo?: boolean;
+
+  private readonly _propMap: PropsMap[] = [];
+
+  private splitPropsByType(props: Record<string, unknown>): MappedStaticProps {
     const events: Record<string, Event<unknown>> = {};
     const stores: Record<string, Store<unknown>> = {};
     const rest: Record<string, unknown> = {};
@@ -69,137 +93,105 @@ class ViewBuilder<P, MP = {}> {
       rest[key] = value;
     }
 
-    const $state = combine(stores);
-
     return {
       rest,
-      $state,
-      events
+      events,
+      store: combine(stores)
     };
   }
 
-  private getLifeCycle() {
-    const hasLifeCycle =
-      this.listeners.mount.length > 0 || this.listeners.mount.length > 0;
+  public unmounted(_unmounted: Event<void>) {
+    this._unmounted = _unmounted;
 
-    const listeners = {
-      mount: {
-        fns: [] as VoidFn[],
-        events: [] as Event<void>[]
-      },
-
-      unmount: {
-        fns: [] as VoidFn[],
-        events: [] as Event<void>[]
-      }
-    };
-
-    const keys = ['mount', 'unmount'] as (keyof typeof listeners)[];
-
-    keys.forEach(key => {
-      this.listeners[key].forEach(listener => {
-        listeners[key][is.event(listener) ? 'events' : 'fns'].push(
-          listener as any
-        );
-      });
-    });
-
-    const useLifeCycle = () => {
-      const onMount = useEvent(listeners.mount.events);
-      const onUnmount = useEvent(listeners.unmount.events);
-
-      useEffect(() => {
-        ([...listeners.mount.fns, ...onMount] as VoidFn[]).forEach(item =>
-          item()
-        );
-
-        return () => {
-          ([...listeners.unmount.fns, ...onUnmount] as VoidFn[]).forEach(item =>
-            item()
-          );
-        };
-      }, []);
-    };
-
-    return {
-      hasLifeCycle,
-      useLifeCycle
-    };
+    return this;
   }
 
-  public useMap<T>(mapper: (props: P) => T) {
-    this.mappers.push(mapper);
+  public mounted(_mounted: Event<void>) {
+    this._mounted = _mounted;
 
-    return this as any as ViewBuilder<P, MP & T>;
+    return this;
   }
 
-  public useProps<SP>(props: SP) {
-    this.maps.push(props);
+  public displayName(_displayName: string) {
+    this._displayName = _displayName;
 
-    return this as any as ViewBuilder<P, MP & SP>;
+    return this;
   }
 
-  public useMount = (listener: Listener) => {
-    this.listeners.mount.push(listener);
+  public defaultProps(_defaultProps: Partial<P>) {
+    this._defaultProps = _defaultProps;
 
     return this;
-  };
+  }
 
-  public useUnmount = (listener: Listener) => {
-    this.listeners.unmount.push(listener);
-
-    return this;
-  };
-
-  public useDefaultProps = (props: Partial<P>) => {
-    this.defaultProps = props;
+  public memo() {
+    this._memo = true;
 
     return this;
-  };
+  }
 
-  public useDisplayName = (name: string) => {
-    this.displayName = name;
+  public props<
+    T extends Record<string, any>,
+    R = ViewBuilder<P, MP & MapStoresToValues<T>>
+  >(payload: T): R {
+    this._propMap.push(this.splitPropsByType(payload));
 
-    return this;
-  };
+    return this as unknown as R;
+  }
 
-  public view(render: FC<P & MapStoresToValues<MP>>) {
-    const { useLifeCycle, hasLifeCycle } = this.getLifeCycle();
+  public map<T, R = ViewBuilder<P, MP & T>>(payload: MapProps<P & MP, T>): R {
+    this._propMap.push(payload);
 
-    const { $state, events, rest } = this.getMappedProps();
+    return this as unknown as R;
+  }
 
-    const View: FC<P> = (props: P) => {
-      if (hasLifeCycle) {
-        // eslint-disable-next-line
-        useLifeCycle();
-      }
+  public view(
+    render: (props: P & MP) => RenderReturnType
+  ): ComponentType<Omit<P, keyof MP>> & { Original: typeof render } {
+    const { _propMap, _memo, _unmounted, _mounted } = this;
 
-      const mappedProps = this.mappers.reduce(
-        (result, mapper) => ({
-          result,
-          ...mapper(props)
-        }),
-        {}
+    const View: View<P, MP> = props => {
+      const _props = _propMap.reduce<Omit<P, keyof MP> & MP>((result, item) => {
+        if (ViewBuilder.isMappedStaticProps(item)) {
+          return {
+            ...result,
+            ...useStore(item.store),
+            ...useEvent(item.events),
+            ...item.rest
+          };
+        }
+
+        if (ViewBuilder.isMapProps(item)) {
+          return {
+            ...result,
+            ...(item(result) as Partial<Omit<P, keyof MP> & MP>)
+          };
+        }
+
+        return result;
+      }, props as Omit<P, keyof MP> & MP); // eslint-disable-line @typescript-eslint/prefer-reduce-type-parameter
+
+      ViewBuilder.useLifeCycle(
+        _mounted as Event<void>,
+        _unmounted as Event<void>
       );
 
-      return render({
-        ...props,
-        ...mappedProps,
-        ...rest,
-        ...useStore($state),
-        ...useEvent(events)
-      } as P & MapStoresToValues<MP>);
+      return render(_props as P & MP);
     };
 
-    if (this.displayName) {
-      View.displayName = this.displayName;
+    if (this._defaultProps) {
+      View.defaultProps = this._defaultProps;
     }
 
-    if (this.defaultProps) {
-      View.defaultProps = this.defaultProps;
+    if (this._displayName) {
+      View.displayName = this._displayName;
     }
 
-    return View;
+    const Output = (_memo ? memo(View) : View) as typeof View;
+
+    View.Original = Output.Original = render;
+
+    return Output;
   }
 }
 
