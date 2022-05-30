@@ -1,47 +1,26 @@
 ## IN PROGRESS
 
-ein1x3x
-
+- Вопросы по типизации
 - SEO
-- API
-- Forms
-- Localization
-- Apicodegen
-
-
-NazariiShvets
-
-- Animations
 - SSG
-
-## Тестирование
-
-- Юнит тесты
-- Интеграционные тесты
-
----
-
-## Структура
-
+- API
+- Localization
+- Model structure
 - Структура файлов
 - Next pages
-- Model structure
-- Вопросы по типизации
+- Template generation
+- Animations
+- Юнит тесты
+- Интеграционные тесты
+- Список плагинов для шторма/кода
 
----
+TODO:
 
-## База
-
+- Forms
+- Apicodegen
 - Utils/Helpers
 - Дефолтная либа компонентов
 - Набор фич/entities/структуры, который закрывает стандартную структуру авторизации/регистрации/профиля юзера/дешборда (для базы и для примера)
-
----
-
-## Вспомогательное
-
-- Template generation
-- Список плагинов для шторма/кода
 - Перформанс & Профайлинг
 
 ---
