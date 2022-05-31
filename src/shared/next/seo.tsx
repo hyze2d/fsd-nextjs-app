@@ -21,9 +21,11 @@ function getHoc<P>(Seo: FC<P>) {
   );
 }
 
+type MapConfig<V, P> = (source: V, props: P) => NextSeoProps;
+
 function seo<V, P>(
   $source: Store<V>,
-  map: (source: V, props: P) => NextSeoProps
+  map: MapConfig<V, P>
 ): FC<WithChildren<P>>;
 function seo<P>(map: (props: P) => NextSeoProps): FC<WithChildren<P>>;
 function seo(props: Store<NextSeoProps> | NextSeoProps): FC;
@@ -31,14 +33,23 @@ function seo(...args: any[]) {
   switch (true) {
     case args.length == 2:
       return getHoc(props => (
-        <NextSeo {...args[1](useStore(args[0]), props)} />
+        <NextSeo
+          {...(args[1] as MapConfig<unknown, unknown>)(
+            useStore(args[0] as Store<unknown>),
+            props
+          )}
+        />
       ));
 
     case is.store(args[0]):
-      return getHoc(() => <NextSeo {...useStore(args[0])} />);
+      return getHoc(() => (
+        <NextSeo {...useStore(args[0] as Store<NextSeoProps>)} />
+      ));
 
     case typeof args[0] == 'function':
-      return getHoc(props => <NextSeo {...args[0](props)} />);
+      return getHoc(props => (
+        <NextSeo {...(args[0] as (props: unknown) => NextSeoProps)(props)} />
+      ));
 
     case typeof args[0] == 'object':
       return getHoc(() => <NextSeo {...args[0]} />) as FC;
