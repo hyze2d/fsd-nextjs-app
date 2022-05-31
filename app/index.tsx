@@ -12,14 +12,8 @@ import { started } from '@processes/boot';
 import { environment } from '@shared/config/environment';
 import { DEFAULT_SEO } from '@shared/config/seo';
 
-type PageProps = Record<string, unknown> & {
+type Props = Omit<AppProps, 'Component'> & {
   scope: Scope;
-};
-
-type Props = Omit<AppProps<PageProps>, 'pageProps' | 'Component'> & {
-  scope: Scope;
-
-  props: PageProps;
 
   Component: (props: any) => ReactElement;
 };
@@ -42,7 +36,7 @@ let getScope = (payload: Scope) => {
   return scope;
 };
 
-const App = ({ Component, props, scope }: Props) => (
+const App = ({ Component, scope, pageProps: props }: Props) => (
   <Provider value={getScope(scope)}>
     <Seo {...DEFAULT_SEO} />
 
@@ -59,10 +53,8 @@ App.getInitialProps = async (context: AppContext) => {
     await allSettled(started, { scope });
   }
 
-  const props = await NextApp.getInitialProps(context);
-
   return {
-    props,
+    ...(await NextApp.getInitialProps(context)),
     scope: serialize(scope)
   };
 };
