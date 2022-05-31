@@ -100,9 +100,19 @@ Some content which's not required to be rendered on the server side (for example
 
 To check how well your project runs in terms of SEO you can use tools like googlepagespeed, lighthouse and try follow the advices given by the tools.
 
-### Utils & Box
+## Box
 
-In @lib/seo can be found few components with unified tags/predefine tags to not duplicate write some things manually. It's recommended to use already made components instead of manually writing down <meta> tags
+For the default seo configuration you can go to shared/config/seo, there is a default seo config for DefaultSeo component from 'next-seo' which's being used in custom app component.
+
+For the page specific seo, you can create page.seo.tsx file inside the specific page and then use shared/next/seo to create Seo component which can be used in the page component
+
+```tsx
+const Seo = seo(); //check possible overloads
+
+const Home = () => {
+  return <Seo outer='prop'>{/* page content */}</Seo>;
+};
+```
 
 #### Refs
 
@@ -111,3 +121,4 @@ https://ogp.me/
 https://pagespeed.web.dev/
 https://developers.google.com/
 https://developers.google.com/
+https://github.com/garmeeh/next-seo

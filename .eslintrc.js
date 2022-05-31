@@ -63,6 +63,7 @@ module.exports = {
     'no-useless-escape': 'off',
     'no-extra-boolean-cast': 'off',
     'react-hooks/exhaustive-deps': 'off',
+    'no-redeclare': 'off',
 
     'dot-notation': 'warn',
     'valid-typeof': 'warn',
@@ -261,6 +262,7 @@ module.exports = {
     '@typescript-eslint/unified-signatures': 'error',
     '@typescript-eslint/return-await': 'error',
     '@typescript-eslint/consistent-type-exports': 'error',
+    '@typescript-eslint/no-redeclare': 'error',
     '@typescript-eslint/adjacent-overload-signatures': 'error',
     '@typescript-eslint/no-base-to-string': 'error',
     '@typescript-eslint/no-confusing-non-null-assertion': 'error',

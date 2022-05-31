@@ -3,12 +3,14 @@ import { allSettled } from 'effector';
 import { serialize } from 'effector';
 import { fork } from 'effector';
 import { Provider } from 'effector-react/ssr';
+import { DefaultSeo as Seo } from 'next-seo';
 import type { ReactElement } from 'react';
 import type { AppContext, AppProps } from 'next/app';
 import NextApp from 'next/app';
 
 import { started } from '@processes/boot';
 import { environment } from '@shared/config/environment';
+import { DEFAULT_SEO } from '@shared/config/seo';
 
 type PageProps = Record<string, unknown> & {
   scope: Scope;
@@ -42,6 +44,8 @@ let getScope = (payload: Scope) => {
 
 const App = ({ Component, props, scope }: Props) => (
   <Provider value={getScope(scope)}>
+    <Seo {...DEFAULT_SEO} />
+
     <Component {...props} />
   </Provider>
 );

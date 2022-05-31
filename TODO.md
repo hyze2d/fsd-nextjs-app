@@ -1,6 +1,5 @@
 ## IN PROGRESS
 
-- SEO
 - SSG
 - Localization
 
@@ -11,13 +10,13 @@
 - Template generation
 
 - API
+- Apicodegen
 - Юнит тесты
 - Интеграционные тесты
 
 TODO:
 
 - Forms
-- Apicodegen
 - Utils/Helpers
 - Дефолтная либа компонентов
 - Набор фич/entities/структуры, который закрывает стандартную структуру авторизации/регистрации/профиля юзера/дешборда (для базы и для примера)
@@ -44,3 +43,4 @@ TODO:
 - Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo) - create view now.
 - Animations
 - Вопросы по типизации
+- SEO
