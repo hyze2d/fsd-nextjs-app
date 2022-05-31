@@ -1,13 +1,8 @@
-import { createEffect, createEvent, createStore, sample } from 'effector';
-
-import { debounce } from 'patronum';
+import { createEvent, createStore } from 'effector';
+import { createToggle } from '../effector';
 
 const isEqualKeys = (a: Record<string, unknown>, b: Record<string, unknown>) =>
   Object.keys(a).every(key => a[key] == b[key]);
-
-const setVisibleHeight = (height: number) => {
-  document.documentElement.style.setProperty('--vh', `${height * 0.01}px`);
-};
 
 const defaultState = {
   altKey: false,
@@ -22,9 +17,13 @@ const keypress = createEvent<KeyboardEvent>();
 
 const keyup = createEvent<KeyboardEvent>();
 
-const mouseUp = createEvent<MouseEvent>();
-
 const resize = createEvent<UIEvent>();
+
+const click = createEvent<MouseEvent>();
+
+const mousedown = createEvent<MouseEvent>();
+
+const mouseup = createEvent<MouseEvent>();
 
 const $windowSize = createStore({
   width: window.innerWidth,
@@ -33,8 +32,6 @@ const $windowSize = createStore({
   width: window.innerWidth,
   height: window.innerHeight
 }));
-
-const setVisibleHeightFx = createEffect(setVisibleHeight);
 
 const $keyboardState = createStore<{
   keys: string[];
@@ -65,6 +62,8 @@ const $keyboardState = createStore<{
   };
 });
 
+const $isLcmPressed = createToggle(false, mousedown, mouseup);
+
 const isKeyDown = (
   code: string | string[],
   meta?: Partial<typeof defaultState>
@@ -79,22 +78,22 @@ if (typeof window != 'undefined') {
   document.addEventListener('keydown', keydown);
   document.addEventListener('keyup', keyup);
   document.addEventListener('keypress', keypress);
-  document.addEventListener('mouseup', mouseUp);
+  document.addEventListener('click', click);
+  document.addEventListener('mousedown', mousedown);
+  document.addEventListener('mouseup', mouseup);
 
   window.addEventListener('resize', resize);
-
-  setVisibleHeight(window.innerHeight);
-
-  sample({
-    clock: debounce({
-      source: $windowSize,
-      timeout: 100
-    }),
-
-    fn: ({ height }) => height,
-
-    target: setVisibleHeightFx
-  });
 }
 
-export { keydown, keypress, keyup, mouseUp, resize, isKeyDown, $windowSize };
+export {
+  keyup,
+  click,
+  resize,
+  keydown,
+  mouseup,
+  keypress,
+  mousedown,
+  isKeyDown,
+  $windowSize,
+  $isLcmPressed
+};

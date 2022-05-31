@@ -5,16 +5,9 @@ import { createEvent, restore } from 'effector';
 const restate = <T>(defaultState: T) => {
   const set = createEvent<T>();
 
-  const $store: Store<T> & {
-    0?: Store<T>;
-    1?: typeof set;
-  } = restore(set, defaultState);
+  const $store: Store<T> = restore(set, defaultState);
 
-  $store[0] = $store;
-
-  $store[1] = set;
-
-  return $store;
+  return [$store, set];
 };
 
 export { restate };

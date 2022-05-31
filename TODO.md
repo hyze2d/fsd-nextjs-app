@@ -1,18 +1,18 @@
 ## IN PROGRESS
 
-- Вопросы по типизации
 - SEO
 - SSG
-- API
 - Localization
-- Model structure
-- Структура файлов
+
 - Next pages
+- Структура файлов
+- Model structure
+- Список плагинов для шторма/кода
 - Template generation
-- Animations
+
+- API
 - Юнит тесты
 - Интеграционные тесты
-- Список плагинов для шторма/кода
 
 TODO:
 
@@ -42,3 +42,5 @@ TODO:
 - STYLELINT
 - Commitlint
 - Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo) - create view now.
+- Animations
+- Вопросы по типизации

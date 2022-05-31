@@ -64,12 +64,6 @@ module.exports = {
     'no-extra-boolean-cast': 'off',
     'react-hooks/exhaustive-deps': 'off',
 
-    // didnt work well
-    // '@typescript-eslint/strict-boolean-expressions': 'error',
-    // 'require-await': 'error',
-    // '@typescript-eslint/no-floating-promises': 'error',
-    // 'react/button-has-type': 'error',
-
     'dot-notation': 'warn',
     'valid-typeof': 'warn',
     'no-implicit-globals': 'error',
@@ -258,7 +252,6 @@ module.exports = {
     '@typescript-eslint/prefer-optional-chain': 'error',
     '@typescript-eslint/prefer-readonly': 'error',
     '@typescript-eslint/prefer-reduce-type-parameter': 'error',
-    '@typescript-eslint/prefer-return-this-type': 'error',
     '@typescript-eslint/prefer-string-starts-ends-with': 'error',
     '@typescript-eslint/prefer-ts-expect-error': 'error',
     '@typescript-eslint/promise-function-async': 'error',
@@ -276,15 +269,9 @@ module.exports = {
     '@typescript-eslint/lines-between-class-members': ['error', 'always'],
     '@typescript-eslint/method-signature-style': ['error', 'property'],
     '@typescript-eslint/class-literal-property-style': ['error', 'fields'],
-    // '@typescript-eslint/consistent-indexed-object-style': ['error', 'record'],
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
 
     '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
-
-    '@typescript-eslint/no-unnecessary-condition': [
-      'error',
-      { allowConstantLoopConditions: true }
-    ],
 
     '@typescript-eslint/prefer-literal-enum-member': [
       'error',
@@ -413,7 +400,6 @@ module.exports = {
     ],
 
     'react/display-name': 'off',
-    'react/button-has-type': 'error',
     'react/no-array-index-key': 'error',
     'react/no-danger-with-children': 'error',
     'react/no-deprecated': 'error',
