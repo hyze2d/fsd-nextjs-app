@@ -1,18 +1,17 @@
 ## IN PROGRESS
 
-- SSG
 - Localization
-
-- Next pages
-- Структура файлов
-- Model structure
 - Список плагинов для шторма/кода
-- Template generation
-
 - API
 - Apicodegen
 - Юнит тесты
 - Интеграционные тесты
+
+- Template generation
+- SSG - написать гайд
+- Next pages - написать гайд
+- Структура файлов - написать гайд
+- Model structure - написать гайд
 
 TODO:
 
@@ -44,3 +43,6 @@ TODO:
 - Animations
 - Вопросы по типизации
 - SEO
+
+
+

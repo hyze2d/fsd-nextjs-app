@@ -2,15 +2,19 @@ import type { Scope } from 'effector';
 import { allSettled } from 'effector';
 import { serialize } from 'effector';
 import { fork } from 'effector';
-import { Provider } from 'effector-react/ssr';
 import { DefaultSeo as Seo } from 'next-seo';
+import { useMemo } from 'react';
 import type { ReactElement } from 'react';
-import type { AppContext, AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import NextApp from 'next/app';
-
 import { started } from '@processes/boot';
 import { environment } from '@shared/config/environment';
 import { DEFAULT_SEO } from '@shared/config/seo';
+import {
+  getInitialPropsWithTranslations,
+  withTranslations
+} from '@shared/next-i18n';
+import { Provider } from './provider';
 
 type Props = Omit<AppProps, 'Component'> & {
   scope: Scope;
@@ -18,34 +22,37 @@ type Props = Omit<AppProps, 'Component'> & {
   Component: (props: any) => ReactElement;
 };
 
-let _scope: Scope;
+let _clientScope: Scope;
 
-let getScope = (payload: Scope) => {
-  let scope = fork({
-    values: {
-      ...payload,
+let useScope = (payload: Scope) =>
+  useMemo(() => {
+    let scope = fork({
+      values: {
+        ...(_clientScope ? serialize(_clientScope) : {}),
 
-      ...serialize(_scope ?? {})
+        ...payload
+      }
+    });
+
+    if (environment.isClient) {
+      _clientScope = scope;
     }
-  });
 
-  if (environment.isClient) {
-    _scope = scope;
-  }
+    return scope;
+  }, []);
 
-  return scope;
-};
+const App = withTranslations<Props>(
+  ({ Component, scope, pageProps: props }) => (
+    <Provider scope={useScope(scope)}>
+      <Seo {...DEFAULT_SEO} />
 
-const App = ({ Component, scope, pageProps: props }: Props) => (
-  <Provider value={getScope(scope)}>
-    <Seo {...DEFAULT_SEO} />
-
-    <Component {...props} />
-  </Provider>
+      <Component {...props} />
+    </Provider>
+  )
 );
 
-App.getInitialProps = async (context: AppContext) => {
-  const scope = fork();
+App.getInitialProps = getInitialPropsWithTranslations(async context => {
+  let scope = environment.isClient ? _clientScope : fork();
 
   context.ctx.scope = scope;
 
@@ -53,10 +60,12 @@ App.getInitialProps = async (context: AppContext) => {
     await allSettled(started, { scope });
   }
 
+  const props = await NextApp.getInitialProps(context);
+
   return {
-    ...(await NextApp.getInitialProps(context)),
-    scope: serialize(scope)
+    ...props,
+    scope: environment.isClient ? {} : serialize(scope)
   };
-};
+});
 
 export { App };

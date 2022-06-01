@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next';
+import Link from 'next/link';
 
 type Props = {
   albums: string[];
@@ -9,6 +10,8 @@ const Albums: NextPage<Props> = ({ albums }) => (
     {albums.map(album => (
       <div key={album}>{album}</div>
     ))}
+
+    <Link href='/'>HOME</Link>
   </div>
 );
 
