@@ -133,7 +133,9 @@ const loadResources =
   };
 
 const getInitialPropsWithTranslations = function (
-  source: (context: AppContext) => Promise<Record<string, any>>
+  source: (
+    context: AppContext
+  ) => Promise<Record<string, any>> | Record<string, any>
 ) {
   return (async (context: AppContext) => {
     let resources: Record<string, any> = {};

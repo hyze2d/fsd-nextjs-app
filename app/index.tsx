@@ -1,15 +1,13 @@
 import type { Scope } from 'effector';
 import { allSettled } from 'effector';
-import { serialize } from 'effector';
-import { fork } from 'effector';
 import { DefaultSeo as Seo } from 'next-seo';
-import { useMemo } from 'react';
 import type { ReactElement } from 'react';
 import type { AppProps } from 'next/app';
 import NextApp from 'next/app';
 import { started } from '@processes/boot';
 import { environment } from '@shared/config/environment';
 import { DEFAULT_SEO } from '@shared/config/seo';
+import { getInitialPropsWithScope, withScope } from '@shared/effector';
 import {
   getInitialPropsWithTranslations,
   withTranslations
@@ -22,50 +20,28 @@ type Props = Omit<AppProps, 'Component'> & {
   Component: (props: any) => ReactElement;
 };
 
-let _clientScope: Scope;
-
-let useScope = (payload: Scope) =>
-  useMemo(() => {
-    let scope = fork({
-      values: {
-        ...(_clientScope ? serialize(_clientScope) : {}),
-
-        ...payload
-      }
-    });
-
-    if (environment.isClient) {
-      _clientScope = scope;
-    }
-
-    return scope;
-  }, []);
-
 const App = withTranslations<Props>(
-  ({ Component, scope, pageProps: props }) => (
-    <Provider scope={useScope(scope)}>
+  withScope(({ Component, pageProps }) => (
+    <Provider>
       <Seo {...DEFAULT_SEO} />
 
-      <Component {...props} />
+      <Component {...pageProps} />
     </Provider>
-  )
+  ))
 );
 
-App.getInitialProps = getInitialPropsWithTranslations(async context => {
-  let scope = environment.isClient ? _clientScope : fork();
+App.getInitialProps = getInitialPropsWithTranslations(
+  getInitialPropsWithScope(async context => {
+    if (environment.isServer) {
+      await allSettled(started, { scope: context.ctx.scope });
+    }
 
-  context.ctx.scope = scope;
+    const props = await NextApp.getInitialProps(context);
 
-  if (environment.isServer) {
-    await allSettled(started, { scope });
-  }
-
-  const props = await NextApp.getInitialProps(context);
-
-  return {
-    ...props,
-    scope: environment.isClient ? {} : serialize(scope)
-  };
-});
+    return {
+      ...props
+    };
+  })
+);
 
 export { App };

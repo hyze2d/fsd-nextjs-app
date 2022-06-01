@@ -1,8 +1,4 @@
-import type { Scope } from 'effector';
-
 import { useGate } from 'effector-react';
-
-import { Provider as EffectorProvider } from 'effector-react/scope';
 
 import { useRouter } from 'next/router';
 
@@ -16,12 +12,7 @@ import { RouterGate } from '@shared/router';
 
 import { ThemeGate } from '@shared/theme';
 
-type ProviderProps = {
-  /**
-   * Effector ssr scope
-   */
-  scope: Scope;
-};
+type ProviderProps = {};
 
 const themes = {
   dark,
@@ -42,16 +33,14 @@ const RouterProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
   return <>{children}</>;
 };
 
-const Provider: FC<ProviderProps> = ({ children, scope }) => (
-  <EffectorProvider value={scope}>
-    <ThemeProvider>
-      <RouterProvider>
-        <MediaListener />
+const Provider: FC<ProviderProps> = ({ children }) => (
+  <ThemeProvider>
+    <RouterProvider>
+      <MediaListener />
 
-        {children}
-      </RouterProvider>
-    </ThemeProvider>
-  </EffectorProvider>
+      {children}
+    </RouterProvider>
+  </ThemeProvider>
 );
 
 export { Provider };
