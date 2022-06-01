@@ -40,6 +40,7 @@ const Home: NextPage = () => {
         <div>{greeting}</div>
 
         <Link href='/bookmarks'>Albums</Link>
+        <Link href='/test'>Test</Link>
       </div>
     </Seo>
   );
@@ -47,7 +48,7 @@ const Home: NextPage = () => {
 
 Home.getInitialProps = async ({ scope, loadResources }) => {
   await allSettled(hoped, { scope });
-  await loadResources(['home', 'album']);
+  await loadResources(['home']);
 
   return {
     test: '123'

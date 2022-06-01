@@ -144,6 +144,11 @@ const getInitialPropsWithTranslations = function (
 
     context.ctx.loadResources = loadResources(lng, resources, loadedPaths);
 
+    if (environment.isServer) {
+      // @ts-expect-error TODO: types
+      context.ctx.req.__loadResources__ = context.ctx.loadResources;
+    }
+
     const translations = {
       lng,
       resources,

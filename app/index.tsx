@@ -36,11 +36,7 @@ App.getInitialProps = getInitialPropsWithTranslations(
       await allSettled(started, { scope: context.ctx.scope });
     }
 
-    const props = await NextApp.getInitialProps(context);
-
-    return {
-      ...props
-    };
+    return NextApp.getInitialProps(context);
   })
 );
 
