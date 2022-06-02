@@ -3,6 +3,7 @@ import { serialize } from 'effector';
 import { fork } from 'effector';
 import { Provider } from 'effector-react/scope';
 import type { ComponentType } from 'react';
+import { useMemo } from 'react';
 import { environment } from '@shared/config/environment';
 
 let _scope: Scope;
@@ -18,13 +19,17 @@ function withScope<P>(Source: ComponentType<P>) {
     pageProps: { __pageScopeState__, ...pageProps },
     ...props
   }: PropsWithScope<P>) => {
-    const scope = fork({
-      values: {
-        ...(_scope && serialize(_scope)),
+    const scope = useMemo(
+      () =>
+        fork({
+          values: {
+            ...(_scope && serialize(_scope)),
 
-        ...(__pageScopeState__ ?? {})
-      }
-    });
+            ...(__pageScopeState__ ?? {})
+          }
+        }),
+      []
+    );
 
     if (environment.isClient) {
       _scope = scope;

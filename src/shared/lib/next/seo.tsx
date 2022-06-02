@@ -31,7 +31,7 @@ function seo<P>(map: (props: P) => NextSeoProps): FC<WithChildren<P>>;
 function seo(props: Store<NextSeoProps> | NextSeoProps): FC;
 function seo(...args: any[]) {
   switch (true) {
-    case args.length == 2:
+    case args?.length == 2:
       return getHoc(props => (
         <NextSeo
           {...(args[1] as MapConfig<unknown, unknown>)(

@@ -33,12 +33,26 @@ const buildPaths = (path, parent = '') => {
 
 buildPaths(base);
 
+let content = '';
+
+let names = [];
+
+Object.entries(results).forEach(([key, value]) => {
+  const name =
+    key.charAt(0).toUpperCase() + key.substring(1) + 'NamespaceStructure';
+
+  names.push(name);
+
+  content += `type ${name} = ${JSON.stringify(results[key])};\n\n`;
+});
+
 fs.writeFileSync(
   `./src/shared/types/locale-structure.ts`,
 
-  `type LocaleStructure = ${JSON.stringify(
-    results
-  )}; 
+  `
+  ${content}
+
+  type LocaleStructure = ${names.join(' & ')}; 
   
   export type {LocaleStructure} `
 );

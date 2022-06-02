@@ -50,8 +50,15 @@ module.exports = {
           });
       });
 
+    if (!isServer) {
+    }
+
     return merge(config, {
       resolve: {
+        fallback: {
+          ...(isServer ? {} : { fs: false })
+        },
+
         alias: {
           '@styles': '/src/shared/styles'
         }

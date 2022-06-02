@@ -1,10 +1,7 @@
-type LocaleStructure = {
-  album: { tags: 'Tagssss' };
-  home: {
-    footer: { facebook: 'kek' };
-    header: { kek: 'dsadasda' };
-    title: 'Home';
-  };
-};
+type CommonNamespaceStructure = { kek: 'dsad' };
+
+type HomeNamespaceStructure = { title: 'Home' };
+
+type LocaleStructure = CommonNamespaceStructure & HomeNamespaceStructure;
 
 export type { LocaleStructure };

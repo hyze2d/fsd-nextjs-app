@@ -64,9 +64,11 @@ class ViewBuilder<P extends {}, MP = {}> {
 
   private _defaultProps?: Partial<P>;
 
-  private _unmounted?: Event<void>;
+  private _exit?: Event<void>;
 
-  private _mounted?: Event<void>;
+  private _enter?: Event<void>;
+
+  private _effect?: (props: P & MP) => void;
 
   private _memo?: boolean;
 
@@ -100,14 +102,14 @@ class ViewBuilder<P extends {}, MP = {}> {
     };
   }
 
-  public unmounted(_unmounted: Event<void>) {
-    this._unmounted = _unmounted;
+  public exit(_unmounted: Event<void>) {
+    this._exit = _unmounted;
 
     return this;
   }
 
-  public mounted(_mounted: Event<void>) {
-    this._mounted = _mounted;
+  public enter(_mounted: Event<void>) {
+    this._enter = _mounted;
 
     return this;
   }
@@ -120,6 +122,12 @@ class ViewBuilder<P extends {}, MP = {}> {
 
   public defaultProps(_defaultProps: Partial<P>) {
     this._defaultProps = _defaultProps;
+
+    return this;
+  }
+
+  public effect(effect: (props: P & MP) => void) {
+    this._effect = effect;
 
     return this;
   }
@@ -148,7 +156,7 @@ class ViewBuilder<P extends {}, MP = {}> {
   public view(
     render: (props: P & MP) => RenderReturnType
   ): ComponentType<Omit<P, keyof MP>> & { Original: typeof render } {
-    const { _propMap, _memo, _unmounted, _mounted } = this;
+    const { _propMap, _memo, _exit, _enter } = this;
 
     const View: View<P, MP> = props => {
       const _props = _propMap.reduce<Omit<P, keyof MP> & MP>((result, item) => {
@@ -171,10 +179,11 @@ class ViewBuilder<P extends {}, MP = {}> {
         return result;
       }, props as Omit<P, keyof MP> & MP); // eslint-disable-line @typescript-eslint/prefer-reduce-type-parameter
 
-      ViewBuilder.useLifeCycle(
-        _mounted as Event<void>,
-        _unmounted as Event<void>
-      );
+      ViewBuilder.useLifeCycle(_enter as Event<void>, _exit as Event<void>);
+
+      if (this._effect) {
+        this._effect(_props as P & MP);
+      }
 
       return render(_props as P & MP);
     };

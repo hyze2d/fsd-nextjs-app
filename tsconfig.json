@@ -31,6 +31,7 @@
       "@widgets/*": ["./src/widgets/*"],
       "@features/*": ["./src/features/*"],
       "@entities/*": ["./src/entities/*"],
+      "@routes/*": ["src/routes/*"],
       "@shared/*": ["./src/shared/*"],
       "@config/*": ["./src/shared/config/*"],
       "@lib/*": ["./src/shared/lib/*"],

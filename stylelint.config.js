@@ -322,7 +322,6 @@ module.exports = {
     'value-keyword-case': 'lower',
     'function-name-case': 'lower',
     'color-hex-case': 'lower',
-    'number-leading-zero': 'never',
     'string-quotes': 'single',
     'unit-case': 'lower',
     'property-case': 'lower',
