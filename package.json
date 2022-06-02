@@ -2,11 +2,14 @@
   "name": "next-based-template",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "tsc --noEmit && next build",
-    "start": "next start",
-    "docker": "next start",
+
+    "pre:start": "yarn generate:locale-structure-type",
+    "dev": "yarn pre:start && next dev",
+    "build": "yarn pre:start && tsc --noEmit && next build",
+    "start": "yarn pre:start next start",
+    "docker": "yarn pre:start && generate:locale-structure-type next start",
     "lint": "eslint \"./src/**/*.{ts,tsx}\" --fix",
+    "generate:locale-structure-type": "node ./scripts/generate-locale-paths && eslint ./src/shared/types/locale-structure.ts --fix",
     "stylelint": "stylelint --fix \"./src/**/*.scss\"",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
@@ -25,29 +28,23 @@
     ]
   },
   "dependencies": {
-    "@emotion/react": "^11.8.2",
-    "@emotion/styled": "^11.8.1",
-    "@mui/material": "^5.5.2",
-    "@typescript-eslint/eslint-plugin": "^5.20.0",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "cookies": "^0.8.0",
     "effector": "^22.2.0",
     "effector-react": "^22.0.6",
-    "formik": "^2.2.9",
     "i18next": "^21.8.5",
     "include-media": "^1.4.10",
+    "json-schema-to-typescript": "^10.1.5",
     "next": "12.0.7",
     "next-i18next": "^10.5.0",
     "next-seo": "^5.4.0",
     "object-path": "^0.11.8",
     "object-path-immutable": "^4.1.2",
     "patronum": "^1.8.2",
-    "react": "17.0.2",
+    "quicktype-core": "^6.0.71",
     "react-device-detect": "^2.1.2",
-    "react-dom": "17.0.2",
     "react-i18next": "^11.16.9",
-    "sass": "^1.45.2",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -71,6 +68,7 @@
     "@types/node": "17.0.5",
     "@types/object-path": "^0.11.1",
     "@types/react": "17.0.38",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@wemake-services/stylelint-config-scss": "^1.0.0",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.4",
@@ -97,6 +95,7 @@
     "postcss-cli": "^9.1.0",
     "postcss-scss": "^4.0.4",
     "prettier": "^2.1.2",
+    "sass": "^1.45.2",
     "storybook-addon-breakpoints": "^1.0.0",
     "storybook-addon-code-preview": "^0.0.9",
     "storybook-addon-designs": "^6.2.1",
@@ -117,5 +116,9 @@
     "unimported": "^1.20.0",
     "webpack": "^5.72.0",
     "webpack-merge": "^5.8.0"
+  },
+  "resolutions": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   }
 }
