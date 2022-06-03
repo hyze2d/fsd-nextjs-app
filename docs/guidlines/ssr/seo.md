@@ -1,7 +1,7 @@
 ## Redirects
 
-For 301 redirects use runtime entry points like getServerSideProps or getInitialProps
-For 302, 308 use nextjs redirect configuration
+For 301, 302 redirects use runtime entry points like getServerSideProps or getInitialProps
+For 307, 308 use nextjs redirect configuration
 
 ## Robots.txt
 
@@ -88,17 +88,26 @@ so search engine will not demote the page in indexing or demote all pages with t
 
 ## Page content
 
+Fill the page with text containing keywords, but don't add thousands of them, it'll not help. Instead, try to keep your content text as natural as possible.
+
+Check if your site can have data you can present in Structured data format
+
 h1 - Should represent what's page about. Other headings are also important but make sure to define correct h1.
+Headings should be nested correctly, you should split your page into sections each one with its own heading and subsections should have headings with a bigger h tag number than their section
 
 For all links, make sure they have href attributes and try to not use programmatic navigation with interactable elements but use a links instead.
 
-Images preferably should be rendered with next Image component since it provides extra set of optimisations
+Images preferably should be rendered with next Image component since it provides extra set of optimisations, prevent layout shifts, always include the "alt" tag
+
+Use lists, the engine might decide to show them on top of the results
 
 Some content which's not required to be rendered on the server side (for example some clent only widget/non main content/some content which's rendered in the far end of the page and also follows previous cases)
 
 ## SEO profiling & Optimisation
 
 To check how well your project runs in terms of SEO you can use tools like googlepagespeed, lighthouse and try follow the advices given by the tools.
+
+Performance is essential here, especially for Google, they care about user experience, and if your website has good content and structure but it's slow, you might stick at the bottom of search results
 
 ## Box
 
