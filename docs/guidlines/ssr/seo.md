@@ -1,7 +1,7 @@
 ## Redirects
 
-For 301 redirects use runtime entry points like getServerSideProps or getInitialProps
-For 302, 308 use nextjs redirect configuration
+For 301, 302 redirects use runtime entry points like getServerSideProps or getInitialProps
+For 307, 308 use nextjs redirect configuration
 
 ## Robots.txt
 
