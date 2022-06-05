@@ -1,19 +1,24 @@
-import { DefaultSeo as Seo } from 'next-seo';
+import type { PropsWithChildren } from 'react';
 import type { AppProps } from 'next/app';
-import { Layout } from '@widgets/layout';
-import { DEFAULT_SEO } from '@shared/config/seo';
-import { Provider } from './provider';
+import { Theme } from './theme';
 
-const App = ({ Component, pageProps }: AppProps) => (
-  <Provider>
-    <Seo {...DEFAULT_SEO} />
+type Props = Omit<AppProps, 'Component'> & {
+  Component: ((props: object) => JSX.Element) & {
+    getLayout: (children: JSX.Element) => JSX.Element;
+  };
+};
 
-    <Layout>
-      {/* @ts-expect-error JSX typings */}
-
-      <Component {...pageProps} />
-    </Layout>
-  </Provider>
+const Provider = ({ children }: PropsWithChildren<{}>) => (
+  <Theme>{children}</Theme>
 );
+
+const _getLayout = (page: (props: Record<string, unknown>) => JSX.Element) =>
+  page;
+
+const App = ({ Component, pageProps }: Props) => {
+  const getLayout = Component.getLayout || _getLayout;
+
+  return <Provider>{getLayout(<Component {...pageProps} />)}</Provider>;
+};
 
 export { App };

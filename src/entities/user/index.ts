@@ -1,1 +1,1 @@
-export { $user } from './model';
+export {};

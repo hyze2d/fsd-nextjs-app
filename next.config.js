@@ -1,7 +1,6 @@
 const merge = require('webpack-merge').default;
 const { apiUrl } =
   process.env.NODE_ENV == 'production' ? process.env : require('./config.json');
-const { i18n } = require('./next-i18next.config');
 
 /** @type {import('next').NextConfig} */
 module.exports = {
@@ -12,8 +11,6 @@ module.exports = {
   publicRuntimeConfig: {
     apiUrl
   },
-
-  i18n,
 
   webpack: (config, { isServer }) => {
     [
@@ -50,17 +47,10 @@ module.exports = {
           });
       });
 
-    if (!isServer) {
-    }
-
     return merge(config, {
       resolve: {
-        fallback: {
-          ...(isServer ? {} : { fs: false })
-        },
-
         alias: {
-          '@styles': '/src/shared/styles'
+          '@styles': '/src/styles'
         }
       }
     });

@@ -11,7 +11,7 @@ module.exports = {
     '@feature-sliced/eslint-config/rules/public-api/lite',
     '@feature-sliced/eslint-config/rules/import-order',
 
-    'prettier/@typescript-eslint',
+    'prettier',
 
     'plugin:json/recommended'
   ],
@@ -64,6 +64,18 @@ module.exports = {
     'no-extra-boolean-cast': 'off',
     'react-hooks/exhaustive-deps': 'off',
     'no-redeclare': 'off',
+    'no-undef': 'off',
+
+    // TODO: consider before deleting this
+    // '@typescript-eslint/no-unsafe-argument': 'error',
+    // '@typescript-eslint/no-unsafe-assignment': 'error',
+    // '@typescript-eslint/no-unsafe-call': 'error',
+    // '@typescript-eslint/no-unsafe-member-access': 'error',
+    // '@typescript-eslint/no-unsafe-return': 'error',
+    // '@typescript-eslint/restrict-template-expressions': [
+    //   'error',
+    //   { allowNumber: true }
+    // ],
 
     'dot-notation': 'warn',
     'valid-typeof': 'warn',
@@ -225,7 +237,6 @@ module.exports = {
     '@typescript-eslint/no-meaningless-void-operator': 'error',
     '@typescript-eslint/no-misused-new': 'error',
     '@typescript-eslint/no-misused-promises': 'error',
-    '@typescript-eslint/no-namespace': 'error',
     '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',
     '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
@@ -237,11 +248,7 @@ module.exports = {
     '@typescript-eslint/no-unnecessary-type-arguments': 'error',
     '@typescript-eslint/no-unnecessary-type-assertion': 'error',
     '@typescript-eslint/no-unnecessary-type-constraint': 'error',
-    '@typescript-eslint/no-unsafe-argument': 'error',
-    '@typescript-eslint/no-unsafe-assignment': 'error',
-    '@typescript-eslint/no-unsafe-call': 'error',
-    '@typescript-eslint/no-unsafe-member-access': 'error',
-    '@typescript-eslint/no-unsafe-return': 'error',
+
     '@typescript-eslint/await-thenable': 'error',
     '@typescript-eslint/no-useless-empty-export': 'error',
     '@typescript-eslint/no-var-requires': 'error',
@@ -280,22 +287,9 @@ module.exports = {
       { allowBitwiseExpressions: true }
     ],
 
-    '@typescript-eslint/restrict-template-expressions': [
-      'error',
-      { allowNumber: true }
-    ],
-
     '@typescript-eslint/array-type': [
       'error',
       { default: 'array', readonly: 'array' }
-    ],
-
-    '@typescript-eslint/consistent-type-assertions': [
-      'error',
-      {
-        assertionStyle: 'as',
-        objectLiteralTypeAssertions: 'allow-as-parameter'
-      }
     ],
 
     '@typescript-eslint/consistent-type-imports': [
@@ -310,20 +304,6 @@ module.exports = {
       'error',
       {
         accessibility: 'explicit'
-      }
-    ],
-
-    '@typescript-eslint/member-delimiter-style': [
-      'error',
-      {
-        multiline: {
-          delimiter: 'semi',
-          requireLast: true
-        },
-
-        singleline: {
-          delimiter: 'semi'
-        }
       }
     ],
 
@@ -342,13 +322,13 @@ module.exports = {
       }
     ],
 
-    // '@typescript-eslint/no-explicit-any': [
-    //   'error',
-    //   {
-    //     fixToUnknown: true,
-    //     ignoreRestArgs: true
-    //   }
-    // ],
+    '@typescript-eslint/no-explicit-any': [
+      'error',
+      {
+        fixToUnknown: false,
+        ignoreRestArgs: true
+      }
+    ],
 
     '@typescript-eslint/member-ordering': [
       'error',
@@ -423,6 +403,7 @@ module.exports = {
     'react/jsx-closing-tag-location': 'error',
     'react/jsx-pascal-case': 'error',
     'react/jsx-key': 'error',
+    'react/jsx-newline': 'error',
     'react/jsx-no-constructed-context-values': 'error',
     'react/jsx-no-duplicate-props': 'error',
     'react/jsx-no-script-url': 'error',

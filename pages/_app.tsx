@@ -1,6 +1,6 @@
-import { appWithTranslation } from 'next-i18next';
-import { withScope } from '@shared/lib/next';
-import '../src/app/app.scss';
-import { App } from '../src/app/index';
+import { App } from '@app/index';
+import type { AppProps } from 'next/app';
+import { withScope } from '@shared/lib/next-scope';
+import '@styles/global.scss';
 
-export default appWithTranslation(withScope(App));
+export default withScope(App as (props: AppProps) => JSX.Element);
