@@ -1,13 +1,10 @@
 import { MainPage } from '@layouts/main-page';
 import { createPage } from '@app';
-import { $$homePage, Home } from '@pages/home';
 
 const { Page } = createPage({
-  component: Home,
+  component: () => <div>TEST</div>,
 
-  layout: MainPage,
-
-  gip: $$homePage.enter
+  layout: MainPage
 });
 
 export default Page;

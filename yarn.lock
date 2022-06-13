@@ -5907,6 +5907,11 @@ effector-react@^22.0.6:
   resolved "https://registry.yarnpkg.com/effector-react/-/effector-react-22.0.6.tgz#e6651febfc124a8adf550deb950fbd03dfb9ec4e"
   integrity sha512-uzVjrh5S94eMeihu8N8eQvLFnZA56VT00etMVovnSyZxujo0f8gtZZebIYOKyYFkGcYUyfiOHRRzBhYpIfAIhg==
 
+effector-view@^1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/effector-view/-/effector-view-1.0.16.tgz#bc6255a96bc2295825d1cacfb0db380cfc68b8a5"
+  integrity sha512-0vxFftEm7194BFaLSbX05hp4Vs2dG1l2H8k6WInf7ZAnsVTpNiFgnZxjQgA02yHBrdtUfFdDeUeMWfQfRfVe8A==
+
 effector@^22.3.0:
   version "22.3.0"
   resolved "https://registry.yarnpkg.com/effector/-/effector-22.3.0.tgz#c743dd7d934ec3f9a2efac76a563cd0281bc4201"

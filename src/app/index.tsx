@@ -22,3 +22,4 @@ const App = ({ Component, pageProps }: Props) => {
 };
 
 export { App };
+export { createPage, withScope } from './next';
