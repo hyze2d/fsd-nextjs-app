@@ -79,8 +79,6 @@ function createPage<P>({ component: Component, layout, gip }: Options<P>) {
 
       await allSettled(gip, { scope, params: ctx });
 
-      console.log(serialize(scope));
-
       return {
         _values_: serialize(scope)
       };
