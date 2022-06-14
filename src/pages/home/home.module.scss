@@ -1,0 +1,30 @@
+.title {
+  margin-bottom: 16px;
+}
+
+.albums {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.album {
+}
+
+.album-title {
+  margin-bottom: 16px;
+}
+
+.album-thumbnail {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 16px;
+  object-fit: cover;
+}
+
+.album-description {
+  font-size: 14px;
+  line-height: 1.4;
+}

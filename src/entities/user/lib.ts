@@ -4,6 +4,8 @@ type User = {
   firstName: string;
 
   lastName: string;
+
+  photoUrl: string;
 };
 
 export type { User };

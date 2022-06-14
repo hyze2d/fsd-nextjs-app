@@ -7,3 +7,4 @@ const $$user = {
 };
 
 export { $$user };
+export { LoggedUser } from './ui';

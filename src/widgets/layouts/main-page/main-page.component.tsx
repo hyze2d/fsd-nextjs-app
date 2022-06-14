@@ -1,62 +1,42 @@
-import { useStore } from 'effector-react';
 import Link from 'next/link';
 import type { PropsWithChildren } from 'react';
-import { $$user } from '@entities/user';
+import { $$user, LoggedUser } from '@entities/user';
+import { createView } from '@shared/lib/view';
+import styles from './main-page.module.scss';
 
-// const MainPage = createView<PropsWithChildren<{}>>()
-//   .props({
-//     user: $$user.user
-//   })
-
-//   .view(({ user, children }) => (
-//     <>
-//       <header>
-//         {user && (
-//           <div>
-//             <span>
-//               {user.firstName} {user.lastName}
-//             </span>
-//           </div>
-//         )}
-//       </header>
-
-//       <main>{children}</main>
-
-//       <footer>main page footer</footer>
-//     </>
-//   ));
-
-// // @ts-expect-error nopeee
-// MainPage.started = $$user.getUserFx;
-
-const MainPage = ({ children }: PropsWithChildren<{}>) => {
-  const user = useStore($$user.user);
-
-  return (
-    <>
-      <header>
+const MainPage = createView<PropsWithChildren<{}>>().view(({ children }) => (
+  <div className={styles.mainPage}>
+    <header className={styles.header}>
+      <div className={styles.container}>
         <div>
           <Link href='/'>Home</Link>
 
           <Link href='/test'>Test</Link>
         </div>
 
-        {user && (
-          <div>
-            <span>
-              {user.firstName} {user.lastName}
-            </span>
-          </div>
-        )}
-      </header>
+        <LoggedUser />
+      </div>
+    </header>
 
-      <main>{children}</main>
+    <main className={styles.main}>
+      <div className={styles.container}>{children}</div>
+    </main>
 
-      <footer>main page footer</footer>
-    </>
-  );
-};
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <div>
+          <ul>
+            <li>
+              <Link href='/'>home</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+));
 
+// @ts-expect-error nopeee
 MainPage.started = $$user.getUserFx;
 
 export { MainPage };

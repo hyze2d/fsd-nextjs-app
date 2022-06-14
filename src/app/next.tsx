@@ -73,9 +73,13 @@ function createPage<P>({ component: Component, layout, gip }: Options<P>) {
         await allSettled(Layout.started, { scope, params: ctx });
       }
 
-      _currentLayout = Layout;
+      if (environment.isClient) {
+        _currentLayout = Layout;
+      }
 
       await allSettled(gip, { scope, params: ctx });
+
+      console.log(serialize(scope));
 
       return {
         _values_: serialize(scope)

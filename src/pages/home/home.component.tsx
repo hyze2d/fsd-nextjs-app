@@ -1,62 +1,37 @@
-import { useStore } from 'effector-react/ssr';
 import { $$album } from '@entities/album';
+import { createView } from '@shared/lib/view';
 
-// const Home = createView()
-//   .props({
-//     albums: $$album.featuredAlbums
-//   })
+import styles from './home.module.scss';
 
-//   .view(({ albums }) => (
-//     <div>
-//       <h1>Home</h1>
+const Home = createView()
+  .props({
+    albums: $$album.featuredAlbums
+  })
 
-//       <ul>
-//         {albums.map(album => (
-//           <li key={album.id}>
-//             <article>
-//               <header>
-//                 <h2>{album.title}</h2>
-
-//                 <Image src={album.thumbnail} alt='album thumbnail' />
-
-//                 <p>{album.description}</p>
-//               </header>
-//             </article>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   ));
-
-const Home = () => {
-  const albums = useStore($$album.featuredAlbums);
-
-  return (
+  .view(({ albums }) => (
     <div>
-      <h1>Home</h1>
+      <h1 className={styles.title}>Home</h1>
 
-      <ul>
+      <ul className={styles.albums}>
         {albums.map(album => (
           <li key={album.id}>
-            <article>
-              <header>
-                <h2>{album.title}</h2>
+            <article className={styles.album}>
+              <h2 className={styles.albumTitle}>{album.title}</h2>
 
-                <img
-                  src={album.thumbnail}
-                  alt='album thumbnail'
-                  width={200}
-                  height={200}
-                />
+              <img
+                className={styles.albumThumbnail}
+                src={album.thumbnail}
+                alt='album thumbnail'
+                width={200}
+                height={200}
+              />
 
-                <p>{album.description}</p>
-              </header>
+              <p className={styles.albumDescription}>{album.description}</p>
             </article>
           </li>
         ))}
       </ul>
     </div>
-  );
-};
+  ));
 
 export { Home };
