@@ -1,15 +1,14 @@
 import useTranslation from 'next-translate/useTranslation';
 import { $$album, AlbumCard } from '@entities/album';
 import { createView } from '@shared/lib/view';
-import styles from './home.module.scss';
+import styles from './albums.module.scss';
 
-const Home = createView()
+const Albums = createView()
   .props({
-    albums: $$album.featuredAlbums
+    albums: $$album.albums
   })
-
   .view(({ albums }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('home');
 
     return (
       <div>
@@ -28,4 +27,4 @@ const Home = createView()
     );
   });
 
-export { Home };
+export { Albums };

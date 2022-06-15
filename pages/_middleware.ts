@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 import config from '../i18n.json';
 
 const PUBLIC_FILE = /\.(.*)$/;
-// const locales = new Map(config.locales.map(key => [key, key]));
 
 const middleware = (req: NextRequest) => {
   const { locale, pathname } = req.nextUrl;

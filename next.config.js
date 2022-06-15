@@ -11,10 +11,20 @@ module.exports = nextTranslate({
 
   trailingSlash: false,
 
-  i18n: {
-    locales: ['default', ...i18n.locales],
+  // i18n: {
+  //   locales: ['default', ...i18n.locales],
     
-    defaultLocale: 'default',
+  //   defaultLocale: 'default',
+  // },
+
+  experimental: {
+    images: {
+        layoutRaw: true
+    }
+  },
+
+  images: {
+    domains: ['picsum.photos'],
   },
 
   publicRuntimeConfig: {

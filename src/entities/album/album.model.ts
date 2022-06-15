@@ -1,13 +1,7 @@
 import { createEffect, createStore } from 'effector';
 import type { Album } from './lib';
 
-const getFeaturedAlbumsFx = createEffect<void, Album[]>();
-
-const $featuredAlbums = createStore<Album[]>([]);
-
-$featuredAlbums.on(getFeaturedAlbumsFx.doneData, (_, albums) => albums);
-
-getFeaturedAlbumsFx.use(() => [
+const mock = [
   {
     id: 1,
     title: 'Some title',
@@ -20,7 +14,7 @@ getFeaturedAlbumsFx.use(() => [
     title: 'Some titld2',
     description:
       'lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum ',
-    thumbnail: 'https://picsum.photos/200'
+    thumbnail: 'https://picsum.photos/202'
   },
 
   {
@@ -28,7 +22,7 @@ getFeaturedAlbumsFx.use(() => [
     title: 'Some title3',
     description:
       'lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum ',
-    thumbnail: 'https://picsum.photos/200'
+    thumbnail: 'https://picsum.photos/204'
   },
 
   {
@@ -36,7 +30,7 @@ getFeaturedAlbumsFx.use(() => [
     title: 'Some title4',
     description:
       'lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum ',
-    thumbnail: 'https://picsum.photos/200'
+    thumbnail: 'https://picsum.photos/206'
   },
 
   {
@@ -44,7 +38,7 @@ getFeaturedAlbumsFx.use(() => [
     title: 'Some title5',
     description:
       'lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum ',
-    thumbnail: 'https://picsum.photos/200'
+    thumbnail: 'https://picsum.photos/208'
   },
 
   {
@@ -52,7 +46,7 @@ getFeaturedAlbumsFx.use(() => [
     title: 'Some title6',
     description:
       'lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum ',
-    thumbnail: 'https://picsum.photos/200'
+    thumbnail: 'https://picsum.photos/210'
   },
 
   {
@@ -60,8 +54,29 @@ getFeaturedAlbumsFx.use(() => [
     title: 'Some title7',
     description:
       'lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum lorem lipsum ',
-    thumbnail: 'https://picsum.photos/200'
+    thumbnail: 'https://picsum.photos/212'
   }
-]);
+];
 
-export { $featuredAlbums, getFeaturedAlbumsFx };
+const getAlbumsFx = createEffect<void, Album[]>();
+const getFeaturedAlbumsFx = createEffect<void, Album[]>();
+
+const $albums = createStore<Album[]>([]);
+const $featuredAlbums = createStore<Album[]>([]);
+
+$albums.on(getAlbumsFx.doneData, (_, albums) => albums);
+
+$featuredAlbums.on(getFeaturedAlbumsFx.doneData, (_, albums) => albums);
+
+getFeaturedAlbumsFx.use(() => mock);
+
+getAlbumsFx.use(() =>
+  mock.map(item => ({
+    ...item,
+    id: item.id + 8,
+    title: `${item.title}ON ALBUMS PAGE`,
+    thumbnail: item.thumbnail.replace('2', '3')
+  }))
+);
+
+export { $featuredAlbums, $albums, getAlbumsFx, getFeaturedAlbumsFx };
