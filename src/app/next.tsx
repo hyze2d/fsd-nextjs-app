@@ -1,130 +1,78 @@
-import type { Effect, Event, Scope } from 'effector';
+import type { Event } from 'effector';
+import type { PageContext, StaticPageContext } from 'nextjs-effector';
 import {
-  createStore,
-  fork,
-  allSettled,
-  createEvent,
-  serialize
-} from 'effector';
-import { Provider } from 'effector-react/scope';
-import type { NextPageContext } from 'next';
-import type { ComponentType, PropsWithChildren, ReactNode } from 'react';
-import { useMemo } from 'react';
+  createGIPFactory,
+  createGSPFactory,
+  createGSSPFactory
+} from 'nextjs-effector';
+import type { ComponentType, PropsWithChildren } from 'react';
 import { $$boot } from '@processes/boot';
-import { environment } from '@shared/config';
 
-type Starter<V> = Event<V> | Effect<V, any>;
-
-type Options<P> = {
-  component: ComponentType<P>;
-
-  layout?: ComponentType<any> & { started?: Starter<NextPageContext> };
-
-  gssp?: Starter<any>;
-
-  gip?: Starter<NextPageContext>;
-
-  gsp?: Starter<any>;
-
-  namespaces?: string[];
+type CreatePageOptions = {
+  component: ComponentType;
+  layout?: ComponentType<PropsWithChildren<{}>>;
+  gssp?: Event<PageContext>;
+  gip?: Event<PageContext>;
+  gsp?: Event<StaticPageContext>;
 };
 
-const BaseLayout = ({ children }: PropsWithChildren<{}>) => <>{children}</>;
+const createGSSP = createGSSPFactory({
+  sharedEvents: [$$boot.started as Event<PageContext>]
+});
 
-const before = {
-  gssp: createEvent(),
+const createGIP = createGIPFactory({
+  sharedEvents: [$$boot.started as Event<PageContext>],
 
-  gip: $$boot.started,
+  runSharedOnce: true
+});
 
-  gsp: createEvent()
-};
+const createGSP = createGSPFactory({
+  sharedEvents: [$$boot.started]
+});
 
-const gipExecuted = createEvent();
+const createPage = ({
+  component: Component,
+  layout: Layout,
+  gssp,
+  gsp,
+  gip
+}: CreatePageOptions) => {
+  let Page: {
+    (props: {}): JSX.Element;
 
-const $gipExecuted = createStore(false).on(gipExecuted, () => true);
+    getLayout?: (content: JSX.Element) => JSX.Element;
+  } = (props: {}) => <Component {...props} />;
 
-let _scope_: Scope;
-let _currentLayout: any;
+  let getServerSideProps;
+  let getStaticProps;
+  let getInitialProps;
 
-function createPage<P>({ component: Component, layout, gip }: Options<P>) {
-  const Layout = layout ?? BaseLayout;
-
-  const Page = (props: P) => <Component {...props} />;
-
-  Page.getLayout = (page: ReactNode) => <Layout>{page}</Layout>;
-
-  if (gip) {
-    Page.getInitialProps = async (ctx: NextPageContext) => {
-      const scope = environment.isClient
-        ? _scope_
-        : fork({
-            values: environment.isClient && _scope_ ? serialize(_scope_) : {}
-          });
-
-      if (!scope.getState($gipExecuted)) {
-        await allSettled(before.gip, { scope, params: ctx });
-
-        await allSettled(gipExecuted, { scope });
-      }
-
-      // @ts-expect-error temporary
-      if (_currentLayout != Layout && Layout.started) {
-        // @ts-expect-error temporary
-        await allSettled(Layout.started, { scope, params: ctx });
-      }
-
-      if (environment.isClient) {
-        _currentLayout = Layout;
-      }
-
-      await allSettled(gip, { scope, params: ctx });
-
-      return {
-        _values_: serialize(scope)
-      };
-    };
+  if (Layout) {
+    Page.getLayout = (content: JSX.Element) => <Layout>{content}</Layout>;
   }
 
-  const getServerSideProps = () => {};
+  switch (true) {
+    case !!gssp:
+      getServerSideProps = createGSSP({ pageEvent: gssp });
 
-  const getStaticProps = () => {};
+      break;
+
+    case !!gsp:
+      getStaticProps = createGSP({ pageEvent: gsp });
+
+      break;
+    case !!gip:
+      getInitialProps = createGIP({ pageEvent: gip });
+
+      break;
+  }
 
   return {
     Page,
     getStaticProps,
+    getInitialProps,
     getServerSideProps
   };
-}
+};
 
-function withScope<P extends { pageProps: any }>(Component: ComponentType<P>) {
-  return ({ pageProps: { _values_, ...pageProps }, ...props }: P) => {
-    const scope = useMemo(() => {
-      const result = fork({
-        values: {
-          ...(_scope_ && serialize(_scope_)),
-
-          ...(_values_ || {})
-        }
-      });
-
-      if (environment.isClient) {
-        _scope_ = result;
-      }
-
-      return result;
-    }, [_values_]);
-
-    return (
-      <Provider value={scope}>
-        <Component
-          {...({
-            ...props,
-            pageProps
-          } as P)}
-        />
-      </Provider>
-    );
-  };
-}
-
-export { createPage, withScope };
+export { createPage };

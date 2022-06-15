@@ -9651,6 +9651,11 @@ next@12.1.6:
     "@next/swc-win32-ia32-msvc" "12.1.6"
     "@next/swc-win32-x64-msvc" "12.1.6"
 
+nextjs-effector@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/nextjs-effector/-/nextjs-effector-0.1.1.tgz#cb52074e78569e3f3ea3046f93e1ebf5a35f3bc1"
+  integrity sha512-LbS1oF+BUSPtC+tHhD9L1sL5DqXqr24509pMRX242TrT6XuXq3cXubX+WWYYG0DHX/hTI8nXZ4o0HeXDB81ubQ==
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

@@ -1,6 +1,5 @@
 ## IN PROGRESS
 
-Сегодня
 
 - Localization
 
@@ -12,14 +11,12 @@
 - Template generation
 - Список плагинов для шторма/кода
 
-Пятница
 
 - API
 - Apicodegen
 - Юнит тесты
 - Интеграционные тесты
 
-TODO:
 
 - Forms
 - Utils/Helpers
@@ -31,21 +28,20 @@ TODO:
 
 ## Done
 
-- Роутинг
-- Темизация
-- Адаптив (включая in JS моменты)
-- Общие стили
-- Assets
-- Storybook
-- Babel config
-- ENV/Config
-- Tsconfig
-- Aliases
-- editorconfig/vscode config
-- ESLINT
-- STYLELINT
-- Commitlint
-- Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo) - create view now.
-- Animations
-- Вопросы по типизации
-- SEO
+- Роутинг - страницы неста
+- Темизация - tilewind/кастомный провайдер
+- Адаптив (включая in JS моменты) - include media + js media component
+- Общие стили - src/shared/ui/styles
+- Assets - public
+- Storybook - setup
+- Babel config - effector babel plugin.
+- ENV/Config - next.config.json
+- Tsconfig - addeed stricter rules
+- Aliases - done
+- editorconfig/vscode config - done + vscode debugger
+- ESLINT - remove some rules
+- STYLELINT - remove some rules
+- Commitlint - config conventional or jira rules
+- Разделение View & Logic в компонентах (Пересмотреть HOC + forwardref + memo) - fix create view bundling
+- Animations - animations lib, + 
+- SEO - next-seo

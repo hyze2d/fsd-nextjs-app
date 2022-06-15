@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { PropsWithChildren } from 'react';
-import { $$user, LoggedUser } from '@entities/user';
+import { LoggedUser } from '@entities/user';
 import { createView } from '@shared/lib/view';
 import styles from './main-page.module.scss';
 
@@ -35,8 +35,5 @@ const MainPage = createView<PropsWithChildren<{}>>().view(({ children }) => (
     </footer>
   </div>
 ));
-
-// @ts-expect-error nopeee
-MainPage.started = $$user.getUserFx;
 
 export { MainPage };

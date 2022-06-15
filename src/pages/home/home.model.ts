@@ -1,17 +1,14 @@
-import { createEvent, sample } from 'effector';
-import type { NextPageContext } from 'next';
+import { sample } from 'effector';
+import { $$mainPage } from '@layouts/main-page';
 import { $$album } from '@entities/album';
+import { createPage } from '@shared/lib/factory';
 
-const enter = createEvent<NextPageContext>();
+const $$homePage = createPage($$mainPage);
 
 sample({
-  clock: enter,
+  clock: $$homePage.enter,
 
   target: $$album.getFeaturedAlbumsFx
 });
-
-const $$homePage = {
-  enter
-};
 
 export { $$homePage };

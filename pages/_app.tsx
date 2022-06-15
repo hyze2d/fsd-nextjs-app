@@ -1,5 +1,6 @@
-import { App, withScope } from '@app';
-import type { AppProps } from 'next/app';
 import '@styles/global.scss';
+import { withEffector } from 'nextjs-effector';
+import { App } from '@app';
+import type { AppProps } from 'next/app';
 
-export default withScope(App as (props: AppProps) => JSX.Element);
+export default withEffector(App as (props: AppProps) => JSX.Element);
