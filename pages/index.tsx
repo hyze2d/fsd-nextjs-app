@@ -1,13 +1,14 @@
 import { MainPage } from '@layouts/main-page';
-import { createPage } from '@app';
+import { createNextPage } from '@app';
 import { $$homePage, Home } from '@pages/home';
 
-const { Page } = createPage({
+const { Page, getStaticProps } = createNextPage({
   component: Home,
 
   layout: MainPage,
 
-  gip: $$homePage.enter
+  gsp: $$homePage.enter
 });
 
 export default Page;
+export { getStaticProps };

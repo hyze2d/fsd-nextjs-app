@@ -22,4 +22,4 @@ const App = ({ Component, pageProps }: Props) => {
 };
 
 export { App };
-export { createPage } from './next';
+export { createNextPage } from './next';

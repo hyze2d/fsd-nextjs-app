@@ -9,7 +9,7 @@ const i18n = require('./i18n.json');
 module.exports = nextTranslate({
   reactStrictMode: true,
 
-  trailingSlash: true,
+  trailingSlash: false,
 
   i18n: {
     locales: ['default', ...i18n.locales],

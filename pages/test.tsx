@@ -1,7 +1,7 @@
 import { MainPage } from '@layouts/main-page';
-import { createPage } from '@app';
+import { createNextPage } from '@app';
 
-const { Page } = createPage({
+const { Page } = createNextPage({
   component: () => <div>TEST</div>,
 
   layout: MainPage

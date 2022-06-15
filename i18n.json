@@ -1,9 +1,9 @@
 
 {
-    "locales": ["en"],
-    "defaultLocale": "en",
+    "locales": ["en", "default"],
+    "defaultLocale": "default",
     "pages": {
-        "*": "common"
+        "*": "common",
+        "/:locale": "home.json"
     }
-
 }

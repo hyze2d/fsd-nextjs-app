@@ -1,4 +1,5 @@
 import type { Event } from 'effector';
+import type { NextPageContext } from 'next';
 import type { PageContext, StaticPageContext } from 'nextjs-effector';
 import {
   createGIPFactory,
@@ -30,7 +31,7 @@ const createGSP = createGSPFactory({
   sharedEvents: [$$boot.started]
 });
 
-const createPage = ({
+const createNextPage = ({
   component: Component,
   layout: Layout,
   gssp,
@@ -41,11 +42,12 @@ const createPage = ({
     (props: {}): JSX.Element;
 
     getLayout?: (content: JSX.Element) => JSX.Element;
+
+    getInitialProps?: (context: NextPageContext) => any;
   } = (props: {}) => <Component {...props} />;
 
   let getServerSideProps;
   let getStaticProps;
-  let getInitialProps;
 
   if (Layout) {
     Page.getLayout = (content: JSX.Element) => <Layout>{content}</Layout>;
@@ -62,7 +64,7 @@ const createPage = ({
 
       break;
     case !!gip:
-      getInitialProps = createGIP({ pageEvent: gip });
+      Page.getInitialProps = createGIP({ pageEvent: gip });
 
       break;
   }
@@ -70,9 +72,8 @@ const createPage = ({
   return {
     Page,
     getStaticProps,
-    getInitialProps,
     getServerSideProps
   };
 };
 
-export { createPage };
+export { createNextPage };
