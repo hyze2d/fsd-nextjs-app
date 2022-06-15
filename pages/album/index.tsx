@@ -1,8 +1,9 @@
 import { baseLayout } from '@app/layouts/base';
 import { $$albumsPage, Albums } from '@pages/albums';
 
-const { Page } = baseLayout.createNextPage(Albums, {
-  gip: $$albumsPage.enter
+const { Page, getServerSideProps } = baseLayout.createNextPage(Albums, {
+  gssp: $$albumsPage.enter
 });
 
 export default Page;
+export { getServerSideProps };

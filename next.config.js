@@ -2,8 +2,6 @@ const merge = require('webpack-merge').default;
 const nextTranslate = require('next-translate')
 const { apiUrl } =
   process.env.NODE_ENV == 'production' ? process.env : require('./config.json');
-const i18n = require('./i18n.json');
-
 
 /** @type {import('next').NextConfig} */
 module.exports = nextTranslate({
@@ -25,7 +23,7 @@ module.exports = nextTranslate({
     apiUrl
   },
 
-  webpack: (config, { isServer }) => {
+  webpack: (config) => {
     [
       (
         config.module.rules.find(

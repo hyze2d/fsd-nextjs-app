@@ -1,9 +1,10 @@
 import { baseLayout } from '@app/layouts/base';
 import { $$homePage, Home } from '@pages/home';
 
-const { Page, getServerSideProps } = baseLayout.createNextPage(Home, {
-  gssp: $$homePage.enter
+const { Page } = baseLayout.createNextPage(Home, {
+  gip: $$homePage.enter
 });
 
+console.log(Page.getInitialProps);
+
 export default Page;
-export { getServerSideProps };

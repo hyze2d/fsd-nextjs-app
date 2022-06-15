@@ -14,7 +14,7 @@ const Home = createView()
     return (
       <div>
         <h1 className={styles.title}>
-          {t('siteTitle')} / {t('home.title')}
+          {t('siteTitle')} / {t('home:title')}
         </h1>
 
         <ul className={styles.albums}>

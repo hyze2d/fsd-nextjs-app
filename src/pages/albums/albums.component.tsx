@@ -8,12 +8,12 @@ const Albums = createView()
     albums: $$album.albums
   })
   .view(({ albums }) => {
-    const { t } = useTranslation('home');
+    const { t } = useTranslation();
 
     return (
       <div>
         <h1 className={styles.title}>
-          {t('siteTitle')} / {t('home.title')}
+          {t('siteTitle')} / {t('albums:title')}
         </h1>
 
         <ul className={styles.albums}>

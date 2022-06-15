@@ -1,9 +1,21 @@
-
 {
-    "locales": ["en", "default"],
+    "locales": [
+        "en",
+        "ru",
+        "default"
+    ],
     "defaultLocale": "default",
+    "defaultNS": "common",
     "pages": {
-        "*": "common",
-        "/:locale": "home.json"
-    }
+        "*": [
+            "common"
+        ],
+        "/": [
+            "home"
+        ],
+        "/album": [
+            "albums"
+        ]
+    },
+    "pagesInDir": "/pages"
 }

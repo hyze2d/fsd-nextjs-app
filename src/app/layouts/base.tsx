@@ -1,5 +1,5 @@
 import { $$boot } from '@processes/boot';
-import { $$mainPage, MainPage } from '@widgets/main-page/ui';
+import { $$mainPage, MainPage } from '@widgets/main-page';
 import { createLayout } from '@shared/lib/factory';
 
 const baseLayout = createLayout({

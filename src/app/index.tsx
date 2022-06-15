@@ -1,6 +1,5 @@
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren, ReactNode } from 'react';
 import type { AppProps } from 'next/app';
-import { baseLayout } from './layouts/base';
 
 type Props = Omit<AppProps, 'Component'> & {
   Component: ((props: object) => JSX.Element) & {
@@ -14,8 +13,10 @@ const Provider = ({ children }: PropsWithChildren<{}>) => (
   <Theme>{children}</Theme>
 );
 
+const _getLayout = (page: ReactNode) => <>{page}</>;
+
 const App = ({ Component, pageProps }: Props) => {
-  const getLayout = Component.getLayout || baseLayout.getLayout;
+  const getLayout = Component.getLayout || _getLayout;
 
   return <Provider>{getLayout(<Component {...pageProps} />)}</Provider>;
 };

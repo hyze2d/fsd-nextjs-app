@@ -65,6 +65,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'off',
     'no-redeclare': 'off',
     'no-undef': 'off',
+    'boundaries/element-types': 'off',
 
     // TODO: consider before deleting this
     // '@typescript-eslint/no-unsafe-argument': 'error',
