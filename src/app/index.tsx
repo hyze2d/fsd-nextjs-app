@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import type { AppProps } from 'next/app';
-import { Theme } from './theme';
+import { baseLayout } from './layouts/base';
 
 type Props = Omit<AppProps, 'Component'> & {
   Component: ((props: object) => JSX.Element) & {
@@ -8,18 +8,16 @@ type Props = Omit<AppProps, 'Component'> & {
   };
 };
 
+const Theme = ({ children }: PropsWithChildren<{}>) => <>{children}</>;
+
 const Provider = ({ children }: PropsWithChildren<{}>) => (
   <Theme>{children}</Theme>
 );
 
-const _getLayout = (page: (props: Record<string, unknown>) => JSX.Element) =>
-  page;
-
 const App = ({ Component, pageProps }: Props) => {
-  const getLayout = Component.getLayout || _getLayout;
+  const getLayout = Component.getLayout || baseLayout.getLayout;
 
   return <Provider>{getLayout(<Component {...pageProps} />)}</Provider>;
 };
 
 export { App };
-export { createNextPage } from './next';

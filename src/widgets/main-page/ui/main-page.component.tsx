@@ -6,6 +6,7 @@ import styles from './main-page.module.scss';
 
 const MainPage = createView<PropsWithChildren<{}>>()
   .displayName('MainPage')
+
   .view(({ children }) => (
     <div className={styles.mainPage}>
       <header className={styles.header}>
@@ -37,5 +38,45 @@ const MainPage = createView<PropsWithChildren<{}>>()
       </footer>
     </div>
   ));
+
+// const MainPage = ({ children }: PropsWithChildren<{}>) => {
+//   useEffect(() => {
+//     console.log('mount');
+
+//     return () => console.log('unmount');
+//   }, []);
+
+//   return (
+//     <div className={styles.mainPage}>
+//       <header className={styles.header}>
+//         <div className={styles.container}>
+//           <div>
+//             <Link href='/'>Home</Link>
+
+//             <Link href='/album'>Albums</Link>
+//           </div>
+
+//           <LoggedUser />
+//         </div>
+//       </header>
+
+//       <main className={styles.main}>
+//         <div className={styles.container}>{children}</div>
+//       </main>
+
+//       <footer className={styles.footer}>
+//         <div className={styles.container}>
+//           <div>
+//             <ul>
+//               <li>
+//                 <Link href='/'>home</Link>
+//               </li>
+//             </ul>
+//           </div>
+//         </div>
+//       </footer>
+//     </div>
+//   );
+// };
 
 export { MainPage };

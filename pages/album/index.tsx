@@ -1,15 +1,8 @@
-import type { Event } from 'effector';
-import type { PageContext } from 'nextjs-effector';
-import { MainPage } from '@layouts/main-page';
-import { createNextPage } from '@app';
+import { baseLayout } from '@app/layouts/base';
 import { $$albumsPage, Albums } from '@pages/albums';
 
-const { Page } = createNextPage({
-  component: () => <Albums />,
-
-  layout: MainPage,
-
-  gip: $$albumsPage.enter as Event<PageContext>
+const { Page } = baseLayout.createNextPage(Albums, {
+  gip: $$albumsPage.enter
 });
 
 export default Page;

@@ -1,7 +1,6 @@
 import { createEvent, createStore } from 'effector';
-import type { PageContext, StaticPageContext } from 'nextjs-effector';
 
-const started = createEvent<PageContext | StaticPageContext>();
+const started = createEvent();
 
 const $ready = createStore(false);
 

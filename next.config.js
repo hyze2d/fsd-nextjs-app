@@ -7,15 +7,9 @@ const i18n = require('./i18n.json');
 
 /** @type {import('next').NextConfig} */
 module.exports = nextTranslate({
-  reactStrictMode: true,
+  reactStrictMode: false,
 
   trailingSlash: false,
-
-  // i18n: {
-  //   locales: ['default', ...i18n.locales],
-    
-  //   defaultLocale: 'default',
-  // },
 
   experimental: {
     images: {
