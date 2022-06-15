@@ -36,9 +36,9 @@
       "@shared/*": ["./src/shared/*"],
       "@config/*": ["./src/shared/config/*"],
       "@lib/*": ["./src/shared/lib/*"],
+      "@styles/*": ["./src/shared/ui/styles/*"],
       "@ui/*": ["./src/shared/ui/*"],
       "@api/*": ["./src/shared/api/*"],
-      "@styles/*": ["./src/styles/*"]
     }
   },
 

@@ -1,12 +1,21 @@
 const merge = require('webpack-merge').default;
+const nextTranslate = require('next-translate')
 const { apiUrl } =
   process.env.NODE_ENV == 'production' ? process.env : require('./config.json');
+const i18n = require('./i18n.json');
+
 
 /** @type {import('next').NextConfig} */
-module.exports = {
+module.exports = nextTranslate({
   reactStrictMode: true,
 
   trailingSlash: true,
+
+  i18n: {
+    locales: ['default', ...i18n.locales],
+    
+    defaultLocale: 'default',
+  },
 
   publicRuntimeConfig: {
     apiUrl
@@ -55,4 +64,4 @@ module.exports = {
       }
     });
   }
-};
+});
