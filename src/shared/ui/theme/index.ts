@@ -1,3 +1,3 @@
-export { $theme } from './model';
-export { Theme } from './provider';
+export { $theme, setPropertiesFx, setTheme } from './model';
 export type { ThemeOptions } from './types';
+export { theme } from './config';

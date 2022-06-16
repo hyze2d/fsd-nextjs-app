@@ -21,6 +21,4 @@ type ThemeOptions = {
   error: string;
 };
 
-type ThemeState = ThemeOptions | null;
-
-export type { ThemeOptions, ThemeState };
+export type { ThemeOptions };

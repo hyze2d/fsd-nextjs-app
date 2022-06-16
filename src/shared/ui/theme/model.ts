@@ -1,25 +1,16 @@
-import { createEffect, restore, sample } from 'effector';
+import { createEffect, createEvent, restore } from 'effector';
 
-import { createGate } from 'effector-react';
+import { theme } from './config';
 
-import type { ThemeOptions, ThemeState } from './types';
+import type { ThemeOptions } from './types';
 
-/**
- * Set current theme
- */
-const ThemeGate = createGate<ThemeOptions>();
+const setTheme = createEvent<ThemeOptions>();
 
-/**
- * App style theme
- */
-const $theme = restore(ThemeGate.state.updates, null);
+const setPropertiesFx = createEffect<ThemeOptions, void>();
 
-/**
- * Map theme to style vars
- */
-const setPropertiesFx = createEffect((theme: ThemeState) => {
-  if (!theme) return;
+const $theme = restore(setTheme, theme.light);
 
+setPropertiesFx.use(theme => {
   Object.entries(theme).forEach(([key, value]) => {
     document.documentElement.style.setProperty(
       `--theme-${key}`,
@@ -29,10 +20,4 @@ const setPropertiesFx = createEffect((theme: ThemeState) => {
   });
 });
 
-sample({
-  clock: ThemeGate.open,
-
-  target: setPropertiesFx
-});
-
-export { ThemeGate, $theme, setPropertiesFx };
+export { $theme, setTheme, setPropertiesFx };

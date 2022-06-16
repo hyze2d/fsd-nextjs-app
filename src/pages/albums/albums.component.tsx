@@ -12,7 +12,7 @@ const Albums = createView()
 
     return (
       <div>
-        <h1 className={styles.title}>
+        <h1 className={styles.title} style={{}}>
           {t('siteTitle')} / {t('albums:title')}
         </h1>
 
