@@ -6,14 +6,13 @@ import { App } from '@app';
 import type { AppProps } from 'next/app';
 import config from '../i18n';
 
-export default appWithI18n(
-  withEffector(App as (props: AppProps) => JSX.Element, {
-    Provider
-  }) as any,
+const EffectorApp = withEffector(App as (props: AppProps) => JSX.Element, {
+  Provider
+});
 
-  {
-    ...config,
+const TranslatedApp = appWithI18n(EffectorApp as any, {
+  ...config,
+  skipInitialProps: true
+});
 
-    skipInitialProps: true
-  }
-);
+export default TranslatedApp;
