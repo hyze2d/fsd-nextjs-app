@@ -1,0 +1,13 @@
+@import './vars.scss';
+
+@import 'include-media/dist/_include-media.scss';
+
+$breakpoints: (
+  xxs: $xxs,
+  xs: $xs,
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+  xxl: $xxl
+);

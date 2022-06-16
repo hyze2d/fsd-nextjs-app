@@ -1,0 +1,14 @@
+
+- SSG
+- Next pages 
+- Commitlint 
+- Localization
+- ENV/Config 
+- Aliases
+- Babel config
+- Tsconfig
+- Animations
+- Общие стили
+- Темизация
+- Адаптив
+- Роутинг
