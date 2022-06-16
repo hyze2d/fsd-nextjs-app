@@ -1,3 +1,4 @@
+import loadNamespaces from 'next-translate/loadNamespaces';
 import type { PageEvent, StaticPageEvent } from 'nextjs-effector';
 import {
   createGIPFactory,
@@ -17,6 +18,7 @@ type CreateNextPageOptions = {
   gssp?: PageEvent;
   gip?: PageEvent;
   gsp?: StaticPageEvent;
+  pathname?: string;
 };
 
 const createLayout = ({ getLayout, gssp, gip, gsp }: CreateLayoutOptions) => {
@@ -26,7 +28,7 @@ const createLayout = ({ getLayout, gssp, gip, gsp }: CreateLayoutOptions) => {
 
   function createNextPage<T>(
     Component: ComponentType<T>,
-    { gssp, gip, gsp }: CreateNextPageOptions
+    { gssp, gip, gsp, pathname }: CreateNextPageOptions
   ) {
     let getStaticProps;
     let getServerSideProps;
@@ -37,19 +39,49 @@ const createLayout = ({ getLayout, gssp, gip, gsp }: CreateLayoutOptions) => {
 
     if (gip) {
       Page.getInitialProps = createGIP({
-        pageEvent: gip
+        pageEvent: gip,
+
+        customize: pathname
+          ? async ({ context }) => ({
+              ...(await loadNamespaces({
+                ...context,
+
+                pathname
+              }))
+            })
+          : undefined
       });
     }
 
     if (gssp) {
       getServerSideProps = createGSSP({
-        pageEvent: gssp
+        pageEvent: gssp,
+
+        customize: pathname
+          ? async ({ context }) => ({
+              props: await loadNamespaces({
+                ...context,
+
+                pathname
+              })
+            })
+          : undefined
       });
     }
 
     if (gsp) {
       getStaticProps = createGSP({
-        pageEvent: gsp
+        pageEvent: gsp,
+
+        customize: pathname
+          ? async ({ context }) => ({
+              props: await loadNamespaces({
+                ...context,
+
+                pathname
+              })
+            })
+          : undefined
       });
     }
 

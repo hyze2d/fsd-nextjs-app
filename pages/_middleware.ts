@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import config from '../i18n.json';
+import config from '../i18n.js';
 
 const PUBLIC_FILE = /\.(.*)$/;
 

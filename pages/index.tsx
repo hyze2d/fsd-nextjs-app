@@ -1,10 +1,11 @@
 import { baseLayout } from '@app/layouts/base';
 import { $$homePage, Home } from '@pages/home';
 
-const { Page } = baseLayout.createNextPage(Home, {
-  gip: $$homePage.enter
+const { Page, getStaticProps } = baseLayout.createNextPage(Home, {
+  gsp: $$homePage.enter,
+
+  pathname: '/'
 });
 
-console.log(Page.getInitialProps);
-
 export default Page;
+export { getStaticProps };
