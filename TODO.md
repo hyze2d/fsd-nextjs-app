@@ -1,7 +1,4 @@
 ## IN PROGRESS
-
-
-
 - Структура файлов - написать гайд
 - Model structure - написать гайд
 - Template generation
