@@ -5,8 +5,8 @@ import type { NextSeoProps } from 'next-seo';
 import { NextSeo } from 'next-seo';
 import type { FC, PropsWithChildren } from 'react';
 
-function getHoc<P>(Seo: FC<P>) {
-  return ({ children, ...props }: PropsWithChildren<P>) => (
+function getHoc<P>(Seo: FC<P>): FC<PropsWithChildren<P>> {
+  return ({ children, ...props }) => (
     <>
       <Seo {...(props as P)} />
 
@@ -22,7 +22,9 @@ function seo<V, P>(
   map: MapConfig<V, P>
 ): FC<PropsWithChildren<P>>;
 function seo<P>(map: (props: P) => NextSeoProps): FC<PropsWithChildren<P>>;
-function seo(props: Store<NextSeoProps> | NextSeoProps): FC;
+function seo(
+  props: Store<NextSeoProps> | NextSeoProps
+): FC<PropsWithChildren<{}>>;
 function seo(...args: any[]) {
   switch (true) {
     case args?.length == 2:
