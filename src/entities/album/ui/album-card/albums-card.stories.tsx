@@ -1,4 +1,3 @@
-/* eslint-disable import/exports-last */
 import type { Meta, Story } from '@storybook/react';
 
 import type { AlbumProps } from './album-card.component';
