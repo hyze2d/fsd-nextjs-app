@@ -1,7 +1,4 @@
-import { createEffect, createStore } from 'effector';
-import type { Album } from './lib';
-
-const mock = [
+const albumsMock = [
   {
     id: 1,
     title: 'Some title',
@@ -63,25 +60,4 @@ const mock = [
   thumbnail: item.thumbnail.replace('2', '3')
 }));
 
-const getAlbumsFx = createEffect<void, Album[]>();
-const getFeaturedAlbumsFx = createEffect<void, Album[]>();
-
-const $albums = createStore<Album[]>([]);
-const $featuredAlbums = createStore<Album[]>([]);
-
-$albums.on(getAlbumsFx.doneData, (_, albums) => albums);
-
-$featuredAlbums.on(getFeaturedAlbumsFx.doneData, (_, albums) => albums);
-
-getFeaturedAlbumsFx.use(() => mock);
-
-getAlbumsFx.use(() =>
-  mock.map(item => ({
-    ...item,
-    id: item.id + 8,
-    title: `${item.title}ON ALBUMS PAGE`,
-    thumbnail: item.thumbnail.replace('2', '3')
-  }))
-);
-
-export { $featuredAlbums, $albums, getAlbumsFx, getFeaturedAlbumsFx };
+export { albumsMock };
