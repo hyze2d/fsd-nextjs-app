@@ -22,3 +22,4 @@ const AlbumCard = ({ album }: AlbumProps) => (
 );
 
 export { AlbumCard };
+export type { AlbumProps };
