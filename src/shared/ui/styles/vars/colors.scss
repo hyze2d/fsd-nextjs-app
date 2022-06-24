@@ -1,43 +1,20 @@
-//blue
+// main palette
+$primary: var(--theme-primary);
 
-$blue: var(--theme-blue);
+$secondary: var(--theme-secondary);
 
-$lightBlue: var(--theme-lightBlue);
+$teritary: var(--theme-teritary);
 
-$darkBlue: var(--theme-darkBlue);
+$quaternary: var(--theme-quaternary);
 
-// red
+//text
+$text: var(--theme-text);
 
-$red: var(--theme-red);
+//states
+$info: var(--theme-info);
 
-$lightRed: var(--theme-lightRed);
+$success: var(--theme-success);
 
-$darkRed: var(--theme-darkRed);
+$warning: var(--theme-warning);
 
-// gray
-
-$white: var(--theme-white);
-
-$gray20: var(--theme-gray20);
-
-$gray40: var(--theme-gray40);
-
-$gray60: var(--theme-gray60);
-
-$gray80: var(--theme-gray80);
-
-$gray90: var(--theme-gray90);
-
-$black: var(--theme-black);
-
-// gray blue
-
-$grayBlue10: var(--theme-grayBlue10);
-
-$grayBlue30: var(--theme-grayBlue30);
-
-$grayBlue60: var(--theme-grayBlue60);
-
-$grayBlue80: var(--theme-grayBlue80);
-
-$grayBlue90: var(--theme-grayBlue90);
+$error: var(--theme-error);

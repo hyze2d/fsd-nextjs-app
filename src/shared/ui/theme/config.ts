@@ -1,4 +1,4 @@
-import type { ThemeOptions } from '@shared/ui/theme';
+import type { ThemeOptions } from './types';
 
 const light: ThemeOptions = {
   primary: '#000',
