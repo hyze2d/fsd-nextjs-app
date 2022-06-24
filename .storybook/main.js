@@ -35,11 +35,22 @@ module.exports = {
 
   staticDirs: [path.resolve(__dirname,'../public')],
 
-  webpackFinal: (config) => merge(config, {
-    resolve: {
-      alias: {
-        '@styles': path.resolve(__dirname,'../src/shared/styles')
+  webpackFinal: (config) => {
+    config.module.rules.forEach(rule => {
+      if (!rule.exclude && (".module.css".match(rule.test) || ".module.scss".match(rule.test)) && rule.use) {
+        const cssLoader = rule.use.find(use => use.loader && use.loader.includes('css-loader'));
+
+        cssLoader.options.localsConvention = "camelCase";
       }
-    }
-  })
+    });
+
+
+    return merge(config, {
+      resolve: {
+        alias: {
+          '@styles': '/src/styles'
+        }
+      }
+    });
+  }
 }
