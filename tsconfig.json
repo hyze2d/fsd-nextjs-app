@@ -28,17 +28,11 @@
       "@app": ["./src/app/index"],
       "@app/*": ["./src/app/*"],
       "@processes/*": ["./src/processes/*"],
-      "@layouts/*": ["./src/widgets/layouts/*"],
       "@widgets/*": ["./src/widgets/*"],
       "@features/*": ["./src/features/*"],
       "@entities/*": ["./src/entities/*"],
       "@pages/*": ["./src/pages/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@config/*": ["./src/shared/config/*"],
-      "@lib/*": ["./src/shared/lib/*"],
-      "@styles/*": ["./src/shared/ui/styles/*"],
-      "@ui/*": ["./src/shared/ui/*"],
-      "@api/*": ["./src/shared/api/*"],
+      "@shared/*": ["./src/shared/*"]
     }
   },
 

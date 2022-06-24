@@ -1,7 +1,7 @@
 /* eslint-disable import/exports-last */
 import type { Meta, Story } from '@storybook/react';
-import { StorybookProvider } from '@lib/storybook';
 import { $user } from '@entities/user/user.model';
+import { StorybookProvider } from '@shared/lib/storybook';
 import { LoggedUser } from './logged-user.component';
 import { mockedUser } from './logged-user.mock';
 

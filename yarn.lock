@@ -1812,11 +1812,6 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@outlinestudio/designtokenscss@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@outlinestudio/designtokenscss/-/designtokenscss-1.0.6.tgz#4fda9e30c6b5135c0b7af3372732bf3c478abdca"
-  integrity sha512-lY3DdKU9qzkna1ec2mgxKKskCpReaKrmkdXJ7MGq0do+IOUOh/vXO4s9j/Wjdfu8D2wuGadSGERgplNYSgi+6w==
-
 "@pmmmwh/react-refresh-webpack-plugin@^0.5.3":
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.7.tgz#58f8217ba70069cc6a73f5d7e05e85b458c150e2"
@@ -8525,6 +8520,11 @@ imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   integrity sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==
+
+include-media@^1.4.10:
+  version "1.4.10"
+  resolved "https://registry.yarnpkg.com/include-media/-/include-media-1.4.10.tgz#7a311c92c396c808504ec6a5365115d30571f259"
+  integrity sha512-TymQzKF7oWHbItEcEHOCponZ90lRr1I9QbYeD+qCxXy4Z0/pSpS4Ocz2bq3FMOERlXXrY9Sawsh9GjiObVQA6A==
 
 indent-string@^2.1.0:
   version "2.1.0"

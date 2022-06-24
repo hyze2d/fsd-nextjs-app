@@ -1,5 +1,4 @@
-@import './vars.scss';
-
+@import './vars/breakpoints.scss';
 @import 'include-media/dist/_include-media.scss';
 
 $breakpoints: (

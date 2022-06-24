@@ -1,9 +1,9 @@
 /* eslint-disable import/exports-last */
 import type { Meta, Story } from '@storybook/react';
 
-import { StorybookProvider } from '@lib/storybook';
 import { MainPage } from '@widgets/main-page';
 import { $$album } from '@entities/album';
+import { StorybookProvider } from '@shared/lib/storybook';
 
 import { Home as HomePage } from './home.component';
 

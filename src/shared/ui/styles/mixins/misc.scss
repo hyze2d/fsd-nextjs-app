@@ -1,0 +1,13 @@
+@mixin icon-color($color: $color, $transition: 0.25s) {
+  [data-fill] {
+    transition: $transition;
+
+    fill: $color;
+  }
+
+  [data-stroke] {
+    transition: $transition;
+
+    stroke: $color;
+  }
+}

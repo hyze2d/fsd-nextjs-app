@@ -1,9 +1,3 @@
-$primary: var(--theme-primary);
-
-$xxs: 320px;
-$xs: 375px;
-$sm: 480px;
-$md: 768px;
-$lg: 1172px;
-$xl: 1200px;
-$xxl: 1366px;
+@import './vars/breakpoints.scss';
+@import './vars/colors.scss';
+@import './vars/misc.scss';
