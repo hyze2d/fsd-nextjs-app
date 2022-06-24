@@ -1,21 +1,24 @@
 import { ColorItem, ColorPalette } from '@storybook/addon-docs/blocks';
 import type { Meta, Story } from '@storybook/react';
 
+import type { FC, PropsWithChildren } from 'react';
 import { theme } from './config';
 
+const PatchedColorPalette = ColorPalette as FC<PropsWithChildren<{}>>;
+
 export const Dark: Story = () => (
-  <ColorPalette>
+  <PatchedColorPalette>
     {Object.entries(theme.dark).map(([key, value]) => (
       <ColorItem key={key} title={key} subtitle='' colors={[value]} />
     ))}
-  </ColorPalette>
+  </PatchedColorPalette>
 );
 export const Light: Story = () => (
-  <ColorPalette>
+  <PatchedColorPalette>
     {Object.entries(theme.light).map(([key, value]) => (
       <ColorItem key={key} title={key} subtitle='' colors={[value]} />
     ))}
-  </ColorPalette>
+  </PatchedColorPalette>
 );
 
 const story: Meta = {
