@@ -2,6 +2,7 @@
 import type { Meta, Story } from '@storybook/react';
 
 import { StorybookProvider } from '@lib/storybook';
+import { MainPage } from '@widgets/main-page';
 import { $$album } from '@entities/album';
 
 import { Home as HomePage } from './home.component';
@@ -15,7 +16,9 @@ Page.decorators = [
     <StorybookProvider
       fork={{ values: [[$$album.featuredAlbums, albumsMock]] }}
     >
-      <Story />
+      <MainPage>
+        <Story />
+      </MainPage>
     </StorybookProvider>
   )
 ];
