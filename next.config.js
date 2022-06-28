@@ -61,7 +61,7 @@ module.exports = nextTranslate({
     return merge(config, {
       resolve: {
         alias: {
-          '@styles': '/src/styles'
+          '@styles': '/src/shared/ui/styles'
         }
       }
     });

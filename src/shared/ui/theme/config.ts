@@ -1,7 +1,7 @@
 import type { ThemeOptions } from './types';
 
 const light: ThemeOptions = {
-  primary: '#000',
+  primary: '#ffffff',
   secondary: '#000',
   teritary: '#000',
   quaternary: '#000',

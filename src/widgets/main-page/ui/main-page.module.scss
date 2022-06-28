@@ -1,3 +1,5 @@
+@import '@styles/core.scss';
+
 .container {
   max-width: 1170px;
   margin: 0 auto;
@@ -15,6 +17,7 @@
 .header {
   padding: 16px 0;
   background: #333333;
+
   .container {
     display: flex;
     justify-content: space-between;
