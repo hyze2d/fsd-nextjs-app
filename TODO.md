@@ -5,7 +5,6 @@
 - Список плагинов для шторма/кода
 - Assets - public
 - SEO - next-seo
-- Storybook - setup
 - Create View - рефактор, forwardref, настроить паблиш, доки
 - Юнит тесты
 - Интеграционные тесты
