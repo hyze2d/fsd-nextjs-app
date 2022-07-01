@@ -11769,10 +11769,10 @@ react-sizeme@^3.0.1:
     shallowequal "^1.1.0"
     throttle-debounce "^3.0.1"
 
-react-svg-codegen@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/react-svg-codegen/-/react-svg-codegen-0.0.11.tgz#0d49234bdfa5b44465ba2a67f655016f9553a69c"
-  integrity sha512-reZO/+QNgiOCpWn7qjX+UoYr3jUdaVBuElXhB6OK2zvsMnOVJ6wJMFaqBFihGYNROviHKFS3FZEPtkZAEarl8g==
+react-svg-codegen@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/react-svg-codegen/-/react-svg-codegen-0.0.14.tgz#ad153cafa2e1054caba2674c392a4944aac2bdca"
+  integrity sha512-h9E648GMEbt+Meqd2bOZlUhuXIVDKeVEq4h9tFjYRE0ObpaoD4+ixpruXDqtYNlqCahfkenijmOdF1Deq9/YaA==
   dependencies:
     "@svgr/webpack" "^6.2.1"
     chokidar "^3.5.3"
