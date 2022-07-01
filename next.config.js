@@ -3,6 +3,8 @@ const nextTranslate = require('next-translate')
 const { apiUrl } =
   process.env.NODE_ENV == 'production' ? process.env : require('./config.json');
 
+const { svgConfig } = require('react-svg-codegen/webpack')
+
 /** @type {import('next').NextConfig} */
 module.exports = nextTranslate({
   reactStrictMode: false,
@@ -57,6 +59,8 @@ module.exports = nextTranslate({
               'camelCase';
           });
       });
+
+    svgConfig(config)
 
     return merge(config, {
       resolve: {

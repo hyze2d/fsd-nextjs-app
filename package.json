@@ -16,7 +16,8 @@
     "postinstall`": "husky install",
     "pre-commit": "lint-staged",
     "check:unused-deps": "unimported",
-    "codegen-api": "node ./scripts/codegen-api.js"
+    "codegen-api": "node ./scripts/codegen-api.js",
+    "codegen-svg": "node ./scripts/watch-svg.js"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -91,6 +92,7 @@
     "postcss-cli": "^9.1.0",
     "postcss-scss": "^4.0.4",
     "prettier": "^2.6.2",
+    "react-svg-codegen": "^0.0.11",
     "sass": "^1.52.2",
     "storybook-addon-breakpoints": "^1.0.0",
     "storybook-addon-code-preview": "^0.0.9",
