@@ -1,11 +1,14 @@
 const { generateSVG } = require("react-svg-codegen");
 const path = require("path");
 
-
 generateSVG({
-  iconsFolder: path.resolve(__dirname, "../src/shared/ui/icons"),
-  templateFolder: path.resolve(__dirname,"..","node_modules","react-svg-codegen/templates"),
+  iconsFolder: resolveRoot("src/shared/ui/icons"),
+  templateFolder: resolveRoot("node_modules", "react-svg-codegen/templates"),
   output: "index.tsx",
   watch: true,
   storybook: true
 });
+
+function resolveRoot(...segments) {
+  return path.resolve(__dirname, "..", ...segments);
+}
