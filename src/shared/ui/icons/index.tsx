@@ -10,4 +10,4 @@ const Icon = {
   ChevronUp
 };
 
-export { Icon }
+export { Icon };
