@@ -3,21 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "gen:api": "node ./scripts/codegen-api.js",
-    "gen:svg": "node ./scripts/watch-svg.js",
-
     "validate:eslint": "eslint \"./src/**/*.{ts,tsx}\" --fix",
     "validate:stylelint": "stylelint --fix \"./src/**/*.scss\"",
     "validate:deps": "unimported",
-
     "storybook:build": "build-storybook -s public",
     "storybook:start": "start-storybook -p 6006 --no-manager-cache",
-
-    "app:prepare": "gen:api && gen:svg && tsc --noEmit",
-    "app:dev": "yarn pre:start && next dev",
-    "app:build": "yarn pre:start && next build",
-    "app:start": "yarn pre:start && next start",
-
+    "app:prepare": "node ./scripts/prepare.js && tsc --noEmit",
+    "app:watchers": "node ./scripts/watch.js",
+    "app:dev": "yarn app:prepare && concurrently \"yarn app:watchers\" \"next dev\" --names \"watchers,app\"",
+    "app:build": "yarn app:prepare && next build",
+    "app:start": "yarn app:prepare && next start",
     "postinstall`": "husky install",
     "pre-commit": "lint-staged"
   },
@@ -72,6 +67,7 @@
     "case": "^1.6.3",
     "commitlint-config-jira": "^1.6.4",
     "commitlint-plugin-jira-rules": "^1.6.4",
+    "concurrently": "^7.2.2",
     "copy-to-clipboard": "^3.3.1",
     "cssnano": "^5.1.11",
     "deepmerge": "^4.2.2",
