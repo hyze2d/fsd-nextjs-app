@@ -11,6 +11,7 @@ import home from '../../../../locales/en/home.json';
 
 type StorybookProviderProps = PropsWithChildren<{
   fork?: Parameters<typeof effectorFork>[0];
+
   i18n?: I18nProviderProps;
 }>;
 
@@ -26,6 +27,7 @@ const StorybookProvider: FC<StorybookProviderProps> = ({
 
 StorybookProvider.defaultProps = {
   fork: {},
+
   i18n: {
     lang: 'en',
     namespaces: { common, albums, home },

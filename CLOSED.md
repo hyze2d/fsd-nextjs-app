@@ -1,4 +1,3 @@
-
 - SSG
 - Next pages 
 - Commitlint 
@@ -12,4 +11,9 @@
 - Темизация
 - Адаптив
 - Роутинг
-- Storybook - setup
+- Storybook
+- ESLINT
+- STYLELINT
+- Список плагинов для шторма/кода
+- editorconfig/vscode config
+- SEO

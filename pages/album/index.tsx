@@ -11,7 +11,7 @@ const { Page, getServerSideProps } = baseLayout.createNextPage(Albums, {
 
   pathname: '/album',
 
-  children: () => <Seo />
+  prepend: () => <Seo />
 });
 
 export default Page;

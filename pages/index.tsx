@@ -11,7 +11,7 @@ const { Page } = baseLayout.createNextPage(Home, {
 
   pathname: '/',
 
-  children: () => <Seo />
+  prepend: () => <Seo />
 });
 
 export default Page;

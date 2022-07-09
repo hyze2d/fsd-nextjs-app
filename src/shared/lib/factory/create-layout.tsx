@@ -14,12 +14,12 @@ type CreateLayoutOptions = {
   gssp: Parameters<typeof createGSSPFactory>[0];
 };
 
-type CreateNextPageOptions = {
+type CreateNextPageOptions<P> = {
   gssp?: PageEvent;
   gip?: PageEvent;
   gsp?: StaticPageEvent;
   pathname?: string;
-  children?: () => JSX.Element | JSX.Element[];
+  prepend?: (props: P) => JSX.Element | JSX.Element[];
 };
 
 const createLayout = ({ getLayout, gssp, gip, gsp }: CreateLayoutOptions) => {
@@ -29,14 +29,14 @@ const createLayout = ({ getLayout, gssp, gip, gsp }: CreateLayoutOptions) => {
 
   function createNextPage<T>(
     Component: ComponentType<T>,
-    { gssp, gip, gsp, pathname, children }: CreateNextPageOptions
+    { gssp, gip, gsp, pathname, prepend }: CreateNextPageOptions<T>
   ) {
     let getStaticProps;
     let getServerSideProps;
 
     const Page = (props: T) => (
       <>
-        {children?.()}
+        {prepend?.(props)}
 
         <Component {...props} />
       </>
