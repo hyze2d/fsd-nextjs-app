@@ -1,0 +1,13 @@
+{
+  "api": {
+    "outputDir": "/src/shared/api/sdk",
+
+    "sdks": [
+      {
+        "name": "fruitShop",
+        "fileName": "fruit-shop.ts",
+        "swaggerUrl": "https://api.predic8.de/shop/swagger"
+      }
+    ]
+  }
+}
