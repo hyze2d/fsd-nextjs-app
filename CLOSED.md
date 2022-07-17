@@ -17,3 +17,6 @@
 - Список плагинов для шторма/кода
 - editorconfig/vscode config
 - SEO
+- API
+- Apicodegen
+- Assets

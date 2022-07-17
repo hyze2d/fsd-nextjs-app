@@ -1,6 +1,7 @@
-import { useEvent, useStore } from 'effector-react';
+import { is } from 'effector';
+import { useUnit, useStoreMap } from 'effector-react';
 import { createLib } from 'effector-view';
 
-const { createView } = createLib({ useStore, useEvent });
+const { createView, connect } = createLib({ useUnit, useStoreMap, is });
 
-export { createView };
+export { createView, connect };

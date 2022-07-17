@@ -4,7 +4,7 @@ import { createView } from '@shared/lib/view';
 import styles from './albums.module.scss';
 
 const Albums = createView()
-  .props({
+  .units({
     albums: $$album.albums
   })
   .view(({ albums }) => {

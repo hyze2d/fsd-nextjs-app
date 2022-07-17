@@ -15,9 +15,11 @@ module.exports = {
         "*": [
             "common"
         ],
+
         "/": [
             "home"
         ],
+        
         "/album": [
             "albums"
         ]

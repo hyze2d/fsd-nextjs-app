@@ -3,7 +3,7 @@ import { createView } from '@shared/lib/view';
 import styles from './logged-user.module.scss';
 
 const LoggedUser = createView()
-  .props({
+  .units({
     user: $user
   })
   .view(({ user }) => {

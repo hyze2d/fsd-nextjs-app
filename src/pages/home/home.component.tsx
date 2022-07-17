@@ -6,7 +6,7 @@ import { TwitterIcon } from '@shared/ui/icons/twitter';
 import styles from './home.module.scss';
 
 const Home = createView()
-  .props({
+  .units({
     albums: $$album.featuredAlbums
   })
 

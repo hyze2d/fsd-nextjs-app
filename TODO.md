@@ -1,24 +1,17 @@
 ## IN PROGRESS
+- Create View - рефактор, forwardref, настроить паблиш, доки
 - Структура файлов - написать гайд
 - Model structure - написать гайд
-- Template generation
-- Assets - public
-
-- Create View - рефактор, forwardref, настроить паблиш, доки
 
 - Юнит тесты
 - Интеграционные тесты
-
-- API
-- Apicodegen
 
 - Перформанс & Профайлинг
 
 - Forms
 
+- Template generation
 - Utils/Helpers
-
 - Дефолтная либа компонентов
-
 - Набор фич/entities/структуры, который закрывает стандартную структуру авторизации/регистрации/профиля юзера/дешборда (для базы и для примера)
 
