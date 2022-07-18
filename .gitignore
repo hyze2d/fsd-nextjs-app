@@ -23,10 +23,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
 # local env files
-.env
-config.json
+.env*.local
 
 # vercel
 .vercel
@@ -35,6 +35,5 @@ config.json
 *.tsbuildinfo
 
 
+#ide
 .idea
-
-yarn.lock

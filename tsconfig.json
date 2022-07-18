@@ -7,7 +7,6 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "baseUrl": ".",
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -24,19 +23,16 @@
     "strictFunctionTypes": true,
     "useUnknownInCatchVariables": true,
 
+    "baseUrl": ".",
     "paths": {
+      "@app": ["./src/app/index"],
       "@app/*": ["./src/app/*"],
       "@processes/*": ["./src/processes/*"],
-      "@layouts/*": ["./src/widgets/layouts/*"],
       "@widgets/*": ["./src/widgets/*"],
       "@features/*": ["./src/features/*"],
       "@entities/*": ["./src/entities/*"],
-      "@routes/*": ["src/routes/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@config/*": ["./src/shared/config/*"],
-      "@lib/*": ["./src/shared/lib/*"],
-      "@ui/*": ["./src/shared/ui/*"],
-      "@api/*": ["./src/shared/api/*"]
+      "@pages/*": ["./src/pages/*"],
+      "@shared/*": ["./src/shared/*"]
     }
   },
 

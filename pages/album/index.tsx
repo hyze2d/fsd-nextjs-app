@@ -1,7 +1,18 @@
-import { albumPage } from '@routes/album';
-import { createGSSP } from '@shared/lib/next/gssp';
+import { baseLayout } from '@app/layouts/base';
+import { $$albumsPage, Albums } from '@pages/albums';
+import { seo } from '@shared/lib/seo';
 
-const getServerSideProps = createGSSP(albumPage.enter);
+const Seo = seo({
+  title: 'Albums'
+});
 
-export { Album as default } from '@routes/album';
+const { Page, getServerSideProps } = baseLayout.createNextPage(Albums, {
+  gip: $$albumsPage.enter,
+
+  pathname: '/album',
+
+  prepend: () => <Seo />
+});
+
+export default Page;
 export { getServerSideProps };

@@ -4,7 +4,8 @@
     [
       "effector/babel-plugin",
       {
-        "reactSsr": true
+        "reactSsr": true,
+        "factories": ["/src/shared/lib/factories/index.ts"]
       }
     ]
   ]

@@ -1,0 +1,22 @@
+- SSG
+- Next pages 
+- Commitlint 
+- Localization
+- ENV/Config 
+- Aliases
+- Babel config
+- Tsconfig
+- Animations
+- Общие стили
+- Темизация
+- Адаптив
+- Роутинг
+- Storybook
+- ESLINT
+- STYLELINT
+- Список плагинов для шторма/кода
+- editorconfig/vscode config
+- SEO
+- API
+- Apicodegen
+- Assets

@@ -1,19 +1,36 @@
-import { DefaultSeo as Seo } from 'next-seo';
+import { useEvent } from 'effector-react/scope';
+import type { PropsWithChildren, ReactNode } from 'react';
+import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { Layout } from '@widgets/layout';
-import { DEFAULT_SEO } from '@shared/config/seo';
-import { Provider } from './provider';
+import { $$boot } from '@processes/boot';
+import { AppCrashed } from '@widgets/app-crashed';
+import { ErrorBoundary } from '@shared/lib/boundry';
 
-const App = ({ Component, pageProps }: AppProps) => (
-  <Provider>
-    <Seo {...DEFAULT_SEO} />
+type Props = Omit<AppProps, 'Component'> & {
+  Component: ((props: object) => JSX.Element) & {
+    getLayout: (children: JSX.Element) => JSX.Element;
+  };
+};
 
-    <Layout>
-      {/* @ts-expect-error JSX typings */}
+const Provider = ({ children }: PropsWithChildren<{}>) => <>{children}</>;
 
-      <Component {...pageProps} />
-    </Layout>
-  </Provider>
-);
+const _getLayout = (page: ReactNode) => <>{page}</>;
+
+const App = ({ Component, pageProps }: Props) => {
+  const mounted = useEvent($$boot.mounted);
+  const getLayout = Component.getLayout || _getLayout;
+
+  useEffect(() => {
+    mounted();
+  }, []);
+
+  return (
+    <Provider>
+      <ErrorBoundary fallback={AppCrashed} meta={{ Component, pageProps }}>
+        {getLayout(<Component {...pageProps} />)}
+      </ErrorBoundary>
+    </Provider>
+  );
+};
 
 export { App };

@@ -1,21 +1,31 @@
 const merge = require('webpack-merge').default;
+const nextTranslate = require('next-translate')
 const { apiUrl } =
   process.env.NODE_ENV == 'production' ? process.env : require('./config.json');
-const { i18n } = require('./next-i18next.config');
+
+const { svgConfig } = require('react-svg-codegen/webpack')
 
 /** @type {import('next').NextConfig} */
-module.exports = {
-  reactStrictMode: true,
+module.exports = nextTranslate({
+  reactStrictMode: false,
 
-  trailingSlash: true,
+  trailingSlash: false,
+
+  experimental: {
+    images: {
+        layoutRaw: true
+    }
+  },
+
+  images: {
+    domains: ['picsum.photos'],
+  },
 
   publicRuntimeConfig: {
     apiUrl
   },
 
-  i18n,
-
-  webpack: (config, { isServer }) => {
+  webpack: (config) => {
     [
       (
         config.module.rules.find(
@@ -50,19 +60,14 @@ module.exports = {
           });
       });
 
-    if (!isServer) {
-    }
+    svgConfig(config)
 
     return merge(config, {
       resolve: {
-        fallback: {
-          ...(isServer ? {} : { fs: false })
-        },
-
         alias: {
-          '@styles': '/src/shared/styles'
+          '@styles': '/src/shared/ui/styles'
         }
       }
     });
   }
-};
+});

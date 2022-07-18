@@ -1,6 +1,9 @@
-import {withDesign} from 'storybook-addon-designs'
+import { withDesign } from "storybook-addon-designs";
 
-import '../src/app/app.scss'
+import { StorybookProvider } from "../src/shared/lib/storybook";
+
+
+import "../src/app/styles/global.scss";
 
 
 export const parameters = {
@@ -8,10 +11,17 @@ export const parameters = {
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/,
-    },
+      date: /Date$/
+    }
   },
-}
+  backgrounds: {
+    default: "light"
+  },
+};
 
-export const decorators = [withDesign]
+export const decorators = [withDesign, Story =>
+  <StorybookProvider>
+    <Story />
+  </StorybookProvider>
+];
 

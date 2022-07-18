@@ -1,0 +1,53 @@
+@mixin truncate() {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin font($s, $w: 400, $lh: 1.2) {
+  font-weight: $w;
+  font-size: $s;
+  line-height: $lh;
+}
+
+%subtitle-1 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+%subtitle-2 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+%subtitle-3 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+%subtitle-4 {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+%body-big {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+%body-medium {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+%body-small {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
